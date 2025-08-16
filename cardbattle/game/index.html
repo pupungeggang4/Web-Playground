@@ -3,7 +3,27 @@
     <head>
         <title>Card Battle</title>
         <style>
-            
+            @font-face {
+                font-family: 'neodgm';
+                src: url('font/neodgm.ttf');
+            }
+
+            body {
+                touch-action: none;
+                overscroll-behavior: none;
+            }
+
+            #screen {
+                border: 2px solid black;
+                position: absolute;
+                left: 0;
+                right: 0;
+                top: 0;
+                bottom: 0;
+                margin: auto;
+                max-width: 96%;
+                max-height: 96%;
+            }
         </style>
     </head>
     <body>
@@ -13,6 +33,11 @@
         <script src='script/data.js'></script>
         <script src='script/primitive.js'></script>
 
+        <script src='script/card.js'></script>
+        <script src='script/unit.js'></script>
+        <script src='script/battle.js'></script>
+
+        <script src='script/function.js'></script>
         <script src='script/render.js'></script>
         <script src='script/game.js'></script>
         <script src='script/scenegame.js'></script>

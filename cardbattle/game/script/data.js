@@ -1,3 +1,2 @@
 const dataCard = {}
-const dataItem = {}
 

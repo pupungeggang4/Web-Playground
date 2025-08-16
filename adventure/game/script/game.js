@@ -18,6 +18,8 @@ class Game {
 
         if (this.scene === 'title') {
             SceneTitle.loop(this)
+        } else if (this.scene === 'field') {
+            SceneField.loop(this)
         }
 
         let after = performance.now()
@@ -57,9 +59,10 @@ class Game {
     mouseUp(event) {
         let targetRect = this.canvas.getBoundingClientRect()
         let pos = {
-            x: (targetRect.left - event.clientX) / targetRect.width * this.canvas.width,
-            y: (targetRect.top - event.clientY) / targetRect.height * this.canvas.height
+            x: (event.clientX - targetRect.left) / targetRect.width * this.canvas.width,
+            y: (event.clientY - targetRect.top) / targetRect.height * this.canvas.height
         }
+
         let button = event.button
 
         if (this.scene === 'title') {
