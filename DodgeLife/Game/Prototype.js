@@ -109,7 +109,7 @@ class Board {
         if (this.nextFlipTime < 0) {
             this.spawnGlider(this.nextGlider[0], this.nextGlider[1])
             this.nextGlider = [Math.floor(Math.random() * 38) + 1, Math.floor(Math.random() * 62) + 1]
-            this.nextFlipTime = 0.2
+            this.nextFlipTime = 0.4
         }
     }
 
