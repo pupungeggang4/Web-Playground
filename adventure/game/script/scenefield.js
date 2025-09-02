@@ -5,6 +5,8 @@ class SceneField {
 
     static render(game) {
         Render.init(game.ctx)
+        Render.strokeRectUI(game.ctx, UI.game.buttonMenu)
+        Render.strokeRectUI(game.ctx, UI.game.buttonInfo)
     }
 
     static mouseUp(game, pos, button) {

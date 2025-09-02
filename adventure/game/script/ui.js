@@ -8,7 +8,8 @@ const UI = {
     },
 
     game: {
-        buttonBack: [40, 1160, 80, 80],
+        buttonMenu: [1160, 40, 80, 80],
+        buttonInfo: [40, 40, 80, 80],
     },
 
     menu: {
