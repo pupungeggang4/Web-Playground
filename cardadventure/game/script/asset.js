@@ -1,3 +1,7 @@
-class Image {
+let img = {
 
+}
+
+function imageLoad() {
+    
 }
