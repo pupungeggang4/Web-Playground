@@ -2,11 +2,18 @@ const UI = {
     buttonMenu: [1160, 40, 80, 80],
     
     field: {
-
+        unitList: [
+        ],
     },
 
     lower: {
+        handStart: [],
+        handPopStart: [],
+        handInterval: [],
+    },
 
+    card: {
+        rect: [],
     },
 
     menu: {
