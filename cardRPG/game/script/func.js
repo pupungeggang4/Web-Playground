@@ -1,0 +1,3 @@
+function pointInsideRectUI(pos, rect) {
+
+}
