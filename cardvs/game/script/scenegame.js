@@ -6,7 +6,7 @@ class SceneGame {
     static render(game) {
         Render.init(game.ctx)
         Render.strokeRectUI(game.ctx, UI.buttonMenu)
-        Render.fillTextUI(game.ctx, 'Hello', [24, 24])
+        Render.fillTextUI(game.ctx, 'Game', [24, 24])
 
         if (game.menu === true) {
             Render.renderMenu(game.ctx)

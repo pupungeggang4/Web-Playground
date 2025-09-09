@@ -10,6 +10,10 @@ const UI = {
     field: {
         buttonMenu: [1160, 40, 80, 80],
         buttonInfo: [40, 40, 80, 80],
+        buttonLeft: [40, 520, 80, 80],
+        buttonRight: [200, 520, 80, 80],
+        buttonUp: [120, 440, 80, 80],
+        buttonDown: [120, 600, 80, 80],
     },
 
     battle: {

@@ -37,6 +37,10 @@ class Render {
     }
 
     static drawImageUI(ctx, image, pos) {
-        ctx.drwaImage(image, pos[0], pos[1])
+        ctx.drawImage(image, pos[0], pos[1])
+    }
+
+    static strokeRectCenterCam(ctx, rect, cam) {
+        ctx.strokeRect(rect.pos.x - rect.size.x / 2 - cam.pos.x + cam.size.x / 2, rect.pos.y - rect.size.y / 2 - cam.pos.y + cam.size.y / 2, rect.size.x, rect.size.y)
     }
 }
