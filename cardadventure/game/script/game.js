@@ -12,12 +12,14 @@ class Game {
         window.addEventListener('keydown', (event) => this.keyDown(event), false)
         window.addEventListener('keyup', (event) => this.keyUp(event), false)
 
+        this.tStart = 0
+        this.tEnd = 0
         this.delta = 16
         this.gameLoop = requestAnimationFrame(() => this.loop())
     }
 
     loop() {
-        let tStart = performance.now()
+        this.tStart = performance.now()
         
         if (this.scene === 'title') {
             SceneTitle.loop(this)
@@ -27,10 +29,9 @@ class Game {
             SceneBattle.loop(this)
         }
 
-        let tEnd = performance.now()
-        if (tEnd - tStart > 16) {
-            this.delta = tEnd - tStart
-        } else {
+        this.tEnd = performance.now()
+        this.delta = this.tEnd - this.tStart
+        if (this.delta < 16) {
             this.delta = 16
         }
 

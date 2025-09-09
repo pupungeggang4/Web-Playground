@@ -5,9 +5,13 @@ class SceneField {
 
     static render(game) {
         Render.init(game.ctx)
-        Render.strokeRectUI(game.ctx, UI.field.buttonInfo)
-        Render.strokeRectUI(game.ctx, UI.field.buttonMenu)
-
+        Render.drawImageUI(game.ctx, img.button.info, UI.field.buttonInfo)
+        Render.drawImageUI(game.ctx, img.button.menu, UI.field.buttonMenu)
+        Render.drawImageUI(game.ctx, img.button.left, UI.field.buttonLeft)
+        Render.drawImageUI(game.ctx, img.button.right, UI.field.buttonRight)
+        Render.drawImageUI(game.ctx, img.button.up, UI.field.buttonUp)
+        Render.drawImageUI(game.ctx, img.button.down, UI.field.buttonDown)
+        
         if (game.menu === true) {
             Render.renderMenu(game.ctx)
         }
