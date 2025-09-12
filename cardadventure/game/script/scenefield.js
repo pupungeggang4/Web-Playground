@@ -11,6 +11,8 @@ class SceneField {
         Render.drawImageUI(game.ctx, img.button.right, UI.field.buttonRight)
         Render.drawImageUI(game.ctx, img.button.up, UI.field.buttonUp)
         Render.drawImageUI(game.ctx, img.button.down, UI.field.buttonDown)
+
+        game.field.player.render(game, game.ctx, game.field)
         
         if (game.menu === true) {
             Render.renderMenu(game.ctx)

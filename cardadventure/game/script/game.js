@@ -1,6 +1,8 @@
 class Game {
     constructor() {
         imageLoad()
+        this.field = new Field()
+        this.battle = new Battle()
         
         this.scene = 'title'
         this.state = ''
