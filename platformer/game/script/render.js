@@ -26,4 +26,8 @@ class Render {
     static drawImageUI(ctx, img, pos) {
         ctx.drawImage(img, pos[0], pos[1])
     }
+
+    static renderCenterCam(ctx, img, rect, camera) {
+        ctx.drawImage(img, rect.pos.x - rect.size.x / 2 - camera.pos.x + camera.size.x / 2, rect.pos.y - rect.size.y / 2 + camera.pos.y + camera.size.y / 2, rect.size.x, rect.size.y)
+    }
 }
