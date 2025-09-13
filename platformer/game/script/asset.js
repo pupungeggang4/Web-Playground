@@ -1,5 +1,7 @@
-class Image {
-    constructor() {
+let img = {
 
-    }
+}
+
+function imageLoad() {
+
 }
