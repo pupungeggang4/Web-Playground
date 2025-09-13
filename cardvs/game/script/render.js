@@ -24,6 +24,31 @@ class Render {
         Render.fillTextUI(ctx, 'Reset', UI.menu.textReset)
     }
 
+    static renderField(game, battle) {
+        for (let i = 0; i < 14; i++) {
+            Render.strokeRectUI(game.ctx, UI.field.unitList[i])
+        }
+    }
+
+    static renderHand(game, battle) {
+        for (let i = 0; i < 8; i++) {
+            let rect = [UI.lower.handStart[0] + UI.lower.handInterval[0] * i, UI.lower.handStart[1] + UI.lower.handInterval[1] * i, UI.card.rect[2], UI.card.rect[3]]
+            game.ctx.fillStyle = 'white'
+            Render.fillRectUI(game.ctx, rect)
+            Render.strokeRectUI(game.ctx, rect)
+            game.ctx.fillSytle = 'black'
+        }
+    }
+
+    static renderCrystal(game, battle) {
+        for (let i = 0; i < 16; i++) {
+            let row = Math.floor(i / 8)
+            let col = i - row * 8
+            let rect = [UI.lower.crystalStart[0] + UI.lower.crystalInterval[0] * col, UI.lower.crystalStart[1] + UI.lower.crystalInterval[1] * row, UI.lower.crystalSize[0], UI.lower.crystalSize[1]]
+            Render.strokeRectUI(game.ctx, rect)
+        }
+    }
+
     static strokeRectUI(ctx, rect) {
         ctx.strokeRect(rect[0], rect[1], rect[2], rect[3])
     }
@@ -37,6 +62,6 @@ class Render {
     }
 
     static drawImageUI(ctx, img, pos) {
-        ctx.drwaImage(img, pos[0], pos[1])
+        ctx.drawImage(img, pos[0], pos[1])
     }
 }

@@ -5,8 +5,15 @@ class SceneGame {
 
     static render(game) {
         Render.init(game.ctx)
-        Render.strokeRectUI(game.ctx, UI.buttonMenu)
+        Render.drawImageUI(game.ctx, img.button.menu, UI.buttonMenu)
         Render.fillTextUI(game.ctx, 'Game', [24, 24])
+
+        Render.strokeRectUI(game.ctx, UI.descriptionBox)
+        Render.strokeRectUI(game.ctx, UI.lower.item)
+        Render.strokeRectUI(game.ctx, UI.lower.equipment)
+        Render.renderField(game, game.battle)
+        Render.renderHand(game, game.battle)
+        Render.renderCrystal(game, game.battle)
 
         if (game.menu === true) {
             Render.renderMenu(game.ctx)

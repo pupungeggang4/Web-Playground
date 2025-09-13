@@ -1,5 +1,8 @@
 class Game {
     constructor() {
+        imageLoad()
+        this.battle = new Battle()
+
         this.scene = 'game'
         this.state = ''
         this.menu = false

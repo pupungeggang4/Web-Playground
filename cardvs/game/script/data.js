@@ -1,5 +1,7 @@
 const dataCard = {
-    1: {'ID': 1, 'name': '1', 'type': 'unit', 'element': 'normal', 'rarity': 'basic', 'energy': ['any'], 'stat': [1, 2], 'effect': ''}
+    1: {'ID': 1, 'name': '1', 'type': 'unit', 'element': 'normal', 'rarity': 'basic', 'crystal': ['any'], 'stat': [1, 2], 'effect': ''},
+    2: {'ID': 2, 'name': '2', 'type': 'unit', 'element': 'normal', 'rarity': 'basic', 'crystal': ['any', 'any'], 'stat': [2, 3], 'effect': ''},
+    3: {'ID': 3, 'name': '3', 'type': 'unit', 'element': 'normal', 'rarity': 'basic', 'crystal': ['any', 'any', 'any'], 'stat': [3, 4], 'effect': ''},
 }
 
 const dataCrystal = {

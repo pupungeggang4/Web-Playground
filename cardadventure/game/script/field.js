@@ -5,12 +5,6 @@ class Field {
     }
 }
 
-class Camera2 {
-    constructor() {
-
-    }
-}
-
 class PlayerField {
     constructor() {
         this.rect = new Rect2(0, 0, 80, 80)

@@ -24,7 +24,12 @@ class SceneTitle {
     }
 
     static keyDown(game, key) {
-
+        if (key === 'Enter' || key === 's') {
+            game.scene = 'field'
+            game.state = ''
+        } else if (key === 'e') {
+        
+        }
     }
 
     static keyUp(game, key) {
