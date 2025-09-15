@@ -1,11 +1,21 @@
 class Battle {
     constructor() {
-        this.player = new PlayerBattle()
+        this.player = new BattlePlayer()
+        this.field = new BattleField()
     }
 }
 
-class PlayerBattle {
+class BattlePlayer {
     constructor() {
-        
+        this.hand = []
+        this.deck = []
+        this.crystal = []
+        this.crystalDeck = []
+    }
+}
+
+class BattleField {
+    constructor() {
+
     }
 }

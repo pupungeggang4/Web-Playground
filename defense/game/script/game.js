@@ -1,5 +1,7 @@
 class Game {
     constructor() {
+        this.battle = new Battle()
+
         this.scene = 'title'
         this.state = ''
         this.menu = false
