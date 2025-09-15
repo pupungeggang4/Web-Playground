@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>RGB Triangle</title>
+        <style>
+            #screen {
+                border: 2px solid black;
+                position: absolute;
+                left: 0;
+                right: 0;
+                top: 0;
+                bottom: 0;
+                margin: auto;
+                max-width: 96%;
+                max-height: 96%;
+            }
+        </style>
+    </head>
+    <body>
+        <canvas id='screen' width='1280' height='720'></canvas>
+        <script>
+            let canvas = document.getElementById('screen')
+            let ctx = canvas.getContext('2d')
+
+            let grd1 = ctx.createRadialGradient(640, 360, 0, 1280, 360, 320)
+            let grd2 = ctx.createRadialGradient(1280, 360, 0, 1280, 0, 320)
+            let grd3 = ctx.createRadialGradient(1280, 0, 0, 640, 360, 320)
+
+            grd1.addColorStop(0, 'red')
+            grd1.addColorStop(1, 'lime')
+            grd2.addColorStop(0, 'lime')
+            grd2.addColorStop(1, 'blue')
+            grd3.addColorStop(0, 'blue')
+            grd3.addColorStop(1, 'red')
+
+            ctx.fillStyle = 'black'
+            ctx.fillRect(0, 0, 1280, 720)
+
+            ctx.beginPath()
+            ctx.moveTo(640, 360)
+            ctx.lineTo(1280, 360)
+            ctx.lineTo(1280, 0)
+            ctx.closePath()
+
+            ctx.fillStyle = grd1
+            ctx.fill()
+            ctx.fillStyle = grd2
+            ctx.fill()
+            ctx.fillStyle = grd3
+            ctx.fill()
+
+            ctx.globalCompositieOperation = 'lighter'
+        </script>
+    </body>
+</html>
