@@ -8,7 +8,7 @@ function main() {
     game = new Game()
 }
 
-function errorhandle(err, url, line, col, obj) {
+function errorHandle(err, url, line, col, obj) {
     if (obj != null) {
         cancelAnimationFrame(game.gameLoop)
     }
