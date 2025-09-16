@@ -11,6 +11,15 @@ class Render {
         ctx.fillStyle = 'black'
     }
 
+    static renderBattleField(game, ctx) {
+        for (let i = 0; i < game.battle.field.length; i++) {
+            for (let j = 0; j < game.battle.field[0].length; j++) {
+                let rect = [UI.cellStart[0] + UI.cellSize[0] * j, UI.cellStart[1] + UI.cellSize[1] * i, UI.cellSize[0], UI.cellSize[1]]
+                Render.strokeRectUI(ctx, rect)
+            }
+        }
+    }
+
     static renderMenu(ctx) {
         ctx.fillStyle = 'white'
         Render.fillRectUI(ctx, UI.menu.rect)

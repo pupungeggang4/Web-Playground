@@ -1,10 +1,19 @@
 class Battle {
     constructor() {
-        this.player = new PlayerBattle()
+        this.player = new BattlePlayer()
+        this.field = [
+            [0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0],
+        ]
     }
 }
 
-class PlayerBattle {
+class BattlePlayer {
     constructor() {
         this.life = 0
         this.lifeMax = 0

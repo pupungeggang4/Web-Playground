@@ -1,5 +1,13 @@
 const UI = {
-    buttonMenu: [1160, 40, 80, 80],
+    buttonMenu: [1180, 20, 80, 80],
+
+    textTitle: [24, 24],
+    cellStart: [40, 120],
+    cellSize: [80, 80],
+
+    hpBar: [860, 120, 400, 40],
+    energyBar: [860, 160, 400, 40],
+    expBar: [860, 200, 400, 40],
 
     menu: {
         rect: [320, 240, 640, 240],

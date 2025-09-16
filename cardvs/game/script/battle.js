@@ -1,7 +1,7 @@
 class Battle {
     constructor() {
         this.player = new BattlePlayer()
-        this.field = new BattleField()
+        this.unitList = []
     }
 }
 
@@ -11,11 +11,5 @@ class BattlePlayer {
         this.deck = []
         this.crystal = []
         this.crystalDeck = []
-    }
-}
-
-class BattleField {
-    constructor() {
-
     }
 }
