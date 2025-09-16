@@ -1,5 +1,5 @@
 const UI = {
-    buttonMenu: [1160, 40, 80, 80],
+    buttonMenu: [1180, 20, 80, 80],
     
     field: {
         unitList: [
@@ -10,19 +10,19 @@ const UI = {
         ],
     },
 
-    descriptionBox: [40, 360, 320, 80],
+    descriptionBox: [20, 360, 320, 80],
 
     lower: {
-        handStart: [40, 600],
+    handStart: [20, 600],
         handPopStart: [80, 480],
         handInterval: [40, 0],
 
-        crystalStart: [920, 600],
+        crystalStart: [940, 620],
         crystalInterval: [40, 40],
         crystalSize: [40, 40],
 
-        equipment: [920, 440, 320, 80],
-        item: [920, 520, 320, 80],
+        equipment: [940, 460, 320, 80],
+        item: [940, 540, 320, 80],
     },
 
     unit: {
