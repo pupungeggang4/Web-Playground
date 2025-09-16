@@ -27,14 +27,19 @@ const UI = {
 
     unit: {
         rect: [0, 0, 80, 120],
-        attackRect: [],
-        attackText: [],
-        hpRect: [],
-        hpText: [],
+        rectAttack: [0, 80, 40, 40],
+        textAttack: [4, 84],
+        rectHP: [40, 80, 40, 40],
+        textHP: [44, 84],
     },
 
     card: {
-        rect: [0, 0, 160, 240],
+        rect: [0, 0, 200, 280],
+        image: [60, 40, 80, 80],
+        textName: [2, 122],
+        textDescription: [2, 142, 0, 20],
+        textAttack: [4, 244],
+        textHP: [164, 244],
     },
 
     menu: {

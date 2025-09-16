@@ -4,6 +4,12 @@ const dataCard = {
     3: {'ID': 3, 'name': '3', 'type': 'unit', 'element': 'normal', 'rarity': 'basic', 'crystal': ['any', 'any', 'any'], 'stat': [3, 4], 'effect': []},
 }
 
+const dataCardD = {
+    1: ['asdadas', 'asdsadadsa'],
+    2: [],
+    3: []
+}
+
 const dataCrystal = {
     1: {'ID': 1, 'name': 'normal crystal', 'rarity': 'basic', 'element ': 'normal', 'effect': []},
     2: {'ID': 2, 'name': 'fire crystal', 'rarity': 'basic', 'element': 'fire', 'effect': []},

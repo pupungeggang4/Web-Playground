@@ -15,6 +15,9 @@ class SceneGame {
         Render.renderHand(game, game.battle)
         Render.renderCrystal(game, game.battle)
 
+        game.card.render(game, [0, 0])
+        game.unit.render(game, [200, 0])
+
         if (game.menu === true) {
             Render.renderMenu(game.ctx)
         }

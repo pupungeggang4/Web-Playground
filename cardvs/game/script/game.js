@@ -2,6 +2,9 @@ class Game {
     constructor() {
         imageLoad()
         this.battle = new Battle()
+        this.card = new Card()
+        this.card.setData(1)
+        this.unit = new Unit()
 
         this.scene = 'game'
         this.state = ''
