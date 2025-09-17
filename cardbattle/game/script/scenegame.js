@@ -8,9 +8,8 @@ class SceneGame {
         Render.fillTextUI(game.ctx, 'Game', UI.textTitle)
         Render.drawImageUI(game.ctx, img.button.menu, UI.buttonMenu)
 
-        Render.strokeRectUI(game.ctx, UI.hpBar)
-        Render.strokeRectUI(game.ctx, UI.energyBar)
-        Render.strokeRectUI(game.ctx, UI.expBar)
+        Render.renderRight(game, game.ctx, game.battle.player)
+
         Render.renderBattleField(game, game.ctx)
 
         if (game.menu === true) {

@@ -20,6 +20,30 @@ class Render {
         }
     }
 
+    static renderRight(game, ctx, player) {
+        Render.strokeRectUI(game.ctx, UI.right.hpBar)
+        Render.strokeRectUI(game.ctx, UI.right.hpIcon.concat([40, 40]))
+        Render.fillTextUI(game.ctx, '60/60', UI.right.hpText)
+        Render.strokeRectUI(game.ctx, UI.right.energyBar)
+        Render.strokeRectUI(game.ctx, UI.right.energyIcon.concat([40, 40]))
+        Render.fillTextUI(game.ctx, '60/60', UI.right.energyText)
+        Render.strokeRectUI(game.ctx, UI.right.expBar)
+        Render.strokeRectUI(game.ctx, UI.right.expIcon.concat([40, 40]))
+        Render.fillTextUI(game.ctx, 'Lv.1 60/60', UI.right.expText)
+
+        Render.strokeRectUI(ctx, UI.right.descriptionBox)
+
+        for (let i = 0; i < 8; i++) {
+            let rect = [UI.right.itemStart[0] + UI.right.itemSize[0] * i, UI.right.itemStart[1], UI.right.itemSize[0], UI.right.itemSize[1]]
+            Render.strokeRectUI(ctx, rect)
+        }
+
+        for (let i = 0; i < 8; i++) {
+            let rect = [UI.right.handStart[0] + UI.right.handInterval[0] * i, UI.right.handStart[1], UI.card.rect[2], UI.card.rect[3]]
+            Render.strokeRectUI(ctx, rect)
+        }
+    }
+
     static renderMenu(ctx) {
         ctx.fillStyle = 'white'
         Render.fillRectUI(ctx, UI.menu.rect)
