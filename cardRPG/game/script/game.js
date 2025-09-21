@@ -19,14 +19,20 @@ class Game {
 
         this.mousePressed = false
 
-        this.tStart = 0
+        this.tPrevious = 0
         this.delta = 16
-        this.tEnd = 0
+        this.tCurrent = 0
+    }
+
+    run() {
+        this.tPrevious = performance.now()
         this.gameLoop = requestAnimationFrame(() => this.loop())
     }
 
     loop() {
-        this.tStart = performance.now()
+        this.tCurrent = performance.now()
+        this.delta = this.tCurrent - this.tPrevious
+        this.tPrevious = performance.now()
 
         if (this.scene === 'title') {
             SceneTitle.loop(this)
@@ -34,13 +40,6 @@ class Game {
             SceneField.loop(this)
         } else if (this.scene === 'battle') {
             SceneBattle.loop(this)
-        }
-
-        this.tEnd = performance.now()
-
-        this.delta = this.tEnd - this.tStart
-        if (this.delta < 16) {
-            this.delta = 16
         }
 
         this.gameLoop = requestAnimationFrame(() => this.loop())

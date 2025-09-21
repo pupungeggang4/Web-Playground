@@ -11,24 +11,25 @@ class Game {
         this.ctx = this.canvas.getContext('2d')
         this.canvas.addEventListener('mouseup', (event) => this.mouseUp(event), false)
 
-        this.tStart = 0
-        this.tEnd = 0
+        this.tPrevious = 0
+        this.tCurrent = 0
         this.delta = 16
+    }
+
+    run() {
+        this.tPrevious = performance.now()
         this.gameLoop = requestAnimationFrame(() => this.loop())
     }
 
     loop() {
-        this.tStart = performance.now()
+        this.tCurrent = performance.now()
+        this.delta = this.tCurrent - this.tPrevious
+        this.tPrevious = performance.now()
 
         if (this.scene === 'game') {
             SceneGame.loop(this)
         }
 
-        this.tEnd = performance.now()
-        this.delta = this.tEnd - this.tStart
-        if (this.delta < 16) {
-            this.delta = 16
-        }
         this.gameLoop = requestAnimationFrame(() => this.loop())
     }
 

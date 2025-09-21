@@ -6,6 +6,7 @@ let game
 
 function main() {
     game = new Game()
+    game.run()
 }
 
 function errorHandle(err, url, linx, col, obj) {

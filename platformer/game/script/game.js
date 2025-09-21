@@ -15,22 +15,23 @@ class Game {
         window.addEventListener('keydown', (event) => this.keyDown(event), false)
         window.addEventListener('keyup', (event) => this.keyUp(event), false)
 
-        this.tStart = 0
-        this.tEnd = 0
+        this.tPrevious = 0
+        this.tCurrent = 0
         this.delta = 16
+    }
+
+    run() {
+        this.tPrevious = performance.now()
         this.gameLoop = requestAnimationFrame(() => this.loop())
     }
 
     loop() {
-        this.tStart = performance.now()
+        this.tCurrent = performance.now()
+        this.delta = this.tCurrent - this.tPrevious
+        this.tPrevious = performance.now()
+
         if (this.scene === 'main') {
             SceneMain.loop(this)
-        }
-        this.tEnd = performance.now()
-
-        this.delta = this.tEnd - this.tStart
-        if (this.delta < 16) {
-            this.delta = 16
         }
 
         this.gameLoop = requestAnimationFrame(() => this.loop())
