@@ -1,5 +1,9 @@
 class Game {
     constructor() {
+        imageLoad()
+        this.battle = new Battle()
+        this.selectedCharacter = -1
+
         this.scene = 'title'
         this.state = ''
         this.menu = false
@@ -29,6 +33,8 @@ class Game {
             SceneReady.loop(this)
         } else if (this.scene === 'battle') {
             SceneBattle.loop(this)
+        } else if (this.scene === 'collection') {
+            SceneCollection.loop(this)
         }
 
         this.gameLoop = requestAnimationFrame(() => this.loop())
@@ -37,7 +43,7 @@ class Game {
     mouseUp(event) {
         let targetRect = this.canvas.getBoundingClientRect()
         let pos = {
-            x: (event.clientX - targetRect.left) / targetRect.width * this.canvas.width
+            x: (event.clientX - targetRect.left) / targetRect.width * this.canvas.width,
             y: (event.clientY - targetRect.top) / targetRect.height * this.canvas.height
         }
         let button = event.button
@@ -48,6 +54,8 @@ class Game {
             SceneReady.mouseUp(this, pos, button)
         } else if (this.scene === 'battle') {
             SceneBattle.mouseUp(this, pos, button)
+        } else if (this.scene === 'collection') {
+            SceneCollection.mouseUp(this, pos, button)
         }
     }
 }

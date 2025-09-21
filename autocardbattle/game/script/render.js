@@ -11,6 +11,19 @@ class Render {
         ctx.fillStyle = 'black'
     }
 
+    static renderMenu(ctx) {
+        ctx.fillStyle = 'white'
+        Render.fillRectUI(ctx, UI.menu.rect)
+        Render.strokeRectUI(ctx, UI.menu.rect)
+        ctx.fillStyle = 'black'
+
+        Render.fillTextUI(ctx, 'Paused', UI.menu.textPaused)
+        Render.strokeRectUI(ctx, UI.menu.buttonResume)
+        Render.fillTextUI(ctx, 'Resume', UI.menu.textResume)
+        Render.strokeRectUI(ctx, UI.menu.buttonExit)
+        Render.fillTextUI(ctx, 'Exit', UI.menu.textExit)
+    }
+
     static strokeRectUI(ctx, rect) {
         ctx.strokeRect(rect[0], rect[1], rect[2], rect[3])
     }
