@@ -8,7 +8,7 @@ class SceneReady {
         Render.fillTextUI(game.ctx, 'Select Character', UI.ready.textTitle)
         Render.strokeRectUI(game.ctx, UI.ready.buttonBack)
 
-        for (let i = 0; i < 4; i++) {
+        for (let i = 0; i < 5; i++) {
             Render.strokeRectUI(game.ctx, UI.ready.character[i])
         }
 
@@ -29,7 +29,7 @@ class SceneReady {
                 game.state = ''
             }
 
-            for (let i = 0; i < 4; i++) {
+            for (let i = 0; i < 5; i++) {
                 if (pointInsideRectUI(pos, UI.ready.character[i])) {
                     game.selectedCharacter = i
                 }

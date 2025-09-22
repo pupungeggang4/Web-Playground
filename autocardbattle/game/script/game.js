@@ -1,8 +1,10 @@
 class Game {
     constructor() {
         imageLoad()
+        this.player = new Player()
         this.battle = new Battle()
         this.selectedCharacter = -1
+        this.selected = -1
 
         this.scene = 'title'
         this.state = ''

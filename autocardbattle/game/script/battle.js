@@ -1,8 +1,10 @@
 class Battle {
     constructor() {
         this.player = new BattlePlayer()
-        this.field = new BattleField()
         this.enemy = new BattlePlayer()
+        this.field = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+        this.turn = 0
+        this.turnWho = 0
     }
 }
 
@@ -14,9 +16,8 @@ class BattlePlayer {
         this.crystalDeck = []
         this.card = []
         this.deck = []
+        this.attack = 0
+        this.hardness = 0
+        this.leadership = 0
     }
-}
-
-class BattleField {
-
 }
