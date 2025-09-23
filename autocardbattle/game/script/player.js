@@ -9,7 +9,7 @@ class Player {
 
     buildDeck(deck) {
         for (let i = 0; i < deck.length; i++) {
-
+            
         }
     }
 }
