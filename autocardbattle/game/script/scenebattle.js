@@ -7,25 +7,12 @@ class SceneBattle {
         Render.init(game.ctx)
         Render.strokeRectUI(game.ctx, UI.battle.buttonMenu)
 
-        for (let i = 0; i < 10; i++) {
-            Render.strokeRectUI(game.ctx, UI.battle.unit[i])
-        }
+        Render.renderField(game.ctx, game)
+        Render.renderCard(game.ctx, game)
+        Render.renderCrystal(game.ctx, game)
 
         Render.strokeRectUI(game.ctx, UI.battle.buttonProceed)
         Render.fillTextUI(game.ctx, 'Proceed', UI.battle.textProceed)
-
-        for (let i = 4; i > -1; i--) {
-            let pos = [UI.battle.playerCardStart[0] + UI.battle.playerCardInterval[0] * i, UI.battle.playerCardStart[1]]
-            game.card.render(game.ctx, pos)
-        }
-
-        for (let i = 4; i > -1; i--) {
-            let pos = [UI.battle.enemyCardStart[0] + UI.battle.enemyCardInterval[0] * i, UI.battle.enemyCardStart[1]]
-            game.card.render(game.ctx, pos)
-        }
-
-        Render.strokeRectUI(game.ctx, UI.battle.playerCrystalBox)
-        Render.strokeRectUI(game.ctx, UI.battle.enemyCrystalBox)
 
         if (game.menu === true) {
             Render.renderMenu(game.ctx)

@@ -23,5 +23,6 @@ const dataCrystal = {
     4: {'ID': 4, 'name': 'wind crystal', 'element': 'wind', 'effect': []},
     5: {'ID': 5, 'name': 'earth crystal', 'element': 'earth', 'effect': []},
     6: {'ID': 6, 'name': 'light crystal', 'element': 'light', 'effect': []},
-    7: {'ID': 7, 'name': 'raindow crystal', 'element': 'all', 'effect': []},
+    7: {'ID': 7, 'name': 'dark crystal', 'element': 'dark', 'effect': []},
+    8: {'ID': 8, 'name': 'raindow crystal', 'element': 'all', 'effect': []},
 }

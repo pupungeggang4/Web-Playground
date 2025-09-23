@@ -11,6 +11,29 @@ class Render {
         ctx.fillStyle = 'black'
     }
 
+    static renderField(ctx, game) {
+        for (let i = 0; i < 10; i++) {
+            Render.strokeRectUI(ctx, UI.battle.unit[i])
+        }
+    }
+
+    static renderCrystal(ctx, game) {
+        Render.strokeRectUI(ctx, UI.battle.playerCrystalBox)
+        Render.strokeRectUI(ctx, UI.battle.enemyCrystalBox)
+    }
+
+    static renderCard(ctx, game) {
+        for (let i = 4; i > -1; i--) {
+            let pos = [UI.battle.playerCardStart[0] + UI.battle.playerCardInterval[0] * i, UI.battle.playerCardStart[1]]
+            game.card.render(ctx, pos)
+        }
+
+        for (let i = 4; i > -1; i--) {
+            let pos = [UI.battle.enemyCardStart[0] + UI.battle.enemyCardInterval[0] * i, UI.battle.enemyCardStart[1]]
+            game.card.render(ctx, pos)
+        }
+    }
+
     static renderMenu(ctx) {
         ctx.fillStyle = 'white'
         Render.fillRectUI(ctx, UI.menu.rect)
