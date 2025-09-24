@@ -12,6 +12,7 @@ class BattlePlayer {
     constructor() {
         this.hp = 0
         this.hpMax = 0
+        this.crystalNum = 0
         this.crystal = []
         this.crystalDeck = []
         this.card = []
@@ -32,5 +33,17 @@ class BattlePlayer {
         for (let i = 0; i < dataCharacter[characterID]['crystal'].length; i++) {
             let crystal = new Crystal()
         }
+    }
+
+    startTurn(battle) {
+
+    }
+
+    playCard(battle) {
+
+    }
+
+    handleUnit(battle, turnWho) {
+
     }
 }

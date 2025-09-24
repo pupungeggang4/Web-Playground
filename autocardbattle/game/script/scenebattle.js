@@ -5,6 +5,7 @@ class SceneBattle {
 
     static render(game) {
         Render.init(game.ctx)
+        Render.fillTextUI(game.ctx, `Turn: ${game.battle.turn}`, UI.battle.textTitle)
         Render.strokeRectUI(game.ctx, UI.battle.buttonMenu)
 
         Render.renderField(game.ctx, game)

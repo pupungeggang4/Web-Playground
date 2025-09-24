@@ -27,6 +27,15 @@ const dataCrystal = {
     8: {'ID': 8, 'name': 'raindow crystal', 'element': 'all', 'effect': []},
 }
 
+const dataEquipment = {
+    1: {},
+    2: {},
+    3: {},
+    4: {},
+    5: {},
+    6: {},
+}
+
 const dataCharacter = {
     1: {'deck': [1, 1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 3], 'crystal': [1, 1, 1, 1, 2, 2, 2, 2]},
     2: {'deck': [1, 1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 3], 'crystal': [1, 1, 1, 1, 3, 3, 3, 3]},
@@ -36,11 +45,11 @@ const dataCharacter = {
     6: {'deck': [1, 1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 3], 'crystal': [1, 1, 1, 1, 7, 7, 7, 7]},
 }
 
-const dataEquipment = {
-    1: {},
-    2: {},
-    3: {},
-    4: {},
-    5: {},
-    6: {},
+const dataCharacterD = {
+    1: ['Character : Fire', 'Gain extra energy.'],
+    2: ['Character : Water', 'Freeze enemy and summon.'],
+    3: ['Character : Wind', 'Play extra cards.'],
+    4: ['Character : Earth', 'Use powerful units.'],
+    5: ['Character : Light', 'Use units with rush.'],
+    6: ['Character : Dark', 'When units exit, do someting']
 }

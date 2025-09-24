@@ -17,6 +17,15 @@ class SceneReady {
             Render.strokeRectUI(game.ctx, UI.ready.character[game.selectedCharacter])
         }
         game.ctx.strokeStyle = 'black'
+        
+        Render.strokeRectUI(game.ctx, UI.ready.descriptionBox)
+        if (game.selectedCharacter != -1) {
+            let ID = game.selectedCharacter + 1
+            for (let i = 0; i < dataCharacterD[ID].length; i++) {
+                let pos = [UI.ready.descriptionText[0], UI.ready.descriptionText[1] + UI.ready.descriptionText[3] * i]
+                Render.fillTextUI(game.ctx, dataCharacterD[ID][i], pos)
+            }
+        }
 
         Render.strokeRectUI(game.ctx, UI.ready.buttonStart)
         Render.fillTextUI(game.ctx, 'Start', UI.ready.textStart)
