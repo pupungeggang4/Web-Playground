@@ -1,7 +1,7 @@
 const dataCard = {
-    1: {'ID': 1, 'name': 'Normal unit', 'type': 'unit', 'element': 'normal', 'crystal': ['any'], 'stat': [1, 2]},
-    2: {'ID': 2, 'name': '2', 'type': 'unit', 'element': 'normal', 'crystal': ['any', 'any'], 'stat': [2, 3]},
-    3: {'ID': 3, 'name': '3', 'type': 'unit', 'element': 'normal', 'crystal': ['any', 'any', 'any'], 'stat': [3, 4]}
+    1: {'ID': 1, 'name': 'Normal unit', 'type': 'unit', 'element': 'normal', 'crystal': [['any', 1]], 'stat': [1, 2]},
+    2: {'ID': 2, 'name': 'Normal unit', 'type': 'unit', 'element': 'normal', 'crystal': [['any', 2]], 'stat': [2, 3]},
+    3: {'ID': 3, 'name': 'Normal unit', 'type': 'unit', 'element': 'normal', 'crystal': [['any', 3]], 'stat': [3, 4]}
 }
 
 const dataCardE = {
@@ -25,4 +25,22 @@ const dataCrystal = {
     6: {'ID': 6, 'name': 'light crystal', 'element': 'light', 'effect': []},
     7: {'ID': 7, 'name': 'dark crystal', 'element': 'dark', 'effect': []},
     8: {'ID': 8, 'name': 'raindow crystal', 'element': 'all', 'effect': []},
+}
+
+const dataCharacter = {
+    1: {'deck': [1, 1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 3], 'crystal': [1, 1, 1, 1, 2, 2, 2, 2]},
+    2: {'deck': [1, 1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 3], 'crystal': [1, 1, 1, 1, 3, 3, 3, 3]},
+    3: {'deck': [1, 1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 3], 'crystal': [1, 1, 1, 1, 4, 4, 4, 4]},
+    4: {'deck': [1, 1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 3], 'crystal': [1, 1, 1, 1, 5, 5, 5, 5]},
+    5: {'deck': [1, 1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 3], 'crystal': [1, 1, 1, 1, 6, 6, 6, 6]},
+    6: {'deck': [1, 1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 3], 'crystal': [1, 1, 1, 1, 7, 7, 7, 7]},
+}
+
+const dataEquipment = {
+    1: {},
+    2: {},
+    3: {},
+    4: {},
+    5: {},
+    6: {},
 }

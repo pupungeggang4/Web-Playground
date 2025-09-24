@@ -42,12 +42,19 @@ class Card {
 
         this.ctx.strokeRect(0, 0, this.canvas.width, this.canvas.height)
 
+        this.ctx.lineWidth = 2
+        for (let i = 0; i < this.crystal.length; i++) { 
+            let crystal_rect = [UI.card.crystalStart[0] + UI.card.crystalInterval[0] * i, UI.card.crystalInterval[1], UI.card.crystalSize[0], UI.card.crystalSize[1]]
+            let text_pos = [UI.card.crystalTextStart[0] + UI.card.crystalInterval[0] * i, UI.card.crystalTextStart[1]]
+            Render.strokeRectUI(this.ctx, crystal_rect)
+            Render.fillTextUI(this.ctx, this.crystal[i][1], text_pos)
+        }
 
         this.ctx.fillStyle = 'yellow'
         Render.fillRectUI(this.ctx, UI.card.image)
         this.ctx.fillStyle = 'black'
 
-        this.ctx.font = '20px neodgm'
+        this.ctx.font = '16px neodgm'
         Render.fillTextUI(this.ctx, this.name, UI.card.textName)
 
         if (this.type === 'unit') {

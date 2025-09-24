@@ -20,4 +20,17 @@ class BattlePlayer {
         this.hardness = 0
         this.leadership = 0
     }
+
+    generateDeck(characterID) {
+        this.deck = []
+        for (let i = 0; i < dataCharacter[characterID]['deck'].length; i++) {
+            let card = new Card()
+            card.setData(dataCharacter[characterID]['deck'][i])
+            this.deck.push(card)
+        }
+
+        for (let i = 0; i < dataCharacter[characterID]['crystal'].length; i++) {
+            let crystal = new Crystal()
+        }
+    }
 }

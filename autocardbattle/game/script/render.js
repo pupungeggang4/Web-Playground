@@ -24,13 +24,17 @@ class Render {
 
     static renderCard(ctx, game) {
         for (let i = 4; i > -1; i--) {
-            let pos = [UI.battle.playerCardStart[0] + UI.battle.playerCardInterval[0] * i, UI.battle.playerCardStart[1]]
-            game.card.render(ctx, pos)
+            if (i < game.battle.player.deck.length) {
+                let pos = [UI.battle.playerCardStart[0] + UI.battle.playerCardInterval[0] * i, UI.battle.playerCardStart[1]]
+                game.battle.player.deck[i].render(ctx, pos)
+            }
         }
 
         for (let i = 4; i > -1; i--) {
-            let pos = [UI.battle.enemyCardStart[0] + UI.battle.enemyCardInterval[0] * i, UI.battle.enemyCardStart[1]]
-            game.card.render(ctx, pos)
+            if (i < game.battle.enemy.deck.length) {
+                let pos = [UI.battle.enemyCardStart[0] + UI.battle.enemyCardInterval[0] * i, UI.battle.enemyCardStart[1]]
+                game.battle.enemy.deck[i].render(ctx, pos)
+            }
         }
     }
 

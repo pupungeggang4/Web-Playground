@@ -40,6 +40,10 @@ class SceneReady {
                     game.scene = 'battle'
                     game.state = ''
                     game.menu = false
+
+                    let characterID = game.selectedCharacter + 1
+                    game.battle.player.generateDeck(characterID)
+                    game.battle.enemy.generateDeck(1)
                 }
             }
         }
