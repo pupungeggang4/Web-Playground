@@ -10,10 +10,8 @@ class Battle {
 
 class BattlePlayer {
     constructor() {
-        this.hp = 0
-        this.hpMax = 0
         this.crystalNum = 0
-        this.crystal = []
+        this.crystalHnad = []
         this.crystalDeck = []
         this.card = []
         this.deck = []
@@ -22,17 +20,8 @@ class BattlePlayer {
         this.leadership = 0
     }
 
-    generateDeck(characterID) {
-        this.deck = []
-        for (let i = 0; i < dataCharacter[characterID]['deck'].length; i++) {
-            let card = new Card()
-            card.setData(dataCharacter[characterID]['deck'][i])
-            this.deck.push(card)
-        }
+    generateDeck(player) {
 
-        for (let i = 0; i < dataCharacter[characterID]['crystal'].length; i++) {
-            let crystal = new Crystal()
-        }
     }
 
     startTurn(battle) {

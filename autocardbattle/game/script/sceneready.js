@@ -51,8 +51,7 @@ class SceneReady {
                     game.menu = false
 
                     let characterID = game.selectedCharacter + 1
-                    game.battle.player.generateDeck(characterID)
-                    game.battle.enemy.generateDeck(1)
+                    game.player.generateDeck(characterID)
                 }
             }
         }
