@@ -47,7 +47,7 @@ class Card {
         Render.fillRectUI(this.ctx, UI.card.image)
         this.ctx.fillStyle = 'black'
 
-        this.ctx.font = '20px neodgm'
+        this.ctx.font = '16px neodgm'
         Render.fillTextUI(this.ctx, this.name, UI.card.textName)
 
         if (this.type === 'unit') {
