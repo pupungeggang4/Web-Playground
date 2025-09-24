@@ -1,5 +1,5 @@
 const dataCard = {
-    1: {'ID': 1, 'name': '1', 'type': 'unit', 'element': 'normal', 'crystal': ['any'], 'stat': [1, 2]},
+    1: {'ID': 1, 'name': 'Normal unit', 'type': 'unit', 'element': 'normal', 'crystal': ['any'], 'stat': [1, 2]},
     2: {'ID': 2, 'name': '2', 'type': 'unit', 'element': 'normal', 'crystal': ['any', 'any'], 'stat': [2, 3]},
     3: {'ID': 3, 'name': '3', 'type': 'unit', 'element': 'normal', 'crystal': ['any', 'any', 'any'], 'stat': [3, 4]}
 }
