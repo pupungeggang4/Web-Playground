@@ -10,12 +10,12 @@ const UI = {
     ready: {
         textTitle: [24, 24],
         buttonBack: [1180, 20, 80, 80],
-        character: [[20, 160, 160, 160], [220, 160, 160, 160], [420, 160, 160, 160], [20, 360, 160, 160], [220, 360, 160, 160], [420, 360, 160, 160]],
+        character: [[20, 140, 160, 160], [220, 140, 160, 160], [420, 140, 160, 160], [20, 340, 160, 160], [220, 340, 160, 160], [420, 340, 160, 160], [20, 540, 160, 160]],
         buttonStart: [1100, 620, 160, 80],
         textStart: [1124, 644],
 
-        descriptionBox: [700, 160, 560, 360],
-        descriptionText: [704, 164, 0, 40],
+        descriptionBox: [700, 140, 560, 360],
+        descriptionText: [704, 144, 0, 40],
     },
 
     battle: {
@@ -35,6 +35,8 @@ const UI = {
         playerCrystalBox: [20, 420, 160, 280],
         enemyCrystalBox: [1100, 420, 160, 280],
 
+        buttonPlay: [560, 20, 80, 80],
+        buttonPause: [640, 20, 80, 80],
         buttonProceed: [560, 280, 160, 80],
         textProceed: [584, 304],
     },
@@ -50,6 +52,12 @@ const UI = {
         textDescription: [4, 144, 0, 20],
         textAttack: [4, 244],
         textHP: [164, 244]
+    },
+
+    unit: {
+        rect: [0, 0, 160, 160],
+        textAttack: [4, 124],
+        textHP: [124, 124]
     },
 
     window: {
@@ -69,5 +77,4 @@ const UI = {
         textTitle: [24, 24],
         buttonBack: [1180, 20, 80, 80]
     },
-
 }

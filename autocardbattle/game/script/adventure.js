@@ -1,3 +1,22 @@
+class Adventure {
+    constructor() {
+        this.layout = [
+            ['battle', 'battle', 'battle'],
+            ['shop', 'shop', 'shop'],
+            ['battle', 'battle', 'battle'],
+            ['shop', 'shop', 'shop'],
+            ['battle', 'elite', 'battle'],
+            ['shop', 'shop', 'shop'],
+            ['boss', 'boss', 'boss']
+        ]
+        this.round = 0
+    }
+
+    adventureStart() {
+        this.round = 0
+    }
+}
+
 class Player {
     constructor() {
         this.hp = 0
@@ -8,9 +27,12 @@ class Player {
         this.crystalDeck = []
     }
 
-    generateDeck(characterID) {
+    createCharacter(characterID) {
+        this.hp = 20
+        this.gold = 50
         this.deck = []
         this.crystalDeck = []
+        this.equipment = []
 
         for (let i = 0; i < dataCharacter[characterID]['deck'].length; i++) {
             let card = new Card()

@@ -13,6 +13,10 @@ class Render {
 
     static renderField(ctx, game) {
         for (let i = 0; i < 10; i++) {
+            if (game.battle.field[i] != null) {
+                game.battle.field[i].render(ctx, game, UI.battle.unit[i])
+            }
+
             Render.strokeRectUI(ctx, UI.battle.unit[i])
         }
     }

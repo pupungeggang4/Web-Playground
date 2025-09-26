@@ -2,6 +2,7 @@ class Game {
     constructor() {
         imageLoad()
         this.player = new Player()
+        this.adventure = new Adventure()
         this.battle = new Battle()
         this.selectedCharacter = -1
         this.selected = -1

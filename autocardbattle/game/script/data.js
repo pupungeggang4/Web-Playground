@@ -27,6 +27,10 @@ const dataCrystal = {
     8: {'ID': 8, 'name': 'raindow crystal', 'element': 'all', 'effect': []},
 }
 
+const dataCrystalD = {
+
+}
+
 const dataEquipment = {
     1: {},
     2: {},
@@ -36,6 +40,10 @@ const dataEquipment = {
     6: {},
 }
 
+const dataEquipmentD = {
+
+}
+
 const dataCharacter = {
     1: {'deck': [1, 1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 3], 'crystal': [1, 1, 1, 1, 2, 2, 2, 2]},
     2: {'deck': [1, 1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 3], 'crystal': [1, 1, 1, 1, 3, 3, 3, 3]},
@@ -43,6 +51,7 @@ const dataCharacter = {
     4: {'deck': [1, 1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 3], 'crystal': [1, 1, 1, 1, 5, 5, 5, 5]},
     5: {'deck': [1, 1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 3], 'crystal': [1, 1, 1, 1, 6, 6, 6, 6]},
     6: {'deck': [1, 1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 3], 'crystal': [1, 1, 1, 1, 7, 7, 7, 7]},
+    7: {'deck': [1, 1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 3], 'crystal': [1, 1, 1, 1, 1, 1, 8, 8]}
 }
 
 const dataCharacterD = {
@@ -51,5 +60,10 @@ const dataCharacterD = {
     3: ['Character : Wind', 'Play extra cards.'],
     4: ['Character : Earth', 'Use powerful units.'],
     5: ['Character : Light', 'Use units with rush.'],
-    6: ['Character : Dark', 'When units exit, do someting']
+    6: ['Character : Dark', 'When units exit, do someting'],
+    7: ['Character : All', 'Use all cards.']
+}
+
+const dataEnemy = {
+    1: {'deck': [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], 'crystal': [1, 1, 1, 1, 1, 1, 1, 1], 'hp': 15}
 }

@@ -65,4 +65,17 @@ class Card {
 
         Render.drawImageUI(ctx, this.canvas, pos)
     }
+
+    clone() {
+        let card = new Card()
+        card.ID = this.ID
+        card.name = this.name
+        card.type = this.type
+        card.element = this.element
+        card.crystal = JSON.parse(JSON.stringify(this.crystal))
+        card.stat = JSON.parse(JSON.stringify(this.stat))
+        card.effect = JSON.parse(JSON.stringify(this.effect))
+        card.description = JSON.parse(JSON.stringify(this.description))
+        return card
+    }
 }

@@ -8,7 +8,7 @@ class SceneReady {
         Render.fillTextUI(game.ctx, 'Select Character', UI.ready.textTitle)
         Render.strokeRectUI(game.ctx, UI.ready.buttonBack)
 
-        for (let i = 0; i < 6; i++) {
+        for (let i = 0; i < 7; i++) {
             Render.strokeRectUI(game.ctx, UI.ready.character[i])
         }
 
@@ -38,7 +38,7 @@ class SceneReady {
                 game.state = ''
             }
 
-            for (let i = 0; i < 6; i++) {
+            for (let i = 0; i < 7; i++) {
                 if (pointInsideRectUI(pos, UI.ready.character[i])) {
                     game.selectedCharacter = i
                 }
@@ -51,7 +51,9 @@ class SceneReady {
                     game.menu = false
 
                     let characterID = game.selectedCharacter + 1
-                    game.player.generateDeck(characterID)
+                    game.adventure.adventureStart()
+                    game.player.createCharacter(characterID)
+                    game.battle.startBattle(game)
                 }
             }
         }

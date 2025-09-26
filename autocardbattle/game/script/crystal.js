@@ -23,4 +23,12 @@ class Crystal {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height)
         Render.drawImageUI(ctx, this.canvas, pos)
     }
+
+    clone() {
+        let crystal = new Crystal()
+        crystal.ID = this.ID
+        crystal.name = this.name
+        crystal.element = this.element
+        crystal.effect = JSON.parse(JSON.stringify(this.effect))
+    }
 }
