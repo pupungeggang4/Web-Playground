@@ -24,6 +24,7 @@ class BattlePlayer {
     constructor() {
         this.crystalNum = 0
         this.crystalDeck = []
+        this.crystalHand = []
         this.deck = []
         this.attack = 0
         this.hardness = 0
@@ -33,6 +34,7 @@ class BattlePlayer {
     startBattlePlayer(player) {
         this.deck = []
         this.crystalDeck = []
+        this.crystalHand = []
 
         let deckList = []
         let crystalDeckList = []

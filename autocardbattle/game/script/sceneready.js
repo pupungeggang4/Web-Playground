@@ -47,13 +47,13 @@ class SceneReady {
             if (pointInsideRectUI(pos, UI.ready.buttonStart)) {
                 if (game.selectedCharacter != -1) {
                     game.scene = 'battle'
-                    game.state = ''
+                    game.state = 'reward'
                     game.menu = false
 
                     let characterID = game.selectedCharacter + 1
                     game.adventure.adventureStart()
                     game.player.createCharacter(characterID)
-                    game.battle.startBattle(game)
+                    //game.battle.startBattle(game)
                 }
             }
         }

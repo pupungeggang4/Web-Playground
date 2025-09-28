@@ -17,6 +17,10 @@ class SceneBattle {
         Render.strokeRectUI(game.ctx, UI.battle.buttonProceed)
         Render.fillTextUI(game.ctx, 'Proceed', UI.battle.textProceed)
 
+        if (game.state === 'reward') {
+            Render.renderRewardWindow(game.ctx, game)
+        }
+
         if (game.menu === true) {
             Render.renderMenu(game.ctx)
         }
@@ -28,6 +32,10 @@ class SceneBattle {
                 if (pointInsideRectUI(pos, UI.battle.buttonMenu)) {
                     game.menu = true
                 }
+
+                if (game.state === 'reward') {
+                    SceneBattle.handleRewardClick(game, pos, button)
+                }
             } else if (game.menu === true) {
                 if (pointInsideRectUI(pos, UI.menu.buttonResume)) {
                     game.menu = false
@@ -37,6 +45,12 @@ class SceneBattle {
                     game.state = ''
                 }
             }
+        }
+    }
+
+    static handleRewardClick(game, pos, button) {
+        if (pointInsideRectUI(pos, UI.window.buttonConfirm)) {
+            game.state = ''
         }
     }
 }

@@ -42,6 +42,20 @@ class Render {
         }
     }
 
+    static renderRewardWindow(ctx, game) {
+        ctx.fillStyle = 'white'
+        Render.fillRectUI(ctx, UI.window.rect)
+        Render.strokeRectUI(ctx, UI.window.rect)
+        ctx.fillStyle = 'black'
+
+        Render.fillTextUI(ctx, 'Select Reward', UI.window.textTitle)
+        for (let i = 0; i < 3; i++) {
+            game.adventure.rewardItem[i].render(ctx, UI.window.buttonReward[i])
+        }
+        Render.strokeRectUI(ctx, UI.window.buttonConfirm)
+        Render.fillTextUI(ctx, 'Confirm', UI.window.textConfirm)
+    }
+
     static renderMenu(ctx) {
         ctx.fillStyle = 'white'
         Render.fillRectUI(ctx, UI.menu.rect)
