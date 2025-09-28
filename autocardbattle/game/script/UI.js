@@ -19,7 +19,8 @@ const UI = {
     },
 
     battle: {
-        textTitle: [24, 24],
+        textTurn: [24, 24],
+        textTurnWho: [24, 64],
         buttonMenu: [1180, 20, 80, 80],
 
         unit: [

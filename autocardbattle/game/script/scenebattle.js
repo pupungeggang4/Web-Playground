@@ -5,7 +5,14 @@ class SceneBattle {
 
     static render(game) {
         Render.init(game.ctx)
-        Render.fillTextUI(game.ctx, `Turn: ${game.battle.turn}`, UI.battle.textTitle)
+        Render.fillTextUI(game.ctx, `Turn: ${game.battle.turn}`, UI.battle.textTurn)
+
+        if (game.battle.turnWho === 0) {
+            Render.fillTextUI(game.ctx, 'Your turn', UI.battle.textTurnWho)
+        } else {
+            Render.fillTextUI(game.ctx, 'Enemy turn', UI.battle.textTurnWho)
+        }
+
         Render.strokeRectUI(game.ctx, UI.battle.buttonMenu)
 
         Render.renderField(game.ctx, game)
@@ -51,6 +58,7 @@ class SceneBattle {
     static handleRewardClick(game, pos, button) {
         if (pointInsideRectUI(pos, UI.window.buttonConfirm)) {
             game.state = ''
+            game.battle.startBattle(game)
         }
     }
 }
