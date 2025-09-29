@@ -23,6 +23,21 @@ class Render {
 
     static renderCrystal(ctx, game) {
         Render.strokeRectUI(ctx, UI.battle.playerCrystalBox)
+
+        for (let i = 0; i < game.battle.player.crystalHand.length; i++) {
+            let row = Math.floor(i / 4)
+            let col = i - row * 4
+            let pos = [UI.battle.playerCrystalStart[0] + UI.battle.playerCrystalInterval[0] * col, UI.battle.playerCrystalStart[1] + UI.battle.playerCrystalInterval[1] * row]
+            game.battle.player.crystalHand[i].render(ctx, pos)
+        }
+
+        for (let i = 0; i < game.battle.enemy.crystalHand.length; i++) {
+            let row = Math.floor(i / 4)
+            let col = i - row * 4
+            let pos = [UI.battle.enemyCrystalStart[0] + UI.battle.enemyCrystalInterval[0] * col, UI.battle.enemyCrystalStart[1] + UI.battle.enemyCrystalInterval[1] * row]
+            game.battle.enemy.crystalHand[i].render(ctx, pos)
+        }
+
         Render.strokeRectUI(ctx, UI.battle.enemyCrystalBox)
     }
 

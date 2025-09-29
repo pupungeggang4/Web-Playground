@@ -1,8 +1,20 @@
 let img = {
-    
+    crystal: {
+        1: new Image(), 2: new Image(), 3: new Image(), 4: new Image(),
+        5: new Image(), 6: new Image(), 7: new Image(), 8: new Image(),
+    }
 }
 
 function imageLoad() {
-
+    img.crystal[1].src = 'image/crystalnormal.png'
+    img.crystal[2].src = 'image/crystalfire.png'
+    img.crystal[3].src = 'image/crystalwater.png'
+    img.crystal[4].src = 'image/crystalwind.png'
+    img.crystal[5].src = 'image/crystalearth.png'
+    img.crystal[6].src = 'image/crystallight.png'
+    img.crystal[7].src = 'image/crystaldark.png'
+    img.crystal[8].src = 'image/crystalrainbow.png'
 }
+
+const imgCrystalMap = {'any': 1, 'fire': 2, 'water': 3, 'wind': 4, 'earth': 5, 'light': 6, 'dark': 7}
 

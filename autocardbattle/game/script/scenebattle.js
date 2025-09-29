@@ -1,5 +1,10 @@
 class SceneBattle {
     static loop(game) {
+        if (game.menu === false) {
+            if (game.state === '') {
+                game.battle.handleTick(game)
+            }
+        }
         SceneBattle.render(game)
     }
 
@@ -40,9 +45,11 @@ class SceneBattle {
                     game.menu = true
                 }
 
-                if (game.state === 'reward') {
+                if (game.state === '') {
+                    SceneBattle.handleNormalClick(game, pos, button)
+                } else if (game.state === 'reward') {
                     SceneBattle.handleRewardClick(game, pos, button)
-                }
+                }            
             } else if (game.menu === true) {
                 if (pointInsideRectUI(pos, UI.menu.buttonResume)) {
                     game.menu = false
@@ -52,6 +59,20 @@ class SceneBattle {
                     game.state = ''
                 }
             }
+        }
+    }
+
+    static handleNormalClick(game, pos, button) {
+        if (pointInsideRectUI(pos, UI.battle.buttonProceed)) {
+            if (game.battle.paused === true) {
+                game.battle.proceed(game)
+            }
+        }
+
+        if (pointInsideRectUI(pos, UI.battle.buttonPlay)) {
+            game.battle.paused = false
+        } else if (pointInsideRectUI(pos, UI.battle.buttonPause)) {
+            game.battle.paused = true
         }
     }
 

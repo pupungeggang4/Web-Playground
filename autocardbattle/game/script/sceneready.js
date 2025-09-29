@@ -53,7 +53,6 @@ class SceneReady {
                     let characterID = game.selectedCharacter + 1
                     game.adventure.adventureStart()
                     game.player.createCharacter(characterID)
-                    //game.battle.startBattle(game)
                 }
             }
         }

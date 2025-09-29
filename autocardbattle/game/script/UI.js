@@ -34,7 +34,11 @@ const UI = {
         enemyCardInterval: [40, 40],
 
         playerCrystalBox: [20, 420, 160, 280],
+        playerCrystalStart: [20, 420],
+        playerCrystalInterval: [40, 40],
         enemyCrystalBox: [1100, 420, 160, 280],
+        enemyCrystalStart: [1100, 420],
+        enemyCrystalInterval: [40, 40],
 
         buttonPlay: [560, 20, 80, 80],
         buttonPause: [640, 20, 80, 80],
@@ -45,8 +49,8 @@ const UI = {
     card: {
         rect: [0, 0, 200, 280],
         crystalStart: [0, 0],
-        crystalTextStart: [4, 4],
-        crystalInterval: [40, 0],
+        crystalTextStart: [44, 4],
+        crystalInterval: [60, 0],
         crystalSize: [40, 40],
         image: [60, 40, 80, 80],
         textName: [4, 124],

@@ -44,9 +44,9 @@ class Card {
 
         this.ctx.lineWidth = 2
         for (let i = 0; i < this.crystal.length; i++) { 
-            let crystal_rect = [UI.card.crystalStart[0] + UI.card.crystalInterval[0] * i, UI.card.crystalInterval[1], UI.card.crystalSize[0], UI.card.crystalSize[1]]
+            let crystal_pos = [UI.card.crystalStart[0] + UI.card.crystalInterval[0] * i, UI.card.crystalInterval[1]]
             let text_pos = [UI.card.crystalTextStart[0] + UI.card.crystalInterval[0] * i, UI.card.crystalTextStart[1]]
-            Render.strokeRectUI(this.ctx, crystal_rect)
+            Render.drawImageUI(this.ctx, img.crystal[imgCrystalMap[this.crystal[i][0]]], crystal_pos)
             Render.fillTextUI(this.ctx, this.crystal[i][1], text_pos)
         }
 
