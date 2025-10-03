@@ -46,7 +46,7 @@ class Card {
         for (let i = 0; i < this.crystal.length; i++) { 
             let crystal_pos = [UI.card.crystalStart[0] + UI.card.crystalInterval[0] * i, UI.card.crystalInterval[1]]
             let text_pos = [UI.card.crystalTextStart[0] + UI.card.crystalInterval[0] * i, UI.card.crystalTextStart[1]]
-            Render.drawImageUI(this.ctx, img.crystal[imgCrystalMap[this.crystal[i][0]]], crystal_pos)
+            Render.drawImageUI(this.ctx, img.crystal[this.crystal[i][0]], crystal_pos)
             Render.fillTextUI(this.ctx, this.crystal[i][1], text_pos)
         }
 
@@ -71,7 +71,7 @@ class Card {
         card.ID = this.ID
         card.name = this.name
         card.type = this.type
-        card.element = this.element
+        card.element = JSON.parse(JSON.stringify(this.element))
         card.crystal = JSON.parse(JSON.stringify(this.crystal))
         card.stat = JSON.parse(JSON.stringify(this.stat))
         card.effect = JSON.parse(JSON.stringify(this.effect))

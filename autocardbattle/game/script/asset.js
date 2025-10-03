@@ -16,5 +16,3 @@ function imageLoad() {
     img.crystal[8].src = 'image/crystalrainbow.png'
 }
 
-const imgCrystalMap = {'any': 1, 'fire': 2, 'water': 3, 'wind': 4, 'earth': 5, 'light': 6, 'dark': 7}
-

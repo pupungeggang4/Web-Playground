@@ -167,10 +167,6 @@ class BattlePlayer {
     }
 
     endTurn() {
-        while (this.crystalHand.length > 0) {
-            let index = Math.floor(Math.random() * this.crystalHand.length)
-            this.crystalDeck.push(this.crystalHand.splice(index, 1)[0])
-        }
     }
 
     drawCrystal(num) {
