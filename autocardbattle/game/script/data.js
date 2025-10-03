@@ -1,13 +1,7 @@
 const dataCard = {
-<<<<<<< Updated upstream
-    1: {'ID': 1, 'name': 'Normal unit', 'type': 'unit', 'element': [1], 'crystal': [[1, 1]], 'stat': [1, 2]},
-    2: {'ID': 2, 'name': 'Normal unit', 'type': 'unit', 'element': [1], 'crystal': [[1, 2]], 'stat': [2, 3]},
-    3: {'ID': 3, 'name': 'Normal unit', 'type': 'unit', 'element': [1], 'crystal': [[1, 3]], 'stat': [3, 4]}
-=======
     1: {'ID': 1, 'name': 'Normal unit', 'type': 'unit', 'element': 1, 'crystal': [[1, 1]], 'stat': [1, 2]},
     2: {'ID': 2, 'name': 'Normal unit', 'type': 'unit', 'element': 1, 'crystal': [[1, 2]], 'stat': [2, 3]},
     3: {'ID': 3, 'name': 'Normal unit', 'type': 'unit', 'element': 1, 'crystal': [[1, 3]], 'stat': [3, 4]}
->>>>>>> Stashed changes
 }
 
 const dataCardE = {
