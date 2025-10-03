@@ -24,8 +24,8 @@ class SceneBattle {
         Render.renderCard(game.ctx, game)
         Render.renderCrystal(game.ctx, game)
 
-        Render.strokeRectUI(game.ctx, UI.battle.buttonPlay)
-        Render.strokeRectUI(game.ctx, UI.battle.buttonPause)
+        Render.drawImageUI(game.ctx, img.button.play, UI.battle.buttonPlay)
+        Render.drawImageUI(game.ctx, img.button.pause, UI.battle.buttonPause)
         Render.strokeRectUI(game.ctx, UI.battle.buttonProceed)
         Render.fillTextUI(game.ctx, 'Proceed', UI.battle.textProceed)
 

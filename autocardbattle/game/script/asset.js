@@ -2,7 +2,12 @@ let img = {
     crystal: {
         1: new Image(), 2: new Image(), 3: new Image(), 4: new Image(),
         5: new Image(), 6: new Image(), 7: new Image(), 8: new Image(),
-    }
+    },
+
+    button: {
+        play: new Image(),
+        pause: new Image(),
+    },
 }
 
 function imageLoad() {
@@ -14,5 +19,8 @@ function imageLoad() {
     img.crystal[6].src = 'image/crystallight.png'
     img.crystal[7].src = 'image/crystaldark.png'
     img.crystal[8].src = 'image/crystalrainbow.png'
+
+    img.button.play.src = 'image/buttonplay.png'
+    img.button.pause.src = 'image/buttonpause.png'
 }
 
