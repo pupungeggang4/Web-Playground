@@ -77,7 +77,18 @@ class SceneBattle {
     }
 
     static handleRewardClick(game, pos, button) {
+        for (let i = 0; i < 3; i++) {
+            if (pointInsideRectUI(pos, UI.window.buttonReward[i])) {
+                game.adventure.rewardSelected = i
+            }
+        }
+
         if (pointInsideRectUI(pos, UI.window.buttonConfirm)) {
+            if (game.adventure.rewardSelected != -1) {
+                if (game.adventure.rewardType === 'card') {
+                    game.player.deck.push(game.adventure.rewardItem[game.adventure.rewardSelected].clone())
+                }
+            }
             game.state = ''
             game.battle.startBattle(game)
         }

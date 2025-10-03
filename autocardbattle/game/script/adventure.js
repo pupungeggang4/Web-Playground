@@ -10,6 +10,8 @@ class Adventure {
             ['boss', 'boss', 'boss']
         ]
         this.round = 0
+        this.rewardSelected = -1
+        this.rewardType = 'card'
         this.rewardItem = [new Card(), new Card(), new Card()]
         this.rewardItem[0].setData(1)
         this.rewardItem[1].setData(2)
@@ -18,6 +20,8 @@ class Adventure {
 
     adventureStart() {
         this.round = 0
+        this.rewardType = 'card'
+        this.rewardSelected = -1
     }
 }
 
