@@ -21,13 +21,16 @@ class SceneTitle {
         if (button === 0) {
             if (Func.pointInsideRectUI(pos, UI.title.buttonStart)) {
                 game.scene = 'ready'
-                game.state = ''
+                game.selectedCharacter = -1
             } else if (Func.pointInsideRectUI(pos, UI.title.buttonLang)) {
                 if (game.lang === 'ko') {
                     game.lang = 'en'
                 } else if (game.lang === 'en') {
                     game.lang = 'ko'
                 }
+            } else if (Func.pointInsideRectUI(pos, UI.title.buttonCollection)) {
+                game.scene = 'collection'
+                game.tab = 0
             }
         }
     }

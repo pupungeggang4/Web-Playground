@@ -8,6 +8,19 @@ class Render {
         ctx.fillStyle = 'black'
     }
 
+    static renderMenu(ctx, game) {
+        ctx.fillStyle = 'white'
+        Render.fillRectUI(ctx, UI.menu.rect)
+        Render.strokeRectUI(ctx, UI.menu.rect)
+        ctx.fillStyle = 'black'
+
+        Render.fillTextUI(ctx, Locale.data[game.lang].paused, UI.menu.textPaused)
+        Render.strokeRectUI(ctx, UI.menu.buttonResume)
+        Render.fillTextUI(ctx, Locale.data[game.lang].resume, UI.menu.textResume)
+        Render.strokeRectUI(ctx, UI.menu.buttonExit)
+        Render.fillTextUI(ctx, Locale.data[game.lang].exit, UI.menu.textExit)
+    }
+
     static clearCanvas(canvas, ctx) {
         ctx.clearRect(0, 0, canvas.width, canvas.height)
     }
