@@ -245,7 +245,7 @@ class BattlePlayer {
             return true
         }
         for (let i = 0; i < this.crystalHand.length; i++) {
-            if (this.crystalHand[i].ID === 1) {
+            if (this.crystalHand[i].element === 1) {
                 if (crystal[0] === 1) {
                     crystal.shift()
                     if (crystal.length <= 0) {
@@ -255,8 +255,8 @@ class BattlePlayer {
             }
         }
         for (let i = 0; i < this.crystalHand.length; i++) {
-            if (this.crystalHand[i].ID >= 2 && this.crystalHand[i].ID <= 7) {
-                if (crystal[0] === this.crystalHand[i].ID || crystal[0] === 1) {
+            if (this.crystalHand[i].element >= 2 && this.crystalHand[i].element <= 7) {
+                if (crystal[0] === this.crystalHand[i].element || crystal[0] === 1) {
                     crystal.shift()
                     if (crystal.length <= 0) {
                         return true
@@ -265,7 +265,7 @@ class BattlePlayer {
             }
         }
         for (let i = 0; i < this.crystalHand.length; i++) {
-            if (this.crystalHand[i].ID === 8) {
+            if (this.crystalHand[i].element === 8) {
                 crystal.shift()
                 if (crystal.length <= 0) {
                     return true
