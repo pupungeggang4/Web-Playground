@@ -47,7 +47,7 @@ class SceneReady {
             if (pointInsideRectUI(pos, UI.ready.buttonStart)) {
                 if (game.selectedCharacter != -1) {
                     game.scene = 'battle'
-                    game.state = 'reward'
+                    game.state = 'next'
                     game.menu = false
 
                     let characterID = game.selectedCharacter + 1

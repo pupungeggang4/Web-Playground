@@ -69,6 +69,7 @@ const UI = {
         rect: [160, 40, 960, 640],
         textTitle: [164, 44],
         buttonReward: [[200, 160, 200, 280], [540, 160, 200, 280], [880, 160, 200, 280]],
+        buttonNext: [[200, 160, 200, 280], [540, 160, 200, 280], [880, 160, 200, 280]],
         buttonConfirm: [560, 560, 160, 80],
         textConfirm: [584, 584],
     },
@@ -93,6 +94,5 @@ const UI = {
         ],
         cardStart: [20, 120],
         cardInterval: [200, 280],
-        tabEquipment: []
     },
 }

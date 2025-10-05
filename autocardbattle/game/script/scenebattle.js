@@ -33,6 +33,10 @@ class SceneBattle {
             Render.renderRewardWindow(game.ctx, game)
         }
 
+        if (game.state === 'next') {
+            Render.renderNextWindow(game.ctx, game)
+        }
+
         if (game.menu === true) {
             Render.renderMenu(game.ctx)
         }
@@ -49,7 +53,9 @@ class SceneBattle {
                     SceneBattle.handleNormalClick(game, pos, button)
                 } else if (game.state === 'reward') {
                     SceneBattle.handleRewardClick(game, pos, button)
-                }            
+                } else if (game.state === 'next') {
+                    SceneBattle.handleNextClick(game, pos, button)
+                }      
             } else if (game.menu === true) {
                 if (pointInsideRectUI(pos, UI.menu.buttonResume)) {
                     game.menu = false
@@ -57,6 +63,7 @@ class SceneBattle {
                     game.menu = false
                     game.scene = 'title'
                     game.state = ''
+                    game.battle = new Battle()
                 }
             }
         }
@@ -91,6 +98,23 @@ class SceneBattle {
             }
             game.state = ''
             game.battle.startBattle(game)
+        }
+    }
+
+    static handleNextClick(game, pos, button) {
+        for (let i = 0; i < 3; i++) {
+            if (pointInsideRectUI(pos, UI.window.buttonNext[i])) {
+                game.adventure.nextSelected = i
+            }
+
+            if (pointInsideRectUI(pos, UI.window.buttonConfirm)) {
+                if (game.adventure.nextSelected != -1) {
+                    if (game.adventure.layout[game.adventure.round][game.adventure.nextSelected] === 'battle') {
+                        game.state = ''
+                        game.battle.startBattle(game)
+                    }
+                }
+            }
         }
     }
 }

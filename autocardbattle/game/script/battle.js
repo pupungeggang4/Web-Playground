@@ -7,6 +7,7 @@ class Battle {
         this.turnWho = 0
         this.turnPhase = 'start'
         this.nextProceedTime = 500
+        this.actionQueue = []
         this.paused = true
     }
 
@@ -35,28 +36,65 @@ class Battle {
     }
 
     proceed(game) {
-        if (this.turnPhase === 'start') {
-            if (this.turnWho === 0) {
-                this.turn += 1
-                this.player.startTurn()
-            } else {
-                this.enemy.startTurn()
+        if (this.actionQueue.length <= 0) {
+            if (this.turnPhase === 'start') {
+                if (this.turnWho === 0) {
+                    this.turn += 1
+                    this.player.startTurn(this)
+                } else {
+                    this.enemy.startTurn(this)
+                }
+                this.turnPhase = 'play'
+            } else if (this.turnPhase === 'play') {
+                if (this.turnWho === 0) {
+                    if (!this.player.playCard(this)) {
+                        this.turnPhase = 'battle'
+                    }
+                    if (this.player.acceler <= 0) {
+                        this.turnPhase = 'battle'
+                    }
+                } else {
+                    if (!this.enemy.playCard(this)) {
+                        this.turnPhase = 'battle'
+                    }
+                    if (this.enemy.acceler <= 0) {
+                        this.turnPhase = 'battle'
+                    }
+                }
+            } else if (this.turnPhase === 'battle') {
+                this.turnPhase = 'end'
+            } else if (game.battle.turnPhase === 'end') {
+                if (this.turnWho === 0) {
+                    this.player.endTurn()
+                    this.turnWho = 1
+                } else {
+                    this.enemy.endTurn()
+                    this.turnWho = 0
+                }
+                this.turnPhase = 'start'
             }
-            this.turnPhase = 'play'
-        } else if (this.turnPhase === 'play') {
-            this.turnPhase = 'battle'
-        } else if (this.turnPhase === 'battle') {
-            this.turnPhase = 'end'
-        } else if (game.battle.turnPhase === 'end') {
-            if (this.turnWho === 0) {
-                this.player.endTurn()
-                this.turnWho = 1
-            } else {
-                this.enemy.endTurn()
-                this.turnWho = 0
+        } else {
+            this.performAction()
+            if (this.field[0].hp <= 0) {
+                this.paused = true
+                game.state = 'lose'
+            } else if (this.field[5].hp <= 0) {
+                this.paused = true
+                game.state = 'win'
             }
-            this.turnPhase = 'start'
         }
+    }
+
+    performAction() {
+        let top = this.actionQueue[0]
+        if (top[0] === 'summon') {
+            this.field[top[2]] = top[1]
+        } else if (top[0] === 'dmg') {
+            if (this.field[top[2]] != null) {
+                this.field[top[2]].hp -= top[1]
+            }
+        }
+        this.actionQueue.shift()
     }
 }
 
@@ -67,20 +105,31 @@ class BattlePlayer {
         this.crystalHand = []
         this.deck = []
         this.acceler = 0
-        this.extraEnergy = 0
+        this.extraCrystal = 0
         this.attack = 0
         this.hardness = 0
         this.leadership = 0
-        this.side = 0
+        this.yourCharacter = [5, 6, 7, 8, 9]
+        this.yourField = [6, 7, 8, 9]
+        this.yourHero = 5
+        this.myCharacter = [0, 1, 2, 3, 4]
+        this.myField = [1, 2, 3, 4]
+        this.myHero = 0
     }
 
     startBattlePlayer(player) {
         this.crystalNum = 0
         this.acceler = 0
-        this.extraEnergy = 0
+        this.extraCrystal = 0
         this.attack = 0
         this.hardness = 0
         this.leadership = 0
+        this.yourCharacter = [5, 6, 7, 8, 9]
+        this.yourField = [6, 7, 8, 9]
+        this.yourHero = 5
+        this.myCharacter = [0, 1, 2, 3, 4]
+        this.myField = [1, 2, 3, 4]
+        this.myHero = 0
 
         this.deck = []
         this.crystalDeck = []
@@ -111,10 +160,16 @@ class BattlePlayer {
     startBattleEnemy(ID) {
         this.crystalNum = 0
         this.acceler = 0
-        this.extraEnergy = 0
+        this.extraCrystal = 0
         this.attack = 0
         this.hardness = 0
         this.leadership = 0
+        this.myCharacter = [5, 6, 7, 8, 9]
+        this.myField = [6, 7, 8, 9]
+        this.myHero = 5
+        this.yourCharacter = [0, 1, 2, 3, 4]
+        this.yourField = [1, 2, 3, 4]
+        this.yourHero = 0
 
         this.deck = []
         this.crystalDeck = []
@@ -137,7 +192,7 @@ class BattlePlayer {
             crystalDeckList.push(crystal)
         }
 
-         while (deckList.length > 0) {
+        while (deckList.length > 0) {
             let index = Math.floor(Math.random() * deckList.length)
             this.deck.push(deckList.splice(index, 1)[0])
         }
@@ -148,18 +203,145 @@ class BattlePlayer {
         }
     }
 
-    startTurn() {
+    startTurn(battle) {
         if (this.crystalNum < 8) {
             this.crystalNum += 1
         }
 
-        this.drawCrystal(this.crystalNum)
+        this.drawCrystal(this.crystalNum + this.extraCrystal)
+
+        for (let i = 0; i < this.myField.length; i++) {
+            if (battle.field[this.myField[i]] != null) {
+                battle.field[this.myField[i]].attackNum = 1
+            }
+        }
     }
 
-    playCard() {
+    playCard(battle) {
         if (this.deck.length > 0) {
             let top = this.deck[0]
+            if (this.isPlayable(top)) {
+                let missed = this.playThisCard(top, battle)
+                if (missed === false) {
+                    let payList = this.makePayList(top)
+                    for (let i = 0; i < payList.length; i++) {
+                        this.crystalDeck.push(this.crystalHand.splice(payList[i], 1)[0])
+                    }
+                }
+                this.deck.splice(0, 1)
+                if (this.acceler > 0) {
+                    this.acceler -= 1
+                }
+                return true
+            }
         }
+
+        return false
+    }
+
+    isPlayable(card) {
+        let crystal = JSON.parse(JSON.stringify(card.crystalList)).sort()
+        if (crystal.length <= 0) {
+            return true
+        }
+        for (let i = 0; i < this.crystalHand.length; i++) {
+            if (this.crystalHand[i].ID === 1) {
+                if (crystal[0] === 1) {
+                    crystal.shift()
+                    if (crystal.length <= 0) {
+                        return true
+                    }
+                }
+            }
+        }
+        for (let i = 0; i < this.crystalHand.length; i++) {
+            if (this.crystalHand[i].ID >= 2 && this.crystalHand[i].ID <= 7) {
+                if (crystal[0] === this.crystalHand[i].ID || crystal[0] === 1) {
+                    crystal.shift()
+                    if (crystal.length <= 0) {
+                        return true
+                    }
+                }
+            }
+        }
+        for (let i = 0; i < this.crystalHand.length; i++) {
+            if (this.crystalHand[i].ID === 8) {
+                crystal.shift()
+                if (crystal.length <= 0) {
+                    return true
+                }
+            }
+        }
+        return false
+    }
+
+    makePayList(card) {
+        let payList = []
+        let crystal = JSON.parse(JSON.stringify(card.crystalList)).sort()
+        if (crystal.length <= 0) {
+            return []
+        }
+        for (let i = 0; i < this.crystalHand.length; i++) {
+            if (this.crystalHand[i].ID === 1) {
+                if (crystal[0] === 1) {
+                    payList.push(i)
+                    crystal.shift()
+                    if (crystal.length <= 0) {
+                        break
+                    }
+                }
+            }
+        }
+        for (let i = 0; i < this.crystalHand.length; i++) {
+            if (this.crystalHand[i].ID >= 2 && this.crystalHand[i].ID <= 7) {
+                if (crystal[0] === this.crystalHand[i].ID || crystal[0] === 1) {
+                    payList.push(i)
+                    crystal.shift()
+                    if (crystal.length <= 0) {
+                        break
+                    }
+                }
+            }
+        }
+        for (let i = 0; i < this.crystalHand.length; i++) {
+            if (this.crystalHand[i].ID === 8) {
+                payList.push(i)
+                crystal.shift()
+                if (crystal.length <= 0) {
+                    break
+                }
+            }
+        }
+        return payList.sort().reverse()
+    }
+
+    playThisCard(card, battle) {
+        let missed = false
+
+        let played = JSON.parse(JSON.stringify(card.played))
+        while (played.length > 0) {
+            let front = played[0]
+            if (front[0] === 'summon') {
+                for (let i = 0; i < this.myField.length; i++) {
+                    let fieldIndex = this.myField[i]
+                    if (battle.field[fieldIndex] === null) {
+                        let unit = new Unit()
+                        unit.setUnitFromCard(card)
+                        battle.actionQueue.push(['summon', unit, fieldIndex])
+                        break
+                    }
+
+                    if (i === this.myField.length - 1) {
+                        missed = true
+                        return missed
+                    }
+                }
+            } else if (front[0] === 'dmghero') {
+                battle.actionQueue.push(['dmg', front[1] + this.attack, this.yourHero])
+            }
+            played.shift()
+        }
+        return missed
     }
 
     battle() {

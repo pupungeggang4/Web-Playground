@@ -5,8 +5,10 @@ class Card {
         this.type = ''
         this.element = ''
         this.crystal = []
+        this.crystalList = []
         this.stat = []
         this.effect = []
+        this.played = []
 
         this.description = []
         this.canvas = document.createElement('canvas')
@@ -17,15 +19,17 @@ class Card {
 
     setData(ID) {
         let data = JSON.parse(JSON.stringify(dataCard[ID]))
-        let dataE = JSON.parse(JSON.stringify(dataCardE[ID]))
+        let dataP = JSON.parse(JSON.stringify(dataCardP[ID]))
         let dataD = JSON.parse(JSON.stringify(dataCardD[ID]))
         this.ID = ID
         this.name = data['name']
         this.type = data['type']
         this.element = data['element']
         this.crystal = data['crystal']
+        this.crystalList = data['crystallist']
         this.stat = data['stat']
-        this.effect = dataE
+        this.effect = data['effect']
+        this.played = dataP
         this.description = dataD
     }
 
@@ -57,6 +61,11 @@ class Card {
         this.ctx.font = '16px neodgm'
         Render.fillTextUI(this.ctx, this.name, UI.card.textName)
 
+        for (let i = 0; i < this.description.length; i++) {
+            let pos = [UI.card.textDescription[0], UI.card.textDescription[1] + UI.card.textDescription[3] * i]
+            Render.fillTextUI(this.ctx, this.description[i], pos)
+        }
+
         if (this.type === 'unit') {
             this.ctx.font = '32px neodgm'
             Render.fillTextUI(this.ctx, this.stat[0], UI.card.textAttack)
@@ -73,8 +82,10 @@ class Card {
         card.type = this.type
         card.element = JSON.parse(JSON.stringify(this.element))
         card.crystal = JSON.parse(JSON.stringify(this.crystal))
+        card.crystalList = JSON.parse(JSON.stringify(this.crystalList))
         card.stat = JSON.parse(JSON.stringify(this.stat))
         card.effect = JSON.parse(JSON.stringify(this.effect))
+        card.played = JSON.parse(JSON.stringify(this.played))
         card.description = JSON.parse(JSON.stringify(this.description))
         return card
     }

@@ -5,6 +5,7 @@ class Unit {
         this.attack = 0
         this.hp = 0
         this.hpMax = 0
+        this.attackNum = 0
         this.effect = []
         this.description = []
 
@@ -14,8 +15,14 @@ class Unit {
         this.canvas.height = 160
     }
 
-    setUnitFromCard() {
-        
+    setUnitFromCard(card) {
+        this.ID = card.ID
+        this.name = card.name
+        this.attack = card.stat[0]
+        this.hp = card.stat[1]
+        this.hpMax = card.stat[1]
+        this.effect = JSON.parse(JSON.stringify(card.effect))
+        this.description = JSON.parse(JSON.stringify(card.description))
     }
 
     setUnitFromPlayer(player) {

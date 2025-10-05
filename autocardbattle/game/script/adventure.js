@@ -9,6 +9,7 @@ class Adventure {
             ['shop', 'shop', 'shop'],
             ['boss', 'boss', 'boss']
         ]
+        this.nextSelected = -1
         this.round = 0
         this.rewardSelected = -1
         this.rewardType = 'card'
@@ -22,6 +23,7 @@ class Adventure {
         this.round = 0
         this.rewardType = 'card'
         this.rewardSelected = -1
+        this.nextSelected = -1
     }
 }
 

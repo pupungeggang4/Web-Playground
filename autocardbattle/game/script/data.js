@@ -1,19 +1,22 @@
 const dataCard = {
-    1: {'ID': 1, 'name': 'Normal unit', 'type': 'unit', 'element': 1, 'crystal': [[1, 1]], 'stat': [1, 2]},
-    2: {'ID': 2, 'name': 'Normal unit', 'type': 'unit', 'element': 1, 'crystal': [[1, 2]], 'stat': [2, 3]},
-    3: {'ID': 3, 'name': 'Normal unit', 'type': 'unit', 'element': 1, 'crystal': [[1, 3]], 'stat': [3, 4]}
+    1: {'ID': 1, 'name': 'Normal unit', 'type': 'unit', 'element': 1, 'crystal': [[1, 1]], 'crystallist': [1], 'stat': [1, 2], 'effect': []},
+    2: {'ID': 2, 'name': 'Normal unit', 'type': 'unit', 'element': 1, 'crystal': [[1, 2]], 'crystallist': [1, 1], 'stat': [2, 3], 'effect': []},
+    3: {'ID': 3, 'name': 'Normal unit', 'type': 'unit', 'element': 1, 'crystal': [[1, 3]], 'crystallist': [1, 1, 1], 'stat': [3, 4], 'effect': []},
+    201: {'ID': 201, 'name': 'attack', 'type': 'spell', 'element': 2, 'crystal': [[2, 1]], 'crystallist': [2], 'stat': [0, 0], 'effect': []}
 }
 
-const dataCardE = {
-    1: [['summon', []]],
-    2: [['summon', []]],
-    3: [['summon', []]],
+const dataCardP = {
+    1: [['summon']],
+    2: [['summon']],
+    3: [['summon']],
+    201: [['dmghero', 3]]
 }
 
 const dataCardD = {
     1: [],
     2: [],
     3: [],
+    201: ['Deal 3 damage to', 'enemy hero.'],
 }
 
 const dataCrystal = {
@@ -45,7 +48,7 @@ const dataEquipmentD = {
 }
 
 const dataCharacter = {
-    1: {'deck': [1, 1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 3], 'crystal': [1, 1, 1, 1, 2, 2, 2, 2]},
+    1: {'deck': [201, 201, 201, 201, 201, 201, 201, 201], 'crystal': [1, 1, 1, 1, 2, 2, 2, 2]},
     2: {'deck': [1, 1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 3], 'crystal': [1, 1, 1, 1, 3, 3, 3, 3]},
     3: {'deck': [1, 1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 3], 'crystal': [1, 1, 1, 1, 4, 4, 4, 4]},
     4: {'deck': [1, 1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 3], 'crystal': [1, 1, 1, 1, 5, 5, 5, 5]},
