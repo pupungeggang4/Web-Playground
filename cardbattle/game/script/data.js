@@ -1,2 +1,0 @@
-const dataCard = {}
-const dataUnit = {}
