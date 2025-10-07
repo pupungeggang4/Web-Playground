@@ -23,7 +23,7 @@ This repo is about experimental web projects and studying projects.
 
 ## Dodge the Conway's game of life.
 
-![Picture](Picture/Picture1.png)
+![Picture](/Picture/Picture1.png)
 
 1. Press WASD to move.
 2. The Conway's game of life will appear every interval. (Glider, Traffic light.)
