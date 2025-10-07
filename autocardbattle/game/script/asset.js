@@ -7,7 +7,11 @@ let img = {
     button: {
         play: new Image(),
         pause: new Image(),
+        battle: new Image(),
     },
+
+    selectFrame160: new Image(),
+    selectFrame200: new Image()
 }
 
 function imageLoad() {
@@ -22,5 +26,9 @@ function imageLoad() {
 
     img.button.play.src = 'image/buttonplay.png'
     img.button.pause.src = 'image/buttonpause.png'
+    img.button.battle.src = 'image/buttonbattle.png'
+
+    img.selectFrame160.src = 'image/selectframe160.png'
+    img.selectFrame200.src = 'image/selectframe200.png'
 }
 

@@ -80,6 +80,15 @@ class Render {
         Render.fillTextUI(ctx, 'Select', UI.window.textTitle)
         for (let i = 0; i < 3; i++) {
             Render.strokeRectUI(ctx, UI.window.buttonNext[i])
+            let cell = game.adventure.layout[game.adventure.round][i]
+            if (cell === 'battle') {
+                Render.drawImageUI(ctx, img.button.battle, UI.window.buttonNextImage[i])
+                Render.fillTextUI(ctx, 'Battle', UI.window.buttonNextText[i])
+            }
+        }
+
+        if (game.adventure.nextSelected != -1) {
+            Render.drawImageUI(ctx, img.selectFrame200, UI.window.buttonNextImage[game.adventure.nextSelected])
         }
 
         Render.strokeRectUI(ctx, UI.window.buttonConfirm)

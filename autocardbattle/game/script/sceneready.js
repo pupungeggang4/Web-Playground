@@ -12,12 +12,10 @@ class SceneReady {
             Render.strokeRectUI(game.ctx, UI.ready.character[i])
         }
 
-        game.ctx.strokeStyle = 'lime'
         if (game.selectedCharacter != -1) {
-            Render.strokeRectUI(game.ctx, UI.ready.character[game.selectedCharacter])
+            Render.drawImageUI(game.ctx, img.selectFrame160, UI.ready.character[game.selectedCharacter])
         }
-        game.ctx.strokeStyle = 'black'
-        
+
         Render.strokeRectUI(game.ctx, UI.ready.descriptionBox)
         if (game.selectedCharacter != -1) {
             let ID = game.selectedCharacter + 1

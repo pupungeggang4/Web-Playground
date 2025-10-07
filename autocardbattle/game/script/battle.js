@@ -62,6 +62,11 @@ class Battle {
                     }
                 }
             } else if (this.turnPhase === 'battle') {
+                if (this.turnWho === 0) {
+                    this.player.makeAttackList(this)
+                } else {
+                    this.enemy.makeAttackList(this)
+                }
                 this.turnPhase = 'end'
             } else if (game.battle.turnPhase === 'end') {
                 if (this.turnWho === 0) {
@@ -75,6 +80,8 @@ class Battle {
             }
         } else {
             this.performAction()
+            this.deathHandle()
+            
             if (this.field[0].hp <= 0) {
                 this.paused = true
                 game.state = 'lose'
@@ -93,8 +100,52 @@ class Battle {
             if (this.field[top[2]] != null) {
                 this.field[top[2]].hp -= top[1]
             }
+        } else if (top[0] === 'attackrandom') {
+            let attackList = []
+            if (top[1] < 5 && top[1] > 0) {
+                for (let i = 5; i < 10; i++) {
+                    if (this.field[i] != null) {
+                        attackList.push(i)
+                    }
+                }
+            } else {
+                for (let i = 0; i < 5; i++) {
+                    if (this.field[i] != null) {
+                        attackList.push(i)
+                    }
+                }
+            }
+            let index = Math.floor(Math.random() * attackList.length)
+            this.battleUnit(top[1], attackList[index])
         }
         this.actionQueue.shift()
+    }
+
+    battleUnit(i1, i2) {
+        if (this.field[i1] != null && this.field[i2] != null) {
+            console.log(`Unit ${i1} attacked unit ${i2}`)
+            this.field[i1].hp -= this.field[i2].attack
+            this.field[i2].hp -= this.field[i1].attack
+        }
+        //this.deathHandle()
+    }
+
+    deathHandle() {
+        for (let i = 1; i < 5; i++) {
+            if (this.field[i] != null) {
+                if (this.field[i].hp <= 0) {
+                    this.field[i] = null
+                }
+            }
+        }
+
+        for (let i = 6; i < 10; i++) {
+            if (this.field[i] != null) {
+                if (this.field[i].hp <= 0) {
+                    this.field[i] = null
+                }
+            }
+        }
     }
 }
 
@@ -344,8 +395,16 @@ class BattlePlayer {
         return missed
     }
 
-    battle() {
-
+    makeAttackList(battle) {
+        for (let i = 0; i < this.myField.length; i++) {
+            let unit = battle.field[this.myField[i]]
+            if (unit != null) {
+                for (let j = 0; j < unit.attackNum; j++) {
+                    console.log(this.myField[i])
+                    battle.actionQueue.push(['attackrandom', this.myField[i]])
+                }
+            }
+        }
     }
 
     endTurn() {
