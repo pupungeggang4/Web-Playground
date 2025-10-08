@@ -21,6 +21,22 @@ class Render {
         Render.fillTextUI(ctx, Locale.data[game.lang].exit, UI.menu.textExit)
     }
 
+    static renderNextWindow(ctx, game) {
+        ctx.fillStyle = 'white'
+        Render.fillRectUI(ctx, UI.window.rect)
+        Render.strokeRectUI(ctx, UI.window.rect)
+        ctx.fillStyle = 'black'
+
+        Render.strokeRectUI(ctx, UI.window.buttonConfirm)
+        Render.fillTextUI(ctx, 'Confirm', UI.window.textConfirm)
+    }
+
+    static renderRewardWindow(ctx, game) {
+        ctx.fillStyle = 'white'
+
+        ctx.fillStyle = 'black'
+    }
+
     static clearCanvas(canvas, ctx) {
         ctx.clearRect(0, 0, canvas.width, canvas.height)
     }

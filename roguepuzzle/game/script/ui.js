@@ -21,7 +21,25 @@ class UI {
     }
 
     static battle = {
-        buttonMenu: [620, 20, 80, 80]
+        buttonMenu: [620, 20, 80, 80],
+        board: [],
+        lifeIcon: [],
+        lifeText: [],
+        lifeBar: [],
+        energyIcon: [],
+        energyText: [],
+        energyBar: [],
+        descriptionBox: [],
+        card: [],
+        equipment: [],
+        item: []
+    }
+
+    static window = {
+        rect: [40, 320, 640, 640],
+        rewardItem: [],
+        buttonConfirm: [280, 840, 160, 80],
+        textConfirm: [304, 864],
     }
 
     static collection = {

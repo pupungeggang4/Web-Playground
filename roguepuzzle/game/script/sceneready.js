@@ -23,16 +23,16 @@ class SceneReady {
         if (button === 0) {
             for (let i = 0; i < UI.ready.character.length; i++) {
                 if (Func.pointInsideRectUI(pos, UI.ready.character[i])) {
-                    game.selectCharacter = i
+                    game.selectedCharacter = i
                 }
             }
             if (Func.pointInsideRectUI(pos, UI.ready.buttonBack)) {
                 game.scene = 'title'
             }
             if (Func.pointInsideRectUI(pos, UI.ready.buttonStart)) {
-                if (game.selectCharacter != -1) {
+                if (game.selectedCharacter != -1) {
                     game.scene = 'battle'
-                    game.state = 'reward'
+                    game.state = 'next'
                 }
             }
         }

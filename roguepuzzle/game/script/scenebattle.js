@@ -10,6 +10,10 @@ class SceneBattle {
 
         Render.strokeRectUI(game.ctx, UI.battle.buttonMenu)
 
+        if (game.state === 'next') {
+            Render.renderNextWindow(game.ctx, game)
+        }
+
         if (game.menu === true) {
             Render.renderMenu(game.ctx, game)
         }

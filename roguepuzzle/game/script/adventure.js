@@ -1,6 +1,20 @@
 class Adventure {
     constructor() {
         this.round = 0
+        this.layout = [
+            ['battle', 'battle', 'battle'],
+            ['shop', 'rest', 'event'],
+            ['battle', 'battle', 'battle'],
+            ['shop', 'rest', 'event'],
+            ['battle', 'battle', 'battle'],
+            ['shop', 'rest', 'event'],
+            ['battle', 'battle', 'battle'],
+            ['shop', 'rest', 'event'],
+            ['battle', 'battle', 'battle'],
+            ['shop', 'rest', 'event'],
+            ['battle', 'battle', 'battle'],
+            ['boss', 'boss', 'boss']
+        ]
     }
 
     startAdventure() {
