@@ -4,7 +4,11 @@ class Locale {
             gameName: 'Roguelike',
             startGame: 'Start Game',
             collection: 'Collection',
-            eraseData: 'Erase Data'
+            eraseData: 'Erase Data',
+
+            paused: 'Paused',
+            resume: 'Resume',
+            exit: 'Exit to title'
         },
 
         'ko': {

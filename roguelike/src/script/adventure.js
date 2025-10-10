@@ -1,7 +1,0 @@
-class Adventure {
-
-}
-
-class Player {
-    
-}
