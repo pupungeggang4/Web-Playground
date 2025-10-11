@@ -21,7 +21,7 @@ class SceneCollection {
 
     static mouseUp(game, pos, button) {
         if (button === 0) {
-            if (pointInsideRectUI(pos, UI.collection.buttonBack)) {
+            if (Func.pointInsideRectUI(pos, UI.collection.buttonBack)) {
                 game.scene = 'title'
                 game.state = ''
             }

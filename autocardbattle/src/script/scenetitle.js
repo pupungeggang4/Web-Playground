@@ -14,13 +14,13 @@ class SceneTitle {
 
     static mouseUp(game, pos, button) {
         if (button === 0) {
-            if (pointInsideRectUI(pos, UI.title.buttonStart)) {
+            if (Func.pointInsideRectUI(pos, UI.title.buttonStart)) {
                 game.scene = 'ready'
                 game.state = ''
                 game.selectedCharacter = -1
             }
 
-            if (pointInsideRectUI(pos, UI.title.buttonCollection)) {
+            if (Func.pointInsideRectUI(pos, UI.title.buttonCollection)) {
                 game.scene = 'collection'
                 game.state = ''
             }

@@ -45,7 +45,7 @@ class SceneBattle {
     static mouseUp(game, pos, button) {
         if (button === 0) {
             if (game.menu === false) {
-                if (pointInsideRectUI(pos, UI.battle.buttonMenu)) {
+                if (Func.pointInsideRectUI(pos, UI.battle.buttonMenu)) {
                     game.menu = true
                 }
 
@@ -57,9 +57,9 @@ class SceneBattle {
                     SceneBattle.handleNextClick(game, pos, button)
                 }      
             } else if (game.menu === true) {
-                if (pointInsideRectUI(pos, UI.menu.buttonResume)) {
+                if (Func.pointInsideRectUI(pos, UI.menu.buttonResume)) {
                     game.menu = false
-                } else if (pointInsideRectUI(pos, UI.menu.buttonExit)) {
+                } else if (Func.pointInsideRectUI(pos, UI.menu.buttonExit)) {
                     game.menu = false
                     game.scene = 'title'
                     game.state = ''
@@ -70,27 +70,27 @@ class SceneBattle {
     }
 
     static handleNormalClick(game, pos, button) {
-        if (pointInsideRectUI(pos, UI.battle.buttonProceed)) {
+        if (Func.pointInsideRectUI(pos, UI.battle.buttonProceed)) {
             if (game.battle.paused === true) {
                 game.battle.proceed(game)
             }
         }
 
-        if (pointInsideRectUI(pos, UI.battle.buttonPlay)) {
+        if (Func.pointInsideRectUI(pos, UI.battle.buttonPlay)) {
             game.battle.paused = false
-        } else if (pointInsideRectUI(pos, UI.battle.buttonPause)) {
+        } else if (Func.pointInsideRectUI(pos, UI.battle.buttonPause)) {
             game.battle.paused = true
         }
     }
 
     static handleRewardClick(game, pos, button) {
         for (let i = 0; i < 3; i++) {
-            if (pointInsideRectUI(pos, UI.window.buttonReward[i])) {
+            if (Func.pointInsideRectUI(pos, UI.window.buttonReward[i])) {
                 game.adventure.rewardSelected = i
             }
         }
 
-        if (pointInsideRectUI(pos, UI.window.buttonConfirm)) {
+        if (Func.pointInsideRectUI(pos, UI.window.buttonConfirm)) {
             if (game.adventure.rewardSelected != -1) {
                 if (game.adventure.rewardType === 'card') {
                     game.player.deck.push(game.adventure.rewardItem[game.adventure.rewardSelected].clone())
@@ -103,11 +103,11 @@ class SceneBattle {
 
     static handleNextClick(game, pos, button) {
         for (let i = 0; i < 3; i++) {
-            if (pointInsideRectUI(pos, UI.window.buttonNext[i])) {
+            if (Func.pointInsideRectUI(pos, UI.window.buttonNext[i])) {
                 game.adventure.nextSelected = i
             }
 
-            if (pointInsideRectUI(pos, UI.window.buttonConfirm)) {
+            if (Func.pointInsideRectUI(pos, UI.window.buttonConfirm)) {
                 if (game.adventure.nextSelected != -1) {
                     if (game.adventure.layout[game.adventure.round][game.adventure.nextSelected] === 'battle') {
                         game.state = ''

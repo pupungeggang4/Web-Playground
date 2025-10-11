@@ -31,18 +31,18 @@ class SceneReady {
 
     static mouseUp(game, pos, button) {
         if (button === 0) {
-            if (pointInsideRectUI(pos, UI.ready.buttonBack)) {
+            if (Func.pointInsideRectUI(pos, UI.ready.buttonBack)) {
                 game.scene = 'title'
                 game.state = ''
             }
 
             for (let i = 0; i < 7; i++) {
-                if (pointInsideRectUI(pos, UI.ready.character[i])) {
+                if (Func.pointInsideRectUI(pos, UI.ready.character[i])) {
                     game.selectedCharacter = i
                 }
             }
 
-            if (pointInsideRectUI(pos, UI.ready.buttonStart)) {
+            if (Func.pointInsideRectUI(pos, UI.ready.buttonStart)) {
                 if (game.selectedCharacter != -1) {
                     game.scene = 'battle'
                     game.state = 'next'
