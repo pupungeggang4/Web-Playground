@@ -1,13 +1,13 @@
-const UI = {
-    title: {
+class UI {
+    static title = {
         textTitle: [24, 24],
         buttonStart: [160, 160, 960, 80],
         textStart: [184, 184],
         buttonCollection: [160, 240, 960, 80],
         textCollection: [184, 264],
-    },
+    }
 
-    ready: {
+    static ready = {
         textTitle: [24, 24],
         buttonBack: [1180, 20, 80, 80],
         character: [[20, 140, 160, 160], [220, 140, 160, 160], [420, 140, 160, 160], [20, 340, 160, 160], [220, 340, 160, 160], [420, 340, 160, 160], [20, 540, 160, 160]],
@@ -16,9 +16,9 @@ const UI = {
 
         descriptionBox: [700, 140, 560, 360],
         descriptionText: [704, 144, 0, 40],
-    },
+    }
 
-    battle: {
+    static battle = {
         textTurn: [24, 24],
         textTurnWho: [24, 64],
         buttonMenu: [1180, 20, 80, 80],
@@ -44,9 +44,9 @@ const UI = {
         buttonPause: [640, 20, 80, 80],
         buttonProceed: [560, 280, 160, 80],
         textProceed: [584, 304],
-    },
+    }
 
-    card: {
+    static card = {
         rect: [0, 0, 200, 280],
         crystalStart: [0, 0],
         crystalTextStart: [44, 4],
@@ -57,15 +57,16 @@ const UI = {
         textDescription: [4, 144, 0, 20],
         textAttack: [4, 244],
         textHP: [164, 244]
-    },
+    }
 
-    unit: {
+    static unit = {
         rect: [0, 0, 160, 160],
+        image: [40, 40],
         textAttack: [4, 124],
         textHP: [124, 124]
-    },
+    }
 
-    window: {
+    static window = {
         rect: [160, 40, 960, 640],
         textTitle: [164, 44],
         buttonReward: [[200, 160, 200, 280], [540, 160, 200, 280], [880, 160, 200, 280]],
@@ -74,18 +75,18 @@ const UI = {
         buttonNextText: [[204, 364], [544, 364], [884, 364]],
         buttonConfirm: [560, 560, 160, 80],
         textConfirm: [584, 584],
-    },
+    }
 
-    menu: {
+    static menu = {
         rect: [320, 240, 640, 240],
         textPaused: [344, 264],
         buttonResume: [320, 320, 640, 80],
         textResume: [344, 344],
         buttonExit: [320, 400, 640, 80],
         textExit: [344, 424],
-    },
+    }
 
-    collection: {
+    static collection = {
         textTitle: [24, 24],
         buttonBack: [1180, 20, 80, 80],
         tab: [
@@ -96,5 +97,5 @@ const UI = {
         ],
         cardStart: [20, 120],
         cardInterval: [200, 280],
-    },
+    }
 }

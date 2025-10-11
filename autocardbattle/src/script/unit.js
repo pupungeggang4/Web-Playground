@@ -26,7 +26,7 @@ class Unit {
     }
 
     setUnitFromPlayer(player) {
-        this.ID = 9999
+        this.ID = 1001
         this.name = 'Hero'
         this.attack = 0
         this.hp = player.hp
@@ -37,7 +37,7 @@ class Unit {
 
     setUnitFromEnemy(ID) {
         let data = JSON.parse(JSON.stringify(dataEnemy[ID]))
-        this.ID = 9998
+        this.ID = 1100 + ID
         this.name = 'Enemy'
         this.attack = 0
         this.hp = data['hp']
@@ -58,6 +58,12 @@ class Unit {
 
         Render.fillTextUI(this.ctx, this.attack, UI.unit.textAttack)
         Render.fillTextUI(this.ctx, this.hp, UI.unit.textHP)
+
+        if (this.ID > 1000) {
+            Render.drawImageUI(this.ctx, Img.hero[this.ID], UI.unit.image)
+        } else {
+            Render.drawImageUI(this.ctx, Img.card[this.ID], UI.unit.image)
+        }
 
         Render.drawImageUI(ctx, this.canvas, pos)
     }

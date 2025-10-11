@@ -82,13 +82,13 @@ class Render {
             Render.strokeRectUI(ctx, UI.window.buttonNext[i])
             let cell = game.adventure.layout[game.adventure.round][i]
             if (cell === 'battle') {
-                Render.drawImageUI(ctx, img.button.battle, UI.window.buttonNextImage[i])
+                Render.drawImageUI(ctx, Img.button.battle, UI.window.buttonNextImage[i])
                 Render.fillTextUI(ctx, 'Battle', UI.window.buttonNextText[i])
             }
         }
 
         if (game.adventure.nextSelected != -1) {
-            Render.drawImageUI(ctx, img.selectFrame200, UI.window.buttonNextImage[game.adventure.nextSelected])
+            Render.drawImageUI(ctx, Img.selectFrame200, UI.window.buttonNextImage[game.adventure.nextSelected])
         }
 
         Render.strokeRectUI(ctx, UI.window.buttonConfirm)

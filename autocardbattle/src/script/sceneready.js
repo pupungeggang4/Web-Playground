@@ -13,7 +13,7 @@ class SceneReady {
         }
 
         if (game.selectedCharacter != -1) {
-            Render.drawImageUI(game.ctx, img.selectFrame160, UI.ready.character[game.selectedCharacter])
+            Render.drawImageUI(game.ctx, Img.selectFrame160, UI.ready.character[game.selectedCharacter])
         }
 
         Render.strokeRectUI(game.ctx, UI.ready.descriptionBox)

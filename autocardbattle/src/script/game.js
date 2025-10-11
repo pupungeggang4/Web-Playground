@@ -1,6 +1,5 @@
 class Game {
     constructor() {
-        imageLoad()
         this.player = new Player()
         this.adventure = new Adventure()
         this.battle = new Battle()

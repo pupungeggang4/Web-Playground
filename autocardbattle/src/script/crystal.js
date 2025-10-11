@@ -21,7 +21,7 @@ class Crystal {
 
     render(ctx, pos) {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height)
-        Render.drawImageUI(this.ctx, img.crystal[this.ID], [0, 0])
+        Render.drawImageUI(this.ctx, Img.crystal[this.ID], [0, 0])
         Render.drawImageUI(ctx, this.canvas, pos)
     }
 

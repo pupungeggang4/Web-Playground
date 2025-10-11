@@ -123,7 +123,6 @@ class Battle {
 
     battleUnit(i1, i2) {
         if (this.field[i1] != null && this.field[i2] != null) {
-            console.log(`Unit ${i1} attacked unit ${i2}`)
             this.field[i1].hp -= this.field[i2].attack
             this.field[i2].hp -= this.field[i1].attack
         }
@@ -400,7 +399,6 @@ class BattlePlayer {
             let unit = battle.field[this.myField[i]]
             if (unit != null) {
                 for (let j = 0; j < unit.attackNum; j++) {
-                    console.log(this.myField[i])
                     battle.actionQueue.push(['attackrandom', this.myField[i]])
                 }
             }
