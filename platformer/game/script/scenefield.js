@@ -8,6 +8,8 @@ class SceneField {
         Render.clearCanvas(game.canvas, game.ctx)
         Render.fillCanvas(game.canvas, game.ctx)
 
+        game.field.render(game.ctx, game)
+
         if (game.menu === true) {
             Render.renderMenu(game.ctx, game)
         }

@@ -1,6 +1,9 @@
 class Game {
     constructor() {
         Img.loadImage()
+
+        this.field = new Field()
+
         this.scene = 'title'
         this.state = ''
         this.menu = false
