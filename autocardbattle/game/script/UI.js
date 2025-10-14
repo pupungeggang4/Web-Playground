@@ -77,6 +77,13 @@ class UI {
         textConfirm: [584, 584],
     }
 
+    static windowEnd = {
+        rect: [320, 240, 640, 240],
+        textTitle: [344, 264],
+        buttonOK: [760, 360, 160, 80],
+        textOK: [784, 384],
+    }
+
     static menu = {
         rect: [320, 240, 640, 240],
         textPaused: [344, 264],

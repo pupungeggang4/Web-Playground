@@ -23,6 +23,9 @@ class Battle {
     }
 
     startBattle(game) {
+        this.turn = 0
+        this.turnWho = 0
+        this.field = [null, null, null, null, null, null, null, null, null, null]
         this.player.startBattlePlayer(game.player)
         this.enemy.startBattleEnemy(1)
 

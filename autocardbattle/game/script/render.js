@@ -67,6 +67,9 @@ class Render {
         for (let i = 0; i < 3; i++) {
             game.adventure.rewardItem[i].render(ctx, UI.window.buttonReward[i])
         }
+        if (game.adventure.rewardSelected != -1) {
+            Render.drawImageUI(ctx, Img.selectFrameLong, UI.window.buttonReward[game.adventure.rewardSelected])
+        }
         Render.strokeRectUI(ctx, UI.window.buttonConfirm)
         Render.fillTextUI(ctx, 'Confirm', UI.window.textConfirm)
     }
@@ -88,11 +91,33 @@ class Render {
         }
 
         if (game.adventure.nextSelected != -1) {
-            Render.drawImageUI(ctx, Img.selectFrame200, UI.window.buttonNextImage[game.adventure.nextSelected])
+            Render.drawImageUI(ctx, Img.selectFrameLong, UI.window.buttonNextImage[game.adventure.nextSelected])
         }
 
         Render.strokeRectUI(ctx, UI.window.buttonConfirm)
         Render.fillTextUI(ctx, 'Confirm', UI.window.textConfirm)
+    }
+
+    static renderWinWindow(ctx) {
+        ctx.fillStyle = 'white'
+        Render.fillRectUI(ctx, UI.windowEnd.rect)
+        Render.strokeRectUI(ctx, UI.windowEnd.rect)
+        ctx.fillStyle = 'black'
+
+        Render.fillTextUI(ctx, 'You win', UI.windowEnd.textTitle)
+        Render.strokeRectUI(ctx, UI.windowEnd.buttonOK)
+        Render.fillTextUI(ctx, 'OK', UI.windowEnd.textOK)
+    }
+
+    static renderLoseWindow(ctx) {
+        ctx.fillStyle = 'white'
+        Render.fillRectUI(ctx, UI.windowEnd.rect)
+        Render.strokeRectUI(ctx, UI.windowEnd.rect)
+        ctx.fillStyle = 'black'
+
+        Render.fillTextUI(ctx, 'You lose', UI.windowEnd.textTitle)
+        Render.strokeRectUI(ctx, UI.windowEnd.buttonOK)
+        Render.fillTextUI(ctx, 'OK', UI.windowEnd.textOK)
     }
 
     static renderMenu(ctx) {

@@ -29,6 +29,14 @@ class SceneBattle {
         Render.strokeRectUI(game.ctx, UI.battle.buttonProceed)
         Render.fillTextUI(game.ctx, 'Proceed', UI.battle.textProceed)
 
+        if (game.state === 'win') {
+            Render.renderWinWindow(game.ctx)
+        }
+
+        if (game.state === 'lose') {
+            Render.renderLoseWindow(game.ctx)
+        }
+
         if (game.state === 'reward') {
             Render.renderRewardWindow(game.ctx, game)
         }
@@ -55,7 +63,9 @@ class SceneBattle {
                     SceneBattle.handleRewardClick(game, pos, button)
                 } else if (game.state === 'next') {
                     SceneBattle.handleNextClick(game, pos, button)
-                }      
+                } else if (game.state === 'win') {
+                    SceneBattle.handleWinClick(game, pos, button)
+                }
             } else if (game.menu === true) {
                 if (Func.pointInsideRectUI(pos, UI.menu.buttonResume)) {
                     game.menu = false
@@ -96,8 +106,10 @@ class SceneBattle {
                     game.player.deck.push(game.adventure.rewardItem[game.adventure.rewardSelected].clone())
                 }
             }
-            game.state = ''
-            game.battle.startBattle(game)
+
+            game.adventure.round += 1
+            game.state = 'next'
+            game.adventure.nextSelected = -1
         }
     }
 
@@ -114,6 +126,18 @@ class SceneBattle {
                         game.battle.startBattle(game)
                     }
                 }
+            }
+        }
+    }
+
+    static handleWinClick(game, pos, button) {
+        if (Func.pointInsideRectUI(pos, UI.windowEnd.buttonOK)) {
+            if (game.adventure.round < game.adventure.layout.length) {
+                game.state = 'reward'
+                game.adventure.rewardSelected = -1
+            } else {
+                game.scene = 'title'
+                game.state = ''
             }
         }
     }

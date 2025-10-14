@@ -20,6 +20,7 @@ class Img {
 
     static selectFrame160 = new Image()
     static selectFrame200 = new Image()
+    static selectFrameLong = new Image()
 
     static loadImage() {
         Img.crystal[1].src = 'image/crystalnormal.png'
@@ -37,6 +38,7 @@ class Img {
 
         Img.selectFrame160.src = 'image/selectframe160.png'
         Img.selectFrame200.src = 'image/selectframe200.png'
+        Img.selectFrameLong.src = 'image/selectframelong.png'
 
         for (let i = 0; i < 1000; i++) {
             Img.card[i] = new Image()

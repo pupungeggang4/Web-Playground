@@ -2,11 +2,11 @@ class Adventure {
     constructor() {
         this.layout = [
             ['battle', 'battle', 'battle'],
-            ['shop', 'shop', 'shop'],
-            ['battle', 'battle', 'battle'],
-            ['shop', 'shop', 'shop'],
+            ['battle', 'shop', 'event'],
             ['battle', 'elite', 'battle'],
-            ['shop', 'shop', 'shop'],
+            ['battle', 'shop', 'event'],
+            ['battle', 'elite', 'battle'],
+            ['battle', 'shop', 'event'],
             ['boss', 'boss', 'boss']
         ]
         this.nextSelected = -1
