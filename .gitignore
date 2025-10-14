@@ -141,4 +141,6 @@ vite.config.ts.timestamp-*
 .DS_Store
 *.png~
 *.swp
-Release/*
+Release
+*-win32-*
+*.zip
