@@ -11,12 +11,12 @@ class UI {
     }
 
     static menu = {
-        rect: [240, 320, 640, 240],
-        textPaused: [],
-        buttonResume: [],
-        textResume: [],
-        buttonExit: [],
-        textExit: [],
-        arrow: []
+        rect: [320, 240, 640, 240],
+        textPaused: [344, 264],
+        buttonResume: [320, 320, 640, 80],
+        textResume: [344, 344],
+        buttonExit: [320, 400, 640, 80],
+        textExit: [344, 424],
+        arrow: [[240, 320], [240, 400]]
     }
 }

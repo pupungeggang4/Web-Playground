@@ -50,7 +50,7 @@ class Game {
         if (this.scene === 'title') {
             SceneTitle.keyDown(game, key)
         } else if (this.scene === 'field') {
-            SceneField.keyDown(game.key)
+            SceneField.keyDown(game, key)
         }
     }
 
