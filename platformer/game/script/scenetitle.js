@@ -10,7 +10,39 @@ class SceneTitle {
         Render.fillTextUI(game.ctx, game.locale.gameName, UI.title.textTitle)
         Render.strokeRectUI(game.ctx, UI.title.buttonStart)
         Render.fillTextUI(game.ctx, game.locale.startGame, UI.title.textStart)
+        Render.strokeRectUI(game.ctx, UI.title.buttonLang)
+        Render.fillTextUI(game.ctx, game.locale.lang, UI.title.textLang)
         Render.strokeRectUI(game.ctx, UI.title.buttonErase)
         Render.fillTextUI(game.ctx, game.locale.eraseData, UI.title.textErase)
+        Render.drawImageUI(game.ctx, Img.arrow, UI.title.arrow[game.selectedTitle])
+    }
+
+    static keyDown(game, key) {
+        if (key === 'ArrowUp') {
+            game.selectedTitle = (game.selectedTitle + 2) % 3
+        }
+
+        if (key === 'ArrowDown') {
+            game.selectedTitle = (game.selectedTitle + 1) % 3
+        }
+
+        if (key === 'Enter') {
+            if (game.selectedTitle === 0) {
+                game.scene = 'field'
+                game.state = ''
+            } else if (game.selectedTitle === 1) {
+                if (game.lang === 'ko') {
+                    game.lang = 'en'
+                } else {
+                    game.lang = 'ko'
+                }
+
+                game.locale = Locale.data[game.lang]
+            }
+        }
+    }
+
+    static keyUp(game, key) {
+
     }
 }
