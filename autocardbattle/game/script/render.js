@@ -88,6 +88,22 @@ class Render {
                 Render.drawImageUI(ctx, Img.button.battle, UI.window.buttonNextImage[i])
                 Render.fillTextUI(ctx, 'Battle', UI.window.buttonNextText[i])
             }
+            if (cell === 'elite') {
+                Render.drawImageUI(ctx, Img.button.elite, UI.window.buttonNextImage[i])
+                Render.fillTextUI(ctx, 'Elite', UI.window.buttonNextText[i])
+            }
+            if (cell === 'shop') {
+                Render.drawImageUI(ctx, Img.button.shop, UI.window.buttonNextImage[i])
+                Render.fillTextUI(ctx, 'Shop', UI.window.buttonNextText[i])
+            }
+            if (cell === 'event') {
+                Render.drawImageUI(ctx, Img.button.event, UI.window.buttonNextImage[i])
+                Render.fillTextUI(ctx, 'Event', UI.window.buttonNextText[i])
+            }
+            if (cell === 'boss') {
+                Render.drawImageUI(ctx, Img.button.boss, UI.window.buttonNextImage[i])
+                Render.fillTextUI(ctx, 'Boss', UI.window.buttonNextText[i])
+            }
         }
 
         if (game.adventure.nextSelected != -1) {

@@ -5,9 +5,15 @@ class Img {
     }
 
     static button = {
+        back: new Image(),
+        menu: new Image(),
         play: new Image(),
         pause: new Image(),
         battle: new Image(),
+        elite: new Image(),
+        event: new Image(),
+        shop: new Image(),
+        boss: new Image(),
     }
 
     static card = {
@@ -32,9 +38,15 @@ class Img {
         Img.crystal[7].src = 'image/crystaldark.png'
         Img.crystal[8].src = 'image/crystalrainbow.png'
 
+        Img.button.back.src = 'image/buttonback.png'
+        Img.button.menu.src = 'image/buttonmenu.png'
         Img.button.play.src = 'image/buttonplay.png'
         Img.button.pause.src = 'image/buttonpause.png'
         Img.button.battle.src = 'image/buttonbattle.png'
+        Img.button.elite.src = 'image/buttonelite.png'
+        Img.button.event.src = 'image/buttonevent.png'
+        Img.button.shop.src = 'image/buttonshop.png'
+        Img.button.boss.src = 'image/buttonboss.png'
 
         Img.selectFrame160.src = 'image/selectframe160.png'
         Img.selectFrame200.src = 'image/selectframe200.png'

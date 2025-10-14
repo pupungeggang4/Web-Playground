@@ -6,6 +6,7 @@ class SceneReady {
     static render(game) {
         Render.init(game.ctx)
         Render.fillTextUI(game.ctx, 'Select Character', UI.ready.textTitle)
+        Render.drawImageUI(game.ctx, Img.button.back, UI.ready.buttonBack)
         Render.strokeRectUI(game.ctx, UI.ready.buttonBack)
 
         for (let i = 0; i < 7; i++) {

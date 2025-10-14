@@ -10,6 +10,7 @@ class SceneBattle {
 
     static render(game) {
         Render.init(game.ctx)
+        Render.drawImageUI(game.ctx, Img.button.menu, UI.battle.buttonMenu)
         Render.fillTextUI(game.ctx, `Turn: ${game.battle.turn}`, UI.battle.textTurn)
 
         if (game.battle.turnWho === 0) {
@@ -17,8 +18,6 @@ class SceneBattle {
         } else {
             Render.fillTextUI(game.ctx, 'Enemy turn', UI.battle.textTurnWho)
         }
-
-        Render.strokeRectUI(game.ctx, UI.battle.buttonMenu)
 
         Render.renderField(game.ctx, game)
         Render.renderCard(game.ctx, game)
@@ -121,7 +120,8 @@ class SceneBattle {
 
             if (Func.pointInsideRectUI(pos, UI.window.buttonConfirm)) {
                 if (game.adventure.nextSelected != -1) {
-                    if (game.adventure.layout[game.adventure.round][game.adventure.nextSelected] === 'battle') {
+                    let next = game.adventure.layout[game.adventure.round][game.adventure.nextSelected]
+                    if (next === 'battle' || next === 'elite' || next === 'boss') {
                         game.state = ''
                         game.battle.startBattle(game)
                     }
@@ -132,7 +132,7 @@ class SceneBattle {
 
     static handleWinClick(game, pos, button) {
         if (Func.pointInsideRectUI(pos, UI.windowEnd.buttonOK)) {
-            if (game.adventure.round < game.adventure.layout.length) {
+            if (game.adventure.round < game.adventure.layout.length - 1) {
                 game.state = 'reward'
                 game.adventure.rewardSelected = -1
             } else {
