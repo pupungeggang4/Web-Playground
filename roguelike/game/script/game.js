@@ -1,8 +1,11 @@
 class Game {
     constructor() {
+        Img.imageLoad()
         this.village = new Village()
         this.battle = new Battle()
         this.player = new Player()
+
+        this.keyPressed = {'left': false, 'right': false, 'up': false, 'down': false}
 
         this.scene = 'title'
         this.state = ''
@@ -11,7 +14,8 @@ class Game {
         this.locale = Locale.data[this.lang]
 
         this.selectedTitle = 0
-        this.selectedMenu = 0
+        this.selectedMenuVillage = 0
+        this.selectedMenuBattle = 0
 
         this.canvas = document.getElementById('screen')
         this.ctx = this.canvas.getContext('2d')
@@ -47,6 +51,19 @@ class Game {
     keyDown(event) {
         let key = event.key
 
+        if (key === 'ArrowLeft') {
+            this.keyPressed['left'] = true
+        }
+        if (key === 'ArrowRight') {
+            this.keyPressed['right'] = true
+        }
+        if (key === 'ArrowUp') {
+            this.keyPressed['up'] = true
+        }
+        if (key === 'ArrowDown') {
+            this.keyPressed['down'] = true
+        }
+
         if (this.scene === 'title') {
             SceneTitle.keyDown(this, key)
         } else if (this.scene === 'village') {
@@ -58,6 +75,19 @@ class Game {
 
     keyUp(event) {
         let key = event.key
+
+        if (key === 'ArrowLeft') {
+            this.keyPressed['left'] = false
+        }
+        if (key === 'ArrowRight') {
+            this.keyPressed['right'] = false
+        }
+        if (key === 'ArrowUp') {
+            this.keyPressed['up'] = false
+        }
+        if (key === 'ArrowDown') {
+            this.keyPressed['down'] = false
+        }
 
         if (this.scene === 'title') {
             SceneTitle.keyUp(this, key)

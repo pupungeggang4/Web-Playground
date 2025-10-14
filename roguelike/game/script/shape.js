@@ -3,6 +3,11 @@ class Vec2 {
         this.x = x
         this.y = y
     }
+
+    mul(n) {
+        this.x *= n
+        this.y *= n
+    }
 }
 
 class Rect2 {

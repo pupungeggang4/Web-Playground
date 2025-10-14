@@ -1,5 +1,10 @@
 class SceneVillage {
     static loop(game) {
+        if (game.menu === false) {
+            if (game.state === '') {
+                game.village.handleTick(game)
+            }
+        }
         SceneVillage.render(game)
     }
     
@@ -11,7 +16,7 @@ class SceneVillage {
         game.village.render(game.ctx, game)
 
         if (game.menu === true) {
-            Render.renderMenu(game.ctx, game)
+            Render.renderMenuVillage(game.ctx, game)
         }
     }
 
@@ -27,17 +32,17 @@ class SceneVillage {
             }
 
             if (key === 'ArrowUp') {
-                game.selectedMenu = (game.selectedMenu + 1) % 2
+                game.selectedMenuVillage = (game.selectedMenuVillage + 1) % 2
             }
 
             if (key === 'ArrowDown') {
-                game.selectedMenu = (game.selectedMenu + 1) % 2
+                game.selectedMenuVillage = (game.selectedMenuVillage + 1) % 2
             }
 
             if (key === 'Enter') {
-                if (game.selectedMenu === 0) {
+                if (game.selectedMenuVillage === 0) {
                     game.menu = false
-                } else if (game.selectedMenu === 1) {
+                } else if (game.selectedMenuVillage === 1) {
                     game.menu = false
                     game.scene = 'title'
                     game.state = ''

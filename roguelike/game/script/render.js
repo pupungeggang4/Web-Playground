@@ -8,19 +8,19 @@ class Render {
         ctx.fillStyle = 'black'
     }
 
-    static renderMenu(ctx, game) {
+    static renderMenuVillage(ctx, game) {
         ctx.fillStyle = 'white'
-        Render.fillRectUI(ctx, UI.menu.rect)
-        Render.strokeRectUI(ctx, UI.menu.rect)
+        Render.fillRectUI(ctx, UI.menuVillage.rect)
+        Render.strokeRectUI(ctx, UI.menuVillage.rect)
         ctx.fillStyle = 'black'
 
-        Render.fillTextUI(ctx, game.locale.paused, UI.menu.textPaused)
-        Render.strokeRectUI(ctx, UI.menu.buttonResume)
-        Render.fillTextUI(ctx, game.locale.resume, UI.menu.textResume)
-        Render.strokeRectUI(ctx, UI.menu.buttonExit)
-        Render.fillTextUI(ctx, game.locale.exit, UI.menu.textExit)
+        Render.fillTextUI(ctx, game.locale.paused, UI.menuVillage.textPaused)
+        Render.strokeRectUI(ctx, UI.menuVillage.buttonResume)
+        Render.fillTextUI(ctx, game.locale.resume, UI.menuVillage.textResume)
+        Render.strokeRectUI(ctx, UI.menuVillage.buttonExit)
+        Render.fillTextUI(ctx, game.locale.exit, UI.menuVillage.textExit)
 
-        Render.drawImageUI(ctx, Img.arrow, UI.menu.arrow[game.selectedMenu])
+        Render.drawImageUI(ctx, Img.arrow, UI.menuVillage.arrow[game.selectedMenuVillage])
     }
 
     static clearCanvas(canvas, ctx) {

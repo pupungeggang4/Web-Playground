@@ -19,7 +19,7 @@ class UI {
         buttonMenu: [1180, 20, 80, 80]
     }
 
-    static menu = {
+    static menuVllage = {
         rect: [320, 240, 640, 240],
         textPaused: [344, 264],
         buttonResume: [320, 320, 640, 80],
