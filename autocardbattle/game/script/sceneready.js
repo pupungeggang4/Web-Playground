@@ -10,6 +10,7 @@ class SceneReady {
         Render.strokeRectUI(game.ctx, UI.ready.buttonBack)
 
         for (let i = 0; i < 7; i++) {
+            Render.drawImageUI(game.ctx, Img.icon[i], UI.ready.character[i])
             Render.strokeRectUI(game.ctx, UI.ready.character[i])
         }
 

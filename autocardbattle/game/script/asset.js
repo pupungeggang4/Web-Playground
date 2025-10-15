@@ -4,6 +4,8 @@ class Img {
         5: new Image(), 6: new Image(), 7: new Image(), 8: new Image(),
     }
 
+    static icon = [new Image(), new Image(), new Image(), new Image(), new Image(), new Image(), new Image()]
+
     static button = {
         back: new Image(),
         menu: new Image(),
@@ -37,6 +39,14 @@ class Img {
         Img.crystal[6].src = 'image/crystallight.png'
         Img.crystal[7].src = 'image/crystaldark.png'
         Img.crystal[8].src = 'image/crystalrainbow.png'
+
+        Img.icon[0].src = 'image/iconfire.png'
+        Img.icon[1].src = 'image/iconwater.png'
+        Img.icon[2].src = 'image/iconwind.png'
+        Img.icon[3].src = 'image/iconearth.png'
+        Img.icon[4].src = 'image/iconlight.png'
+        Img.icon[5].src = 'image/icondark.png'
+        Img.icon[6].src = 'image/iconall.png'
 
         Img.button.back.src = 'image/buttonback.png'
         Img.button.menu.src = 'image/buttonmenu.png'

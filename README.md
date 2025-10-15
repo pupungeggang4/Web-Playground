@@ -21,10 +21,8 @@ This repo is about experimental web projects and studying projects.
 1. Download.
 2. Play.
 
-## Dodge the Conway's game of life.
+## Roguelike game
 
-![Picture](./picture/picture1.jpg)
+## Auto card battle game
 
-1. Press WASD to move.
-2. The Conway's game of life will appear every interval. (Glider, Traffic light.)
-3. The game will over when player touches the living cell.
+## Platformer game

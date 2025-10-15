@@ -13,6 +13,13 @@ class Game {
         this.selectedTitle = 0
         this.selectedMenu = 0
 
+        this.keyMapping = {
+            'left': 'ArrowLeft', 'right': 'ArrowRight', 'up': 'ArrowUp', 'down': 'ArrowDown'
+        }
+        this.keyPressed = {
+            'left': false, 'right': false, 'up': false, 'down': false
+        }
+
         this.canvas = document.getElementById('screen')
         this.ctx = this.canvas.getContext('2d')
         this.canvas.addEventListener('mouseup', (event) => this.mouseUp(event), false)
@@ -50,6 +57,12 @@ class Game {
     keyDown(event) {
         let key = event.key
 
+        for (let k in this.keyPressed) {
+            if (key === this.keyMapping[k]) {
+                this.keyPressed[k] = true
+            }
+        }
+
         if (this.scene === 'title') {
             SceneTitle.keyDown(game, key)
         } else if (this.scene === 'field') {
@@ -59,6 +72,12 @@ class Game {
 
     keyUp(event) {
         let key = event.key
+
+        for (let k in this.keyPressed) {
+            if (key === this.keyMapping[k]) {
+                this.keyPressed[k] = false
+            }
+        }
 
         if (this.scene === 'title') {
             SceneTitle.keyUp(game, key)

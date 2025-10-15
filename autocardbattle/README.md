@@ -23,13 +23,13 @@
 
 ### Adventrue Screen
 
-`Progress: [@@@@@@@@@@@@........] 60%`
+`Progress: [@@@@@@@@@@@@@@@@....] 80%`
 
 - [x] Title text.
 - [x] Character button.
 - [x] Character description area.
 - [x] Button start.
-- [ ] Button image.
+- [x] Button image.
 
 ### Battle Screen
 
@@ -54,7 +54,21 @@
 
 `Progress: [@@@@@@@@@@..........] 50%`
 
+#### Adventure Logic
+
+- [x] Loading data of character.
+- [x] Loading layout.
+- [x] Rewards after battle.
+- [x] Next area.
+- [x] Adventure end.
+- [ ] Enemy pool.
+- [ ] Reward pool.
+- [ ] Shop.
+- [ ] Event.
+
 #### Battle Logic
+
+`Progress: [@@@@@@@@@@@@@@@@....] 80%`
 
 - [x] Turn start.
 - [x] Playing card.
@@ -65,6 +79,14 @@
 
 `Progress: [@@..................] 10%`
 
+- [x] Simple unit card.
+- [x] Simple spedd card.
+
 ### Game Data
 
 `Progress: [@...................] 5%`
+
+- [ ] Card data.
+- [ ] Equipment data.
+- [ ] Enemy data.
+- [ ] Event data.

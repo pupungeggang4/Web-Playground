@@ -1,5 +1,10 @@
 class SceneField {
     static loop(game) {
+        if (game.menu === false) {
+            if (game.state === '') {
+                game.field.handleTick(game)
+            }
+        }
         SceneField.render(game)
     }
 
