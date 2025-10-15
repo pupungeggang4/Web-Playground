@@ -27,13 +27,13 @@ class Battle {
         this.turnWho = 0
         this.field = [null, null, null, null, null, null, null, null, null, null]
         this.player.startBattlePlayer(game.player)
-        this.enemy.startBattleEnemy(1)
+        this.enemy.startBattleEnemy(1101)
 
         let unit = new Unit()
         unit.setUnitFromPlayer(game.player)
         this.field[0] = unit
         let unitEnemy = new Unit()
-        unitEnemy.setUnitFromEnemy(1)
+        unitEnemy.setUnitFromEnemy(1101)
         this.field[5] = unitEnemy
         this.turnPhase = 'start'
     }

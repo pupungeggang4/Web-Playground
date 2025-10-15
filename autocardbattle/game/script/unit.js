@@ -37,7 +37,7 @@ class Unit {
 
     setUnitFromEnemy(ID) {
         let data = JSON.parse(JSON.stringify(dataEnemy[ID]))
-        this.ID = 1100 + ID
+        this.ID = ID
         this.name = 'Enemy'
         this.attack = 0
         this.hp = data['hp']
