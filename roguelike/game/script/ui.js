@@ -3,23 +3,34 @@ class UI {
         textTitle: [24, 24],
         buttonStart: [160, 160, 960, 80],
         textStart: [184, 184],
-        buttonCollection: [160, 240, 960, 80],
-        textCollection: [184, 264],
+        buttonLang: [160, 240, 960, 80],
+        textLang: [184, 264],
+        buttonCollection: [160, 320, 960, 80],
+        textCollection: [184, 344],
         buttonErase: [160, 320, 960, 80],
-        textErase: [184, 344],
+        textErase: [184, 424],
 
         arrow: [[80, 160], [80, 240], [80, 320], [80, 400]]
     }
 
     static village = {
-        buttonMenu: [1180, 20, 80, 80]
+        buttonMenu: [1180, 20, 80, 80],
+        textControl: [24, 664],
     }
 
     static battle = {
         buttonMenu: [1180, 20, 80, 80]
     }
 
-    static menuVllage = {
+    static windowAdventureConfirm = {
+        rect: [320, 240, 640, 240],
+        textTitle: [344, 264],
+        textYes: [464, 384],
+        textNo: [784, 384],
+        arrow: [[360, 360], [680, 360]],
+    }
+
+    static menuVillage = {
         rect: [320, 240, 640, 240],
         textPaused: [344, 264],
         buttonResume: [320, 320, 640, 80],

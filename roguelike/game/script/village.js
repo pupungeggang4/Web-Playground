@@ -64,6 +64,13 @@ class VillagePlayer {
         this.rect.pos.y += this.velocity.y * this.speed * game.delta / 1000
     }
 
+    handleInteract(village, game) {
+        if (Vec2.distance(village.portalBattle.rect.pos, this.rect.pos) < 80) {
+            game.state = 'adventure_confirm'
+            game.selectedAdventureStart = 0
+        }
+    }
+
     render(ctx, village, game) {
         Render.clearCanvas(this.canvas, this.ctx)
         Render.drawImageUI(this.ctx, Img.player, [0, 0])

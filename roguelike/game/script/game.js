@@ -14,6 +14,7 @@ class Game {
         this.locale = Locale.data[this.lang]
 
         this.selectedTitle = 0
+        this.selectedAdventureConfirm = 0
         this.selectedMenuVillage = 0
         this.selectedMenuBattle = 0
 

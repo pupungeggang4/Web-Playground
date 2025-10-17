@@ -15,6 +15,12 @@ class SceneVillage {
 
         game.village.render(game.ctx, game)
 
+        Render.fillTextUI(game.ctx, game.locale.control, UI.village.textControl)
+
+        if (game.state === 'adventure_confirm') {
+            Render.renderAdventureConfirm(game.ctx, game)
+        }
+
         if (game.menu === true) {
             Render.renderMenuVillage(game.ctx, game)
         }
@@ -25,6 +31,24 @@ class SceneVillage {
             if (key === 'Escape' || key === 'q') {
                 game.menu = true
                 game.selectedMenu = 0
+            }
+            if (game.state === '') {
+                if (key === 'x') {
+                    game.village.player.handleInteract(game.village, game)
+                }
+            } else if (game.state === 'adventure_confirm') {
+                if (key === 'ArrowLeft') {
+                    game.selectedAdventureConfirm = (game.selectedAdventureConfirm + 1) % 2
+                } else if (key === 'ArrowRight') {
+                    game.selectedAdventureConfirm = (game.selectedAdventureConfirm + 1) % 2
+                } else if (key === 'Enter') {
+                    if (game.selectedAdventureConfirm === 0) {
+                        game.scene = 'battle'
+                        game.state = ''
+                    } else if (game.selectedAdventureConfirm === 1) {
+                        game.state = ''
+                    }
+                }
             }
         } else if (game.menu === true) {
             if (key === 'Escape' || key === 'q') {

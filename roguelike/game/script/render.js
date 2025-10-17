@@ -8,6 +8,18 @@ class Render {
         ctx.fillStyle = 'black'
     }
 
+    static renderAdventureConfirm(ctx, game) {
+        ctx.fillStyle = 'white'
+        Render.fillRectUI(ctx, UI.windowAdventureConfirm.rect)
+        Render.strokeRectUI(ctx, UI.windowAdventureConfirm.rect)
+        ctx.fillStyle = 'black'
+
+        Render.fillTextUI(ctx, game.locale.startAdventure, UI.windowAdventureConfirm.textTitle)
+        Render.fillTextUI(ctx, game.locale.yes, UI.windowAdventureConfirm.textYes)
+        Render.fillTextUI(ctx, game.locale.no, UI.windowAdventureConfirm.textNo)
+        Render.drawImageUI(ctx, Img.arrow, UI.windowAdventureConfirm.arrow[game.selectedAdventureConfirm])
+    }
+
     static renderMenuVillage(ctx, game) {
         ctx.fillStyle = 'white'
         Render.fillRectUI(ctx, UI.menuVillage.rect)

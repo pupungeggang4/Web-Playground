@@ -10,6 +10,7 @@ class SceneTitle {
 
         Render.fillTextUI(game.ctx, game.locale.gameName, UI.title.textTitle)
         Render.fillTextUI(game.ctx, game.locale.startGame, UI.title.textStart)
+        Render.fillTextUI(game.ctx, game.locale.lang, UI.title.textLang)
         Render.fillTextUI(game.ctx, game.locale.collection, UI.title.textCollection)
         Render.fillTextUI(game.ctx, game.locale.eraseData, UI.title.textErase)
         
@@ -22,17 +23,24 @@ class SceneTitle {
 
     static keyDown(game, key) {
         if (key === 'ArrowUp') {
-            game.selectedTitle = (game.selectedTitle + 2) % 3
+            game.selectedTitle = (game.selectedTitle + 3) % 4
         }
 
         if (key === 'ArrowDown') {
-            game.selectedTitle = (game.selectedTitle + 1) % 3
+            game.selectedTitle = (game.selectedTitle + 1) % 4
         }
 
         if (key === 'Enter') {
             if (game.selectedTitle === 0) {
                 game.scene = 'village'
                 game.state = ''
+            } else if (game.selectedTitle === 1) {
+                if (game.lang === 'en') {
+                    game.lang = 'ko'
+                } else {
+                    game.lang = 'en'
+                }
+                game.locale = Locale.data[game.lang]
             }
         }
     }
