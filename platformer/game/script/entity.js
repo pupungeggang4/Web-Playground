@@ -70,6 +70,41 @@ class PlayerUnit extends Unit {
     }
 }
 
+class Coin extends Entity {
+    constructor() {
+        super()
+        this.rect = new Rect2(160, 0, 40, 40)
+        this.canvas = document.createElement('canvas')
+        this.canvas.width = this.rect.size.x
+        this.canvas.height = this.rect.size.y
+        this.ctx = this.canvas.getContext('2d')
+        this.animationTime = 0
+        this.animationFrame = 4
+        this.animationInterval = 200
+        this.currentFrame = 0
+        this.animationCoord = [[0, 0], [40, 0], [80, 0], [120, 0]]
+    }
+
+    handleTick(field, game) {
+        let player = field.player
+        if (this.rect.overlap(field.player.rect)) {
+            field.entity.splice(field.entity.indexOf(this), 1)
+            game.player.coin += 1
+        }
+    }
+
+    render(ctx, field, game) {
+        this.animationTime += game.delta
+        this.currentFrame = Math.floor(this.animationTime / this.animationInterval) % this.animationFrame
+        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height)
+        this.ctx.drawImage(Img.sprite.coin,
+            this.animationCoord[this.currentFrame][0], this.animationCoord[this.currentFrame][1], this.canvas.width, this.canvas.height,
+            0, 0, this.canvas.width, this.canvas.height
+        )
+        Render.renderCenterCam(ctx, this.canvas, this.rect, field.camera)
+    }
+}
+
 class Tile extends Entity {
     constructor() {
         super()

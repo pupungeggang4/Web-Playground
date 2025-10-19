@@ -10,6 +10,11 @@ class UI {
         arrow: [[80, 160], [80, 240], [80, 320]]
     }
 
+    static field = {
+        iconCoin: [20, 20],
+        textCoin: [64, 24]
+    }
+
     static menu = {
         rect: [320, 240, 640, 240],
         textPaused: [344, 264],

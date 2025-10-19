@@ -3,6 +3,7 @@ class Game {
         Img.loadImage()
 
         this.field = new Field()
+        this.player = new Player()
 
         this.scene = 'title'
         this.state = ''

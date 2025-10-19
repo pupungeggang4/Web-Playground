@@ -15,6 +15,9 @@ class SceneField {
 
         game.field.render(game.ctx, game)
 
+        Render.drawImageUI(game.ctx, Img.icon.coin, UI.field.iconCoin)
+        Render.fillTextUI(game.ctx, game.player.coin, UI.field.textCoin)
+
         if (game.menu === true) {
             Render.renderMenu(game.ctx, game)
         }

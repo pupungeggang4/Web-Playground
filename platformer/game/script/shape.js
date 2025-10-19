@@ -19,4 +19,8 @@ class Rect2 {
         this.pos = new Vec2(x, y)
         this.size = new Vec2(w, h)
     }
+
+    overlap(rect) {
+        return this.pos.x > rect.pos.x - rect.size.x / 2 - this.size.x / 2 && this.pos.x < rect.pos.x + rect.size.x / 2 + this.size.x / 2 && this.pos.y > rect.pos.y - rect.size.y / 2 - this.size.y / 2 && this.pos.y < rect.pos.y + rect.size.y / 2 + this.size.y / 2
+    }
 }
