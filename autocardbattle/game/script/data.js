@@ -1,33 +1,39 @@
 const dataCard = {
-    1: {'ID': 1, 'name': 'Normal unit', 'type': 'unit', 'element': 1, 'crystal': [[1, 1]], 'crystallist': [1], 'stat': [1, 2], 'effect': []},
-    2: {'ID': 2, 'name': 'Normal unit', 'type': 'unit', 'element': 1, 'crystal': [[1, 2]], 'crystallist': [1, 1], 'stat': [2, 3], 'effect': []},
-    3: {'ID': 3, 'name': 'Normal unit', 'type': 'unit', 'element': 1, 'crystal': [[1, 3]], 'crystallist': [1, 1, 1], 'stat': [3, 4], 'effect': []},
-    201: {'ID': 201, 'name': 'attack', 'type': 'spell', 'element': 2, 'crystal': [[2, 1]], 'crystallist': [2], 'stat': [0, 0], 'effect': []}
+    801: {'ID': 1, 'name': 'Normal unit', 'type': 'unit', 'element': 8, 'crystal': [[8, 1]], 'crystallist': [8], 'stat': [1, 2], 'effect': []},
+    802: {'ID': 2, 'name': 'Normal unit', 'type': 'unit', 'element': 8, 'crystal': [[8, 2]], 'crystallist': [8, 8], 'stat': [2, 3], 'effect': []},
+    803: {'ID': 3, 'name': 'Normal unit', 'type': 'unit', 'element': 8, 'crystal': [[8, 3]], 'crystallist': [8, 8, 8], 'stat': [3, 4], 'effect': []},
+    101: {'ID': 101, 'name': 'attack', 'type': 'spell', 'element': 1, 'crystal': [[1, 1]], 'crystallist': [1], 'stat': [0, 0], 'effect': []},
+    102: {'ID': 102, 'name': 'random attack', 'type': 'spell', 'element': 1, 'crystal': [[1, 1], [8, 1]], 'crystallist': [8, 1], 'stat': [0, 0], 'effect': []},
+    301: {'ID': 301, 'name': 'fast attack', 'type': 'spell', 'element': 3, 'crystal': [[3, 1], [8, 1]], 'crystallist': [8, 3], 'stat': [0, 0], 'effect': []}
 }
 
 const dataCardP = {
-    1: [['summon']],
-    2: [['summon']],
-    3: [['summon']],
-    201: [['dmghero', 3]]
+    801: [['summon']],
+    802: [['summon']],
+    803: [['summon']],
+    101: [['dmghero', 3]],
+    102: [['dmgrandom', 3]],
+    301: [['dmgrandom', 2], ['gainacceler', 1]]
 }
 
 const dataCardD = {
-    1: [],
-    2: [],
-    3: [],
-    201: ['Deal 3 damage to', 'enemy hero.'],
+    801: [],
+    802: [],
+    803: [],
+    101: ['Deal 3 damage to', 'enemy hero.'],
+    102: ['Deal 3 damage to', 'random character.'],
+    301: ['Deal 2 damage to', 'random character', 'and gain 1 acceler.']
 }
 
 const dataCrystal = {
-    1: {'ID': 1, 'name': 'normal crystal', 'element': 1, 'effect': []},
-    2: {'ID': 2, 'name': 'fire crystal', 'element': 2, 'effect': []},
-    3: {'ID': 3, 'name': 'water crystal', 'element': 3, 'effect': []},
-    4: {'ID': 4, 'name': 'wind crystal', 'element': 4, 'effect': []},
-    5: {'ID': 5, 'name': 'earth crystal', 'element': 5, 'effect': []},
-    6: {'ID': 6, 'name': 'light crystal', 'element': 6, 'effect': []},
-    7: {'ID': 7, 'name': 'dark crystal', 'element': 7, 'effect': []},
-    8: {'ID': 8, 'name': 'raindow crystal', 'element': 8, 'effect': []},
+    1: {'ID': 1, 'name': 'fire crystal', 'element': 1, 'effect': []},
+    2: {'ID': 2, 'name': 'water crystal', 'element': 2, 'effect': []},
+    3: {'ID': 3, 'name': 'wind crystal', 'element': 3, 'effect': []},
+    4: {'ID': 4, 'name': 'earth crystal', 'element': 4, 'effect': []},
+    5: {'ID': 5, 'name': 'light crystal', 'element': 5, 'effect': []},
+    6: {'ID': 6, 'name': 'dark crystal', 'element': 6, 'effect': []},
+    7: {'ID': 7, 'name': 'raindow crystal', 'element': 7, 'effect': []},
+    8: {'ID': 8, 'name': 'normal crystal', 'element': 8, 'effect': []},
 }
 
 const dataCrystalD = {
@@ -48,13 +54,13 @@ const dataEquipmentD = {
 }
 
 const dataCharacter = {
-    1: {'deck': [201, 201, 201, 201, 201, 201, 201, 201], 'crystal': [1, 1, 1, 1, 2, 2, 2, 2]},
-    2: {'deck': [1, 1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 3], 'crystal': [1, 1, 1, 1, 3, 3, 3, 3]},
-    3: {'deck': [1, 1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 3], 'crystal': [1, 1, 1, 1, 4, 4, 4, 4]},
-    4: {'deck': [1, 1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 3], 'crystal': [1, 1, 1, 1, 5, 5, 5, 5]},
-    5: {'deck': [1, 1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 3], 'crystal': [1, 1, 1, 1, 6, 6, 6, 6]},
-    6: {'deck': [1, 1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 3], 'crystal': [1, 1, 1, 1, 7, 7, 7, 7]},
-    7: {'deck': [1, 1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 3], 'crystal': [1, 1, 1, 1, 1, 1, 8, 8]}
+    1: {'deck': [101, 101, 101, 101, 102, 102, 102, 102], 'crystal': [1, 1, 1, 1, 8, 8, 8, 8]},
+    2: {'deck': [801, 801, 801, 801, 802, 802, 802, 802, 803, 803, 803, 803], 'crystal': [2, 2, 2, 2, 8, 8, 8, 8]},
+    3: {'deck': [301, 301, 301, 301, 301, 301, 301, 301, 301, 301, 301, 301], 'crystal': [3, 3, 3, 3, 8, 8, 8, 8]},
+    4: {'deck': [801, 801, 801, 801, 802, 802, 802, 802, 803, 803, 803, 803], 'crystal': [4, 4, 4, 4, 8, 8, 8, 8]},
+    5: {'deck': [801, 801, 801, 801, 802, 802, 802, 802, 803, 803, 803, 803], 'crystal': [5, 5, 5, 5, 8, 8, 8, 8]},
+    6: {'deck': [801, 801, 801, 801, 802, 802, 802, 802, 803, 803, 803, 803], 'crystal': [6, 6, 6, 6, 8, 8, 8, 8]},
+    7: {'deck': [801, 801, 801, 801, 802, 802, 802, 802, 803, 803, 803, 803], 'crystal': [7, 7, 7, 7, 8, 8, 8, 8]}
 }
 
 const dataCharacterD = {
@@ -68,5 +74,5 @@ const dataCharacterD = {
 }
 
 const dataEnemy = {
-    1101: {'deck': [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], 'crystal': [1, 1, 1, 1, 1, 1, 1, 1], 'hp': 15}
+    1101: {'deck': [801, 801, 801, 801, 801, 801, 801, 801], 'crystal': [8, 8, 8, 8, 8, 8, 8, 8], 'hp': 15}
 }

@@ -14,9 +14,9 @@ class Adventure {
         this.rewardSelected = -1
         this.rewardType = 'card'
         this.rewardItem = [new Card(), new Card(), new Card()]
-        this.rewardItem[0].setData(1)
-        this.rewardItem[1].setData(2)
-        this.rewardItem[2].setData(3)
+        this.rewardItem[0].setData(801)
+        this.rewardItem[1].setData(802)
+        this.rewardItem[2].setData(803)
     }
 
     adventureStart() {

@@ -55,6 +55,8 @@ class Battle {
                     }
                     if (this.player.acceler <= 0) {
                         this.turnPhase = 'battle'
+                    } else {
+                        this.player.acceler -= 1
                     }
                 } else {
                     if (!this.enemy.playCard(this)) {
@@ -62,6 +64,8 @@ class Battle {
                     }
                     if (this.enemy.acceler <= 0) {
                         this.turnPhase = 'battle'
+                    } else {
+                        this.enemy.acceler -= 1
                     }
                 }
             } else if (this.turnPhase === 'battle') {
@@ -102,6 +106,18 @@ class Battle {
         } else if (top[0] === 'dmg') {
             if (this.field[top[2]] != null) {
                 this.field[top[2]].hp -= top[1]
+            }
+        } else if (top[0] === 'dmgrandom') {
+            let dmgList = []
+            for (let i = 0; i < top[2].length; i++) {
+                if (this.field[top[2][i]] != null) {
+                    dmgList.push(top[2][i])
+                }
+            }
+            let index = Math.floor(Math.random() * dmgList.length)
+
+            if (this.field[dmgList[index]] != null) {
+                this.field[dmgList[index]].hp -= top[1]
             }
         } else if (top[0] === 'attackrandom') {
             let attackList = []
@@ -282,9 +298,6 @@ class BattlePlayer {
                     }
                 }
                 this.deck.splice(0, 1)
-                if (this.acceler > 0) {
-                    this.acceler -= 1
-                }
                 return true
             }
         }
@@ -293,32 +306,38 @@ class BattlePlayer {
     }
 
     isPlayable(card) {
-        let crystal = JSON.parse(JSON.stringify(card.crystalList)).sort()
+        let crystal = JSON.parse(JSON.stringify(card.crystalList))
         if (crystal.length <= 0) {
             return true
         }
         for (let i = 0; i < this.crystalHand.length; i++) {
-            if (this.crystalHand[i].element === 1) {
-                if (crystal[0] === 1) {
-                    crystal.shift()
-                    if (crystal.length <= 0) {
-                        return true
-                    }
-                }
-            }
-        }
-        for (let i = 0; i < this.crystalHand.length; i++) {
-            if (this.crystalHand[i].element >= 2 && this.crystalHand[i].element <= 7) {
-                if (crystal[0] === this.crystalHand[i].element || crystal[0] === 1) {
-                    crystal.shift()
-                    if (crystal.length <= 0) {
-                        return true
-                    }
-                }
-            }
-        }
-        for (let i = 0; i < this.crystalHand.length; i++) {
             if (this.crystalHand[i].element === 8) {
+                for (let j = 0; j < crystal.length; j++) {
+                    if (crystal[j] === 8) {
+                        crystal.splice(j, 1)
+                        if (crystal.length <= 0) {
+                            return true
+                        }
+                        break
+                    }
+                }
+            }
+        }
+        for (let i = 0; i < this.crystalHand.length; i++) {
+            if (this.crystalHand[i].element >= 1 && this.crystalHand[i].element <= 6) {
+                for (let j = 0; j < crystal.length; j++) {
+                    if ((crystal[j] === this.crystalHand[i].element) || crystal[j] === 8) {
+                        crystal.splice(j, 1)
+                        if (crystal.length <= 0) {
+                            return true
+                        }
+                        break
+                    }
+                }
+            }
+        }
+        for (let i = 0; i < this.crystalHand.length; i++) {
+            if (this.crystalHand[i].element === 7) {
                 crystal.shift()
                 if (crystal.length <= 0) {
                     return true
@@ -330,38 +349,42 @@ class BattlePlayer {
 
     makePayList(card) {
         let payList = []
-        let crystal = JSON.parse(JSON.stringify(card.crystalList)).sort()
+        let crystal = JSON.parse(JSON.stringify(card.crystalList))
         if (crystal.length <= 0) {
             return []
         }
         for (let i = 0; i < this.crystalHand.length; i++) {
-            if (this.crystalHand[i].ID === 1) {
-                if (crystal[0] === 1) {
-                    payList.push(i)
-                    crystal.shift()
-                    if (crystal.length <= 0) {
-                        break
+            if (this.crystalHand[i].element === 8) {
+                for (let j = 0; j < crystal.length; j++) {
+                    if (crystal[j] === 8) {
+                        payList.push(i)
+                        crystal.splice(j, 1)
+                        if (crystal.length <= 0) {
+                            return payList.sort().reverse()
+                        }
                     }
                 }
             }
         }
         for (let i = 0; i < this.crystalHand.length; i++) {
-            if (this.crystalHand[i].ID >= 2 && this.crystalHand[i].ID <= 7) {
-                if (crystal[0] === this.crystalHand[i].ID || crystal[0] === 1) {
-                    payList.push(i)
-                    crystal.shift()
-                    if (crystal.length <= 0) {
-                        break
+            if (this.crystalHand[i].element >= 1 && this.crystalHand[i].element <= 6) {
+                for (let j = 0; j < crystal.length; j++) {
+                    if (crystal[0] === this.crystalHand[i].element || crystal[0] === 8) {
+                        payList.push(i)
+                        crystal.splice(j, 1)
+                        if (crystal.length <= 0) {
+                            return payList.sort().reverse()
+                        }
                     }
                 }
             }
         }
         for (let i = 0; i < this.crystalHand.length; i++) {
-            if (this.crystalHand[i].ID === 8) {
+            if (this.crystalHand[i].element === 7) {
                 payList.push(i)
                 crystal.shift()
                 if (crystal.length <= 0) {
-                    break
+                    return payList.sort().reverse()
                 }
             }
         }
@@ -391,6 +414,11 @@ class BattlePlayer {
                 }
             } else if (front[0] === 'dmghero') {
                 battle.actionQueue.push(['dmg', front[1] + this.attack, this.yourHero])
+            } else if (front[0] === 'dmgrandom') {
+                battle.actionQueue.push(['dmgrandom', front[1] + this.attack, this.yourCharacter])
+            } else if (front[0] === 'gainacceler') {
+                console.log(123123)
+                this.acceler += front[1]
             }
             played.shift()
         }

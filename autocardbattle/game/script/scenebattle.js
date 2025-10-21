@@ -64,6 +64,8 @@ class SceneBattle {
                     SceneBattle.handleNextClick(game, pos, button)
                 } else if (game.state === 'win') {
                     SceneBattle.handleWinClick(game, pos, button)
+                } else if (game.state === 'lose') {
+                    SceneBattle.handleLoseClick(game, pos, button)
                 }
             } else if (game.menu === true) {
                 if (Func.pointInsideRectUI(pos, UI.menu.buttonResume)) {
@@ -72,7 +74,6 @@ class SceneBattle {
                     game.menu = false
                     game.scene = 'title'
                     game.state = ''
-                    game.battle = new Battle()
                 }
             }
         }
@@ -139,6 +140,13 @@ class SceneBattle {
                 game.scene = 'title'
                 game.state = ''
             }
+        }
+    }
+
+    static handleLoseClick(game, pos, button) {
+        if (Func.pointInsideRectUI(pos, UI.windowEnd.buttonOK)) {
+            game.scene = 'title'
+            game.state = ''
         }
     }
 }

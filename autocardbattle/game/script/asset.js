@@ -31,14 +31,14 @@ class Img {
     static selectFrameLong = new Image()
 
     static loadImage() {
-        Img.crystal[1].src = 'image/crystalnormal.png'
-        Img.crystal[2].src = 'image/crystalfire.png'
-        Img.crystal[3].src = 'image/crystalwater.png'
-        Img.crystal[4].src = 'image/crystalwind.png'
-        Img.crystal[5].src = 'image/crystalearth.png'
-        Img.crystal[6].src = 'image/crystallight.png'
-        Img.crystal[7].src = 'image/crystaldark.png'
-        Img.crystal[8].src = 'image/crystalrainbow.png'
+        Img.crystal[1].src = 'image/crystalfire.png'
+        Img.crystal[2].src = 'image/crystalwater.png'
+        Img.crystal[3].src = 'image/crystalwind.png'
+        Img.crystal[4].src = 'image/crystalearth.png'
+        Img.crystal[5].src = 'image/crystallight.png'
+        Img.crystal[6].src = 'image/crystaldark.png'
+        Img.crystal[7].src = 'image/crystalrainbow.png'
+        Img.crystal[8].src = 'image/crystalnormal.png'
 
         Img.icon[0].src = 'image/iconfire.png'
         Img.icon[1].src = 'image/iconwater.png'
@@ -66,10 +66,9 @@ class Img {
             Img.card[i] = new Image()
         }
 
-        Img.card[1].src = 'image/card/card001.png'
-        Img.card[2].src = 'image/card/card002.png'
-        Img.card[3].src = 'image/card/card003.png'
-        Img.card[201].src = 'image/card/card201.png'
+        for (let i = 0; i < 1000; i++) {
+            Img.card[i].src = `image/card/card${i.toString().padStart(3, '0')}.png`
+        }
 
         Img.hero[1001].src = 'image/hero/hero1001.png'
         Img.hero[1101].src = 'image/hero/hero1101.png'

@@ -7,9 +7,6 @@ class Game {
         this.selectedCharacter = -1
         this.selected = -1
 
-        this.card = new Card()
-        this.card.setData(1)
-
         this.scene = 'title'
         this.state = ''
         this.menu = false
