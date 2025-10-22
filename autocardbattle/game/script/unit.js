@@ -6,6 +6,7 @@ class Unit {
         this.hp = 0
         this.hpMax = 0
         this.attackNum = 0
+        this.armor = 0
         this.effect = []
         this.description = []
 
@@ -46,17 +47,30 @@ class Unit {
         this.description = []
     }
 
+    takeDamage(dmg) {
+        if (this.armor >= dmg) {
+            this.armor -= dmg
+        } else {
+            this.hp -= (dmg - this.armor)
+            this.armor = 0
+        }
+    }
+
     render(ctx, game, pos) {
         this.ctx.font = '32px neodgm'
         this.ctx.textAlign = 'left'
         this.ctx.textBaseline = 'top'
         this.ctx.lineWidth = 4
-        this.ctx.fillStyle = 'white'
+        this.ctx.fillStyle = 'white' 
+
         this.ctx.clearRect(0, 0, this.canvas.height, this.canvas.width)
         this.ctx.fillRect(0, 0, this.canvas.height, this.canvas.width)
         this.ctx.fillStyle = 'black'
 
         Render.fillTextUI(this.ctx, this.attack, UI.unit.textAttack)
+        if (this.armor > 0) {
+            Render.fillTextUI(this.ctx, this.armor, UI.unit.textArmor)
+        }
         Render.fillTextUI(this.ctx, this.hp, UI.unit.textHP)
 
         if (this.ID > 1000) {

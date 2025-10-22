@@ -89,7 +89,7 @@ class Battle {
             this.performAction()
             this.deathHandle()
             
-            if (this.field[0].hp <= 0) {
+            if (this.field[0].hp <= 0 || this.player.deck.length <= 0) {
                 this.paused = true
                 game.state = 'lose'
             } else if (this.field[5].hp <= 0) {
@@ -136,14 +136,18 @@ class Battle {
             }
             let index = Math.floor(Math.random() * attackList.length)
             this.battleUnit(top[1], attackList[index])
+        } else if (top[0] === 'gainarmor') {
+            if (this.field[top[2]] != null) {
+                this.field[top[2]].armor += top[1]
+            }
         }
         this.actionQueue.shift()
     }
 
     battleUnit(i1, i2) {
         if (this.field[i1] != null && this.field[i2] != null) {
-            this.field[i1].hp -= this.field[i2].attack
-            this.field[i2].hp -= this.field[i1].attack
+            this.field[i1].takeDamage(this.field[i2].attack)
+            this.field[i2].takeDamage(this.field[i1].attack)
         }
         //this.deathHandle()
     }
@@ -417,8 +421,9 @@ class BattlePlayer {
             } else if (front[0] === 'dmgrandom') {
                 battle.actionQueue.push(['dmgrandom', front[1] + this.attack, this.yourCharacter])
             } else if (front[0] === 'gainacceler') {
-                console.log(123123)
                 this.acceler += front[1]
+            } else if (front[0] === 'gainarmor') {
+                battle.actionQueue.push(['gainarmor', front[1] + this.hardness, this.myHero])
             }
             played.shift()
         }

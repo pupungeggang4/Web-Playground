@@ -3,8 +3,9 @@ const dataCard = {
     802: {'ID': 2, 'name': 'Normal unit', 'type': 'unit', 'element': 8, 'crystal': [[8, 2]], 'crystallist': [8, 8], 'stat': [2, 3], 'effect': []},
     803: {'ID': 3, 'name': 'Normal unit', 'type': 'unit', 'element': 8, 'crystal': [[8, 3]], 'crystallist': [8, 8, 8], 'stat': [3, 4], 'effect': []},
     101: {'ID': 101, 'name': 'attack', 'type': 'spell', 'element': 1, 'crystal': [[1, 1]], 'crystallist': [1], 'stat': [0, 0], 'effect': []},
-    102: {'ID': 102, 'name': 'random attack', 'type': 'spell', 'element': 1, 'crystal': [[1, 1], [8, 1]], 'crystallist': [8, 1], 'stat': [0, 0], 'effect': []},
-    301: {'ID': 301, 'name': 'fast attack', 'type': 'spell', 'element': 3, 'crystal': [[3, 1], [8, 1]], 'crystallist': [8, 3], 'stat': [0, 0], 'effect': []}
+    102: {'ID': 102, 'name': 'Random Attack', 'type': 'spell', 'element': 1, 'crystal': [[1, 1], [8, 1]], 'crystallist': [8, 1], 'stat': [0, 0], 'effect': []},
+    301: {'ID': 301, 'name': 'Fast Attack', 'type': 'spell', 'element': 3, 'crystal': [[3, 1], [8, 1]], 'crystallist': [8, 3], 'stat': [0, 0], 'effect': []},
+    401: {'ID': 401, 'name': 'Guard', 'type': 'spell', 'element': 4, 'crystal': [[4, 1]], 'crystallist': [4], 'stat': [0, 0], 'effect': []},
 }
 
 const dataCardP = {
@@ -13,7 +14,8 @@ const dataCardP = {
     803: [['summon']],
     101: [['dmghero', 3]],
     102: [['dmgrandom', 3]],
-    301: [['dmgrandom', 2], ['gainacceler', 1]]
+    301: [['dmgrandom', 2], ['gainacceler', 1]],
+    401: [['gainarmor', 4]]
 }
 
 const dataCardD = {
@@ -22,7 +24,8 @@ const dataCardD = {
     803: [],
     101: ['Deal 3 damage to', 'enemy hero.'],
     102: ['Deal 3 damage to', 'random character.'],
-    301: ['Deal 2 damage to', 'random character', 'and gain 1 acceler.']
+    301: ['Deal 2 damage to', 'random character', 'Gain 1 acceler.'],
+    401: ['Gain 4 armor.']
 }
 
 const dataCrystal = {
@@ -57,7 +60,7 @@ const dataCharacter = {
     1: {'deck': [101, 101, 101, 101, 102, 102, 102, 102], 'crystal': [1, 1, 1, 1, 8, 8, 8, 8]},
     2: {'deck': [801, 801, 801, 801, 802, 802, 802, 802, 803, 803, 803, 803], 'crystal': [2, 2, 2, 2, 8, 8, 8, 8]},
     3: {'deck': [301, 301, 301, 301, 301, 301, 301, 301, 301, 301, 301, 301], 'crystal': [3, 3, 3, 3, 8, 8, 8, 8]},
-    4: {'deck': [801, 801, 801, 801, 802, 802, 802, 802, 803, 803, 803, 803], 'crystal': [4, 4, 4, 4, 8, 8, 8, 8]},
+    4: {'deck': [401, 401, 401, 401, 401, 401, 401, 401, 803, 803, 803, 803], 'crystal': [4, 4, 4, 4, 8, 8, 8, 8]},
     5: {'deck': [801, 801, 801, 801, 802, 802, 802, 802, 803, 803, 803, 803], 'crystal': [5, 5, 5, 5, 8, 8, 8, 8]},
     6: {'deck': [801, 801, 801, 801, 802, 802, 802, 802, 803, 803, 803, 803], 'crystal': [6, 6, 6, 6, 8, 8, 8, 8]},
     7: {'deck': [801, 801, 801, 801, 802, 802, 802, 802, 803, 803, 803, 803], 'crystal': [7, 7, 7, 7, 8, 8, 8, 8]}

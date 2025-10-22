@@ -63,7 +63,8 @@ class UI {
         rect: [0, 0, 160, 160],
         image: [40, 40],
         textAttack: [4, 124],
-        textHP: [124, 124]
+        textHP: [124, 124],
+        textArmor: [124, 84]
     }
 
     static window = {
