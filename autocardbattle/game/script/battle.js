@@ -52,20 +52,22 @@ class Battle {
                 if (this.turnWho === 0) {
                     if (!this.player.playCard(this)) {
                         this.turnPhase = 'battle'
-                    }
-                    if (this.player.acceler <= 0) {
-                        this.turnPhase = 'battle'
                     } else {
-                        this.player.acceler -= 1
+                        if (this.player.acceler <= 0) {
+                            this.turnPhase = 'battle'
+                        } else {
+                            this.player.acceler -= 1
+                        }
                     }
                 } else {
                     if (!this.enemy.playCard(this)) {
                         this.turnPhase = 'battle'
-                    }
-                    if (this.enemy.acceler <= 0) {
-                        this.turnPhase = 'battle'
                     } else {
-                        this.enemy.acceler -= 1
+                        if (this.enemy.acceler <= 0) {
+                            this.turnPhase = 'battle'
+                        } else {
+                            this.enemy.acceler -= 1
+                        }
                     }
                 }
             } else if (this.turnPhase === 'battle') {
