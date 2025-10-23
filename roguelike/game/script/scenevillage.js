@@ -13,16 +13,16 @@ class SceneVillage {
         Render.clearCanvas(game.canvas, game.ctx)
         Render.fillCanvas(game.canvas, game.ctx)
 
-        game.village.render(game.ctx, game)
+        game.village.render(game)
 
         Render.fillTextUI(game.ctx, game.locale.control, UI.village.textControl)
 
         if (game.state === 'adventure_confirm') {
-            Render.renderAdventureConfirm(game.ctx, game)
+            Render.renderAdventureConfirm(game)
         }
 
         if (game.menu === true) {
-            Render.renderMenuVillage(game.ctx, game)
+            Render.renderMenuVillage(game)
         }
     }
 
@@ -34,7 +34,7 @@ class SceneVillage {
             }
             if (game.state === '') {
                 if (key === 'x') {
-                    game.village.player.handleInteract(game.village, game)
+                    game.village.player.handleInteract(game)
                 }
             } else if (game.state === 'adventure_confirm') {
                 if (key === 'ArrowLeft') {

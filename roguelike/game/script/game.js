@@ -2,7 +2,7 @@ class Game {
     constructor() {
         Img.imageLoad()
         this.village = new Village()
-        this.battle = new Battle()
+        this.field = new Field()
         this.player = new Player()
 
         this.keyPressed = {'left': false, 'right': false, 'up': false, 'down': false}

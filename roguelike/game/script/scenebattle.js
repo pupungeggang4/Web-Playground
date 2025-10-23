@@ -1,5 +1,10 @@
 class SceneBattle {
     static loop(game) {
+        if (game.menu === false) {
+            if (game.state === '') {
+                game.field.handleTick(game)
+            }
+        }
         SceneBattle.render(game)
     }
 
@@ -7,7 +12,7 @@ class SceneBattle {
         Render.init(game.ctx)
         Render.clearCanvas(game.canvas, game.ctx)
         Render.fillCanvas(game.canvas, game.ctx)
-        
+        game.field.render(game)
     }
 
     static keyDown(game, key) {

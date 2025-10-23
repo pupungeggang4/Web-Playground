@@ -8,7 +8,8 @@ class Render {
         ctx.fillStyle = 'black'
     }
 
-    static renderAdventureConfirm(ctx, game) {
+    static renderAdventureConfirm(game) {
+        let ctx = game.ctx
         ctx.fillStyle = 'white'
         Render.fillRectUI(ctx, UI.windowAdventureConfirm.rect)
         Render.strokeRectUI(ctx, UI.windowAdventureConfirm.rect)
@@ -20,7 +21,8 @@ class Render {
         Render.drawImageUI(ctx, Img.arrow, UI.windowAdventureConfirm.arrow[game.selectedAdventureConfirm])
     }
 
-    static renderMenuVillage(ctx, game) {
+    static renderMenuVillage(game) {
+        let ctx = game.ctx
         ctx.fillStyle = 'white'
         Render.fillRectUI(ctx, UI.menuVillage.rect)
         Render.strokeRectUI(ctx, UI.menuVillage.rect)

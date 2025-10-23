@@ -14,10 +14,10 @@ class Village {
         this.camera.pos.y = this.player.rect.pos.y
     }
 
-    render(ctx, game) {
-        this.player.render(ctx, this, game)
-        this.portalBattle.render(ctx, this, game)
-        this.portalShop.render(ctx, this, game)
+    render(game) {
+        this.player.render(game)
+        this.portalBattle.render(game)
+        this.portalShop.render(game)
     }
 }
 
@@ -64,14 +64,17 @@ class VillagePlayer {
         this.rect.pos.y += this.velocity.y * this.speed * game.delta / 1000
     }
 
-    handleInteract(village, game) {
+    handleInteract(game) {
+        let village = game.village
         if (Vec2.distance(village.portalBattle.rect.pos, this.rect.pos) < 80) {
             game.state = 'adventure_confirm'
             game.selectedAdventureStart = 0
         }
     }
 
-    render(ctx, village, game) {
+    render(game) {
+        let ctx = game.ctx
+        let village = game.village
         Render.clearCanvas(this.canvas, this.ctx)
         Render.drawImageUI(this.ctx, Img.player, [0, 0])
         Render.drawCenterCam(ctx, this.canvas, this.rect, village.camera)
@@ -87,7 +90,9 @@ class VillagePortal {
         this.ctx = this.canvas.getContext('2d')
     }
 
-    render(ctx, village, game) {
+    render(game) {
+        let ctx = game.ctx
+        let village = game.village
         Render.clearCanvas(this.canvas, this.ctx)
         Render.drawImageUI(this.ctx, Img.portal, [0, 0])
         Render.drawCenterCam(ctx, this.canvas, this.rect, village.camera)
