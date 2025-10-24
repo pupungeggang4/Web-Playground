@@ -37,18 +37,7 @@ class SceneVillage {
                     game.village.player.handleInteract(game)
                 }
             } else if (game.state === 'adventure_confirm') {
-                if (key === 'ArrowLeft') {
-                    game.selectedAdventureConfirm = (game.selectedAdventureConfirm + 1) % 2
-                } else if (key === 'ArrowRight') {
-                    game.selectedAdventureConfirm = (game.selectedAdventureConfirm + 1) % 2
-                } else if (key === 'Enter') {
-                    if (game.selectedAdventureConfirm === 0) {
-                        game.scene = 'battle'
-                        game.state = ''
-                    } else if (game.selectedAdventureConfirm === 1) {
-                        game.state = ''
-                    }
-                }
+                SceneVillage.handleAdventureConfirm(game, key)
             }
         } else if (game.menu === true) {
             if (key === 'Escape' || key === 'q') {
@@ -77,5 +66,21 @@ class SceneVillage {
 
     static keyUp(game, key) {
 
+    }
+
+    static handleAdventureConfirm(game, key) {
+        if (key === 'ArrowLeft') {
+            game.selectedAdventureConfirm = (game.selectedAdventureConfirm + 1) % 2
+        } else if (key === 'ArrowRight') {
+            game.selectedAdventureConfirm = (game.selectedAdventureConfirm + 1) % 2
+        } else if (key === 'Enter') {
+            if (game.selectedAdventureConfirm === 0) {
+                game.scene = 'battle'
+                game.state = 'adventure_start'
+                game.selectedAdventureStart = 0
+            } else if (game.selectedAdventureConfirm === 1) {
+                game.state = ''
+            }
+        }
     }
 }

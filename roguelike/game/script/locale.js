@@ -15,6 +15,8 @@ class Locale {
             paused: 'Paused',
             resume: 'Resume',
             exit: 'Exit to title',
+
+            selectWeapon: 'Select weapon.'
         },
 
         'ko': {
@@ -32,6 +34,8 @@ class Locale {
             paused: '일시정지',
             resume: '계속하기',
             exit: '타이틀 화면으로 돌아가기',
+
+            selectWeapon: '무기를 선택하세요.'
         },
     }
 }

@@ -16,6 +16,7 @@ class Game {
         this.selectedTitle = 0
         this.selectedAdventureConfirm = 0
         this.selectedMenuVillage = 0
+        this.selectedAdventureStart = 0
         this.selectedMenuBattle = 0
 
         this.canvas = document.getElementById('screen')

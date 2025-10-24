@@ -19,7 +19,23 @@ class UI {
     }
 
     static battle = {
-        buttonMenu: [1180, 20, 80, 80]
+        buttonMenu: [1180, 20, 80, 80],
+        iconExp: [20, 40],
+        textExp: [88, 50],
+        barExp: [20, 20, 1240, 20],
+        iconCoin: [20, 80],
+        textCoin: [88, 90],
+        iconHP: [20, 120],
+        textHP: [88, 130],
+        barHP: [80, 124, 140, 32],
+        iconEnergy: [20, 160],
+        textEnergy: [88, 170],
+        barEnergy: [80, 164, 140, 32],
+
+        descriptionRect: [200, 620, 320, 80],
+        cardStart: [20, 220],
+        cardSize: [160, 160],
+        cardInterval: [0, 80],
     }
 
     static windowAdventureConfirm = {
@@ -28,6 +44,14 @@ class UI {
         textYes: [464, 384],
         textNo: [784, 384],
         arrow: [[360, 360], [680, 360]],
+    }
+
+    static window = {
+        rect: [160, 40, 960, 640],
+        textTitle: [184, 64],
+        weapon: [[200, 240, 200, 200], [540, 240, 200, 200], [880, 240, 200, 200]],
+        arrowWeapon: [[260, 120], [600, 120], [940, 120]],
+        arrowReward: [],
     }
 
     static menuVillage = {

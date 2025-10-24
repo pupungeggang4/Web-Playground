@@ -1,6 +1,6 @@
 class Render {
     static init(ctx) {
-        ctx.font = '32px opensans'
+        ctx.font = '32px neodgm'
         ctx.textAlign = 'left'
         ctx.textBaseline = 'top'
         ctx.strokeStyle = 'black'
@@ -35,6 +35,55 @@ class Render {
         Render.fillTextUI(ctx, game.locale.exit, UI.menuVillage.textExit)
 
         Render.drawImageUI(ctx, Img.arrow, UI.menuVillage.arrow[game.selectedMenuVillage])
+    }
+
+    static renderAdventureStart(game) {
+        let ctx = game.ctx
+        ctx.fillStyle = 'white'
+        Render.fillRectUI(ctx, UI.window.rect)
+        Render.strokeRectUI(ctx, UI.window.rect)
+        ctx.fillStyle = 'black'
+
+        Render.fillTextUI(ctx, game.locale.selectWeapon, UI.window.textTitle)
+        for (let i = 0; i < 3; i++) {
+            Render.strokeRectUI(ctx, UI.window.weapon[i])
+        }
+        Render.drawImageUI(ctx, Img.arrowDown, UI.window.arrowWeapon[game.selectedAdventureStart])
+    }
+
+    static renderUIBattle(game) {
+        let player = game.field.player
+        game.ctx.font = '24px neodgm'
+        
+        game.ctx.fillStyle = 'blue'
+        Render.fillRectUI(game.ctx, [UI.battle.barExp[0], UI.battle.barExp[1], UI.battle.barExp[2] * player.exp / player.expMax, UI.battle.barExp[3]])
+        game.ctx.fillStyle = 'lime'
+        Render.fillRectUI(game.ctx, [UI.battle.barHP[0], UI.battle.barHP[1], UI.battle.barHP[2] * player.hp / player.hpMax, UI.battle.barHP[3]])
+        game.ctx.fillStyle = 'orange'
+        Render.fillRectUI(game.ctx, [UI.battle.barEnergy[0], UI.battle.barEnergy[1], UI.battle.barEnergy[2] * player.energy / player.energyMax, UI.battle.barEnergy[3]])
+
+        game.ctx.fillStyle = 'black'
+        Render.drawImageUI(game.ctx, Img.exporb, UI.battle.iconExp)
+        Render.fillTextUI(game.ctx, `Lv.${player.level} Exp:${player.exp}/${player.expMax}`, UI.battle.textExp)
+
+        Render.strokeRectUI(game.ctx, UI.battle.barExp)
+        Render.drawImageUI(game.ctx, Img.coin, UI.battle.iconCoin)
+        Render.fillTextUI(game.ctx, `${player.gold}`, UI.battle.textCoin)
+        Render.drawImageUI(game.ctx, Img.life, UI.battle.iconHP)
+        Render.fillTextUI(game.ctx, `${player.hp}/${player.hpMax}`, UI.battle.textHP)
+        Render.strokeRectUI(game.ctx, UI.battle.barHP)
+        Render.drawImageUI(game.ctx, Img.energy, UI.battle.iconEnergy)
+        Render.fillTextUI(game.ctx, `${player.energy}/${player.energyMax}`, UI.battle.textEnergy)
+        Render.strokeRectUI(game.ctx, UI.battle.barEnergy)
+
+        Render.strokeRectUI(game.ctx, UI.battle.descriptionRect)
+        
+        for (let i = 0; i < 5; i++) {
+            let rect = [UI.battle.cardStart[0] + UI.battle.cardInterval[0] * i, UI.battle.cardStart[1] + UI.battle.cardInterval[1] * i, UI.battle.cardSize[0], UI.battle.cardSize[1]]
+            Render.strokeRectUI(game.ctx, rect)
+        }
+
+        game.ctx.font = '32px neodgm'
     }
 
     static clearCanvas(canvas, ctx) {

@@ -2,13 +2,9 @@ class Field {
     constructor() {
         this.camera = new Rect2(0, 0, 1280, 720)
         this.player = new FieldPlayer()
-        this.drop = [new Drop(), new Drop()]
+        this.drop = []
         this.proj = []
         this.unit = []
-        this.drop[0].type = 'coin'
-        this.drop[0].rect = new Rect2(160, 0, 40, 40)
-        this.drop[1].type = 'exporb'
-        this.drop[1].rect = new Rect2(-160, 0, 40, 40)
     }
 
     handleTick(game) {
@@ -66,7 +62,7 @@ class Drop {
     constructor() {
         this.rect = new Rect2(0, 0, 40, 40)
         this.type = ''
-        this.amount = ''
+        this.amount = 0
         this.canvas = document.createElement('canvas')
         this.ctx = this.canvas.getContext('2d')
     }
@@ -77,6 +73,19 @@ class Drop {
     }
 
     handleTick(game) {
+        let player = game.field.player
+        if (Vec2.distance(this.rect.pos, player.rect.pos) < 60) {
+            if (this.type === 'coin') {
+                player.gold += this.amount
+            } else if (this.type === 'exporb') {
+                player.exp += this.amount
+                if (player.exp >= player.expMax) {
+                    player.level += 1
+                    player.exp -= player.expMax
+                }
+            }
+            game.field.drop.splice(game.field.drop.indexOf(this), 1)
+        }
     }
 
     render(game) {
@@ -116,6 +125,15 @@ class FieldPlayer extends Unit {
         this.speed = 320.0
         this.velocity = new Vec2(0, 0)
 
+        this.hp = 0
+        this.hpMax = 0
+        this.energy = 0
+        this.energyMax = 0
+        this.exp = 0
+        this.expMax = 0
+        this.level = 0
+        this.gold = 0
+
         this.canvas.width = 80
         this.canvas.height = 80
     }
@@ -154,6 +172,17 @@ class FieldPlayer extends Unit {
         this.tempPos.y += this.velocity.y * this.speed * game.delta / 1000
         this.rect.pos.x = this.tempPos.x
         this.rect.pos.y = this.tempPos.y
+    }
+
+    startBattle(game) {
+        this.hp = 120
+        this.hpMax = 120
+        this.level = 1
+        this.energy = 0
+        this.energyMax = 8
+        this.exp = 0
+        this.expMax = 20
+        this.gold = 50
     }
 
     render(game) {

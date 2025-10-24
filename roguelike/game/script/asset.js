@@ -6,6 +6,8 @@ class Img {
 
     static coin = new Image()
     static exporb = new Image()
+    static life = new Image()
+    static energy = new Image()
 
     static imageLoad() {
         Img.arrow.src = 'image/arrow.png'
@@ -15,5 +17,7 @@ class Img {
 
         Img.coin.src = 'image/coin.png'
         Img.exporb.src = 'image/exporb.png'
+        Img.life.src = 'image/life.png'
+        Img.energy.src = 'image/energy.png'
     }
 }
