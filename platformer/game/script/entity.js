@@ -14,10 +14,11 @@ class Wall extends Entity {
         Render.init(this.ctx)
     }
 
-    render(ctx, field, game) {
+    render(game) {
+        let field = game.field
         Render.clearCanvas(this.canvas, this.ctx)
         this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height)
-        Render.renderCenterCam(ctx, this.canvas, this.rect, field.camera)
+        Render.renderCenterCam(game.ctx, this.canvas, this.rect, field.camera)
     }
 }
 
@@ -31,6 +32,7 @@ class PlayerUnit extends Unit {
     constructor() {
         super()
         this.speed = 320.0
+        this.gravity = 800.0; this.terminalSpeed = 800.0;
         this.velocity = new Vec2(0, 0)
         this.tempPosition = new Vec2(0, 0)
 
@@ -42,11 +44,11 @@ class PlayerUnit extends Unit {
         Render.init(this.ctx)
     }
 
-    handleTick(field, game) {
-        this.movePlayer(field, game)
+    handleTick(game) {
+        this.movePlayer(game)
     }
 
-    movePlayer(field, game) {
+    movePlayer(game) {
         this.velocity.x = 0
         this.tempPosition.x = this.rect.pos.x
         this.tempPosition.y = this.rect.pos.y
@@ -57,23 +59,28 @@ class PlayerUnit extends Unit {
         if (game.keyPressed['right'] === true) {
             this.velocity.x += 1
         }
-        this.tempPosition.x += this.velocity.x * this.speed * game.delta / 1000
+        this.velocity.x *= this.speed
+
+        this.velocity.y += this.gravity * game.delta / 1000
+        this.tempPosition.x += this.velocity.x * game.delta / 1000
+        this.tempPosition.y += this.velocity.y * game.delta / 1000
 
         this.rect.pos.x = this.tempPosition.x
         this.rect.pos.y = this.tempPosition.y
     }
 
-    render(ctx, field, game) {
+    render(game) {
+        let field = game.field
         Render.clearCanvas(this.canvas, this.ctx)
         this.ctx.drawImage(Img.player, 0, 0)
-        Render.renderCenterCam(ctx, this.canvas, this.rect, field.camera)
+        Render.renderCenterCam(game.ctx, this.canvas, this.rect, field.camera)
     }
 }
 
 class Coin extends Entity {
     constructor() {
         super()
-        this.rect = new Rect2(160, 0, 40, 40)
+        this.rect = new Rect2(0, 0, 40, 40)
         this.canvas = document.createElement('canvas')
         this.canvas.width = this.rect.size.x
         this.canvas.height = this.rect.size.y
@@ -85,15 +92,17 @@ class Coin extends Entity {
         this.animationCoord = [[0, 0], [40, 0], [80, 0], [120, 0]]
     }
 
-    handleTick(field, game) {
-        let player = field.player
-        if (this.rect.overlap(field.player.rect)) {
+    handleTick(game) {
+        let player = game.field.player
+        let field = game.field
+        if (this.rect.overlap(player.rect)) {
             field.entity.splice(field.entity.indexOf(this), 1)
             game.player.coin += 1
         }
     }
 
-    render(ctx, field, game) {
+    render(game) {
+        let field = game.field
         this.animationTime += game.delta
         this.currentFrame = Math.floor(this.animationTime / this.animationInterval) % this.animationFrame
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height)
@@ -101,7 +110,7 @@ class Coin extends Entity {
             this.animationCoord[this.currentFrame][0], this.animationCoord[this.currentFrame][1], this.canvas.width, this.canvas.height,
             0, 0, this.canvas.width, this.canvas.height
         )
-        Render.renderCenterCam(ctx, this.canvas, this.rect, field.camera)
+        Render.renderCenterCam(game.ctx, this.canvas, this.rect, field.camera)
     }
 }
 
@@ -114,5 +123,7 @@ class Tile extends Entity {
 class TileSet extends Entity {
     constructor() {
         super()
+        this.positionStart = new Vec2(0, 0)
+        this.cells = []
     }
 }

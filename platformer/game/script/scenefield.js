@@ -13,7 +13,7 @@ class SceneField {
         Render.clearCanvas(game.canvas, game.ctx)
         Render.fillCanvas(game.canvas, game.ctx)
 
-        game.field.render(game.ctx, game)
+        game.field.render(game)
 
         Render.drawImageUI(game.ctx, Img.icon.coin, UI.field.iconCoin)
         Render.fillTextUI(game.ctx, game.player.coin, UI.field.textCoin)
