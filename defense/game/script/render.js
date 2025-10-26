@@ -13,9 +13,9 @@ class Render {
     }
 
     static fillCanvas(canvas, ctx) {
-        ctx.fillStyle = 'black'
-        ctx.fillRect(0, 0, canvas.width, canvas.height)
         ctx.fillStyle = 'white'
+        ctx.fillRect(0, 0, canvas.width, canvas.height)
+        ctx.fillStyle = 'black'
     }
 
     static fillRectUI(ctx, rect) {

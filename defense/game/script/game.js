@@ -3,6 +3,10 @@ class Game {
         this.scene = 'title'
         this.state = ''
         this.menu = false
+        this.lang = 0
+        this.locale = Locale.data[Locale.langList[this.lang]]
+
+        this.pageLevel = 0
 
         this.canvas = document.getElementById('screen')
         this.ctx = this.canvas.getContext('2d')
