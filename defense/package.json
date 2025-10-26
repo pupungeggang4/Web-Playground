@@ -1,0 +1,12 @@
+{
+  "name": "defense",
+  "version": "1.0.0",
+  "description": "Defense Game",
+  "license": "ISC",
+  "author": "pupungeggang4",
+  "type": "commonjs",
+  "main": "game/main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}
