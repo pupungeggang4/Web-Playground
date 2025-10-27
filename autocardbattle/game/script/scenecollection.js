@@ -5,10 +5,16 @@ class SceneCollection {
 
     static render(game) {
         Render.init(game.ctx)
+        Render.strokeRectUI(game.ctx, UI.collection.buttonBack)
+        Render.drawImageUI(game.ctx, Img.button.back, UI.collection.buttonBack)
         Render.fillTextUI(game.ctx, 'Collection', UI.collection.textTitle)
         for (let i = 0; i < 7; i++) {
             Render.strokeRectUI(game.ctx, UI.collection.tab[i])
         }
+        for (let i = 1; i <= 6; i++) {
+            Render.drawImageUI(game.ctx, Img.crystal[i], UI.collection.tabIcon[i - 1])
+        }
+        Render.drawImageUI(game.ctx, Img.crystal[8], UI.collection.tabIcon[6])
 
         for (let i = 0; i < 2; i++) {
             for (let j = 0; j < 5; j++) {
@@ -16,7 +22,6 @@ class SceneCollection {
                 Render.strokeRectUI(game.ctx, rect)
             }
         }
-        Render.strokeRectUI(game.ctx, UI.collection.buttonBack)
     }
 
     static mouseUp(game, pos, button) {
