@@ -44,15 +44,15 @@ class Player {
         this.crystalDeck = []
         this.equipment = []
 
-        for (let i = 0; i < dataCharacter[characterID]['deck'].length; i++) {
+        for (let i = 0; i < Data.character[characterID]['deck'].length; i++) {
             let card = new Card()
-            card.setData(dataCharacter[characterID]['deck'][i])
+            card.setData(Data.character[characterID]['deck'][i])
             this.deck.push(card)
         }
 
-        for (let i = 0; i < dataCharacter[characterID]['crystal'].length; i++) {
+        for (let i = 0; i < Data.character[characterID]['crystal'].length; i++) {
             let crystal = new Crystal()
-            crystal.setData(dataCharacter[characterID]['crystal'][i])
+            crystal.setData(Data.character[characterID]['crystal'][i])
             this.crystalDeck.push(crystal)
         }
     }

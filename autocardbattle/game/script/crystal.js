@@ -12,7 +12,7 @@ class Crystal {
     }
 
     setData(ID) {
-        let data = JSON.parse(JSON.stringify(dataCrystal[ID]))
+        let data = JSON.parse(JSON.stringify(Data.crystal[ID]))
         this.ID = ID
         this.name = data['name']
         this.element = data['element']

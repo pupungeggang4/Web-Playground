@@ -3,8 +3,8 @@ class Field {
         this.camera = new Rect2(0, 0, 1280, 720)
         this.player = new FieldPlayer()
         this.drop = []
-        this.proj = []
-        this.unit = []
+        this.proj = [new Projectile()]
+        this.unit = [new Unit()]
     }
 
     handleTick(game) {
@@ -42,10 +42,13 @@ class Field {
 
 class Projectile {
     constructor() {
+        this.dmg = 10
+        this.effect = []
+
         this.rect = new Rect2(0, 0, 40, 40)
         this.canvas = document.createElement('canvas')
-        this.canvas.width = 40
-        this.canvas.height = 40
+        this.canvas.width = this.rect.size.x
+        this.canvas.height = this.rect.size.y
         this.ctx = this.canvas.getContext('2d')
     }
 
@@ -54,7 +57,10 @@ class Projectile {
     }
 
     render(game) {
-
+        let field = game.field
+        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height)
+        this.ctx.drawImage(Img.projectile, 0, 0)
+        Render.drawCenterCam(game.ctx, this.canvas, this.rect, field.camera)
     }
 }
 
@@ -64,6 +70,8 @@ class Drop {
         this.type = ''
         this.amount = 0
         this.canvas = document.createElement('canvas')
+        this.canvas.width = this.rect.size.x
+        this.canvas.height = this.rect.size.y
         this.ctx = this.canvas.getContext('2d')
     }
 
@@ -82,6 +90,7 @@ class Drop {
                 if (player.exp >= player.expMax) {
                     player.level += 1
                     player.exp -= player.expMax
+                    player.expMax = (player.level + 1) * 10
                 }
             }
             game.field.drop.splice(game.field.drop.indexOf(this), 1)
@@ -101,11 +110,13 @@ class Drop {
 
 class Unit {
     constructor() {
-        this.rect = new Rect2(0, 0, 40, 40)
+        this.rect = new Rect2(200, -200, 80, 80)
         this.canvas = document.createElement('canvas')
-        this.canvas.width = 40
-        this.canvas.height = 40
+        this.canvas.width = this.rect.size.x
+        this.canvas.height = this.rect.size.y
         this.ctx = this.canvas.getContext('2d')
+        this.frames = 4; this.frameCurrent = 0; this.frameInterval = 0.5; this.frameTime = 0;
+        this.frameCoord = [[0, 0], [80, 0], [160, 0], [240, 0]]
     }
 
     handleTick(game) {
@@ -113,7 +124,11 @@ class Unit {
     }
 
     render(game) {
-
+        this.frameTime += game.delta / 1000
+        this.frameCurrent = Math.floor(this.frameTime / this.frameInterval) % this.frames
+        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height)
+        this.ctx.drawImage(Img.unit, this.frameCoord[this.frameCurrent][0], this.frameCoord[this.frameCurrent][1], this.canvas.width, this.canvas.height, 0, 0, this.canvas.width, this.canvas.height)
+        Render.drawCenterCam(game.ctx, this.canvas, this.rect, game.field.camera)
     }
 }
 

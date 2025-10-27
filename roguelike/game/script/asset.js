@@ -9,6 +9,9 @@ class Img {
     static life = new Image()
     static energy = new Image()
 
+    static projectile = new Image()
+    static unit = new Image()
+
     static imageLoad() {
         Img.arrow.src = 'image/arrow.png'
         Img.arrowDown.src = 'image/arrowdown.png'
@@ -19,5 +22,8 @@ class Img {
         Img.exporb.src = 'image/exporb.png'
         Img.life.src = 'image/life.png'
         Img.energy.src = 'image/energy.png'
+
+        Img.projectile.src = 'image/projectile/projectile.png'
+        Img.unit.src = 'image/sprite/spriteunit.png'
     }
 }

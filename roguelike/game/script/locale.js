@@ -7,7 +7,7 @@ class Locale {
             collection: 'Collection',
             eraseData: 'Erase Data',
 
-            control: '[WASD] Move [Z] Dash [X] Interact',
+            control: '[WASD] Move [Z] Dash [X] Interact [Q] Menu',
             startAdventure: 'Start adventure?',
             yes: 'Yes',
             no: 'No',
@@ -26,7 +26,7 @@ class Locale {
             collection: '수집품',
             eraseData: '데에터 삭제',
 
-            control: '[WASD] 이동 [Z] 대시 [X] 상호작용',
+            control: '[WASD] 이동 [Z] 대시 [X] 상호작용 [Q] 메뉴',
             startAdventure: '모험을 시작할까요?',
             yes: '네',
             no: '아니요',

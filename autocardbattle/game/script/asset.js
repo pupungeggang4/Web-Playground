@@ -62,11 +62,11 @@ class Img {
         Img.selectFrame200.src = 'image/selectframe200.png'
         Img.selectFrameLong.src = 'image/selectframelong.png'
 
-        for (let i = 0; i < 1000; i++) {
+        for (let i in Data.card) {
             Img.card[i] = new Image()
         }
 
-        for (let i = 0; i < 1000; i++) {
+        for (let i in Data.card) {
             Img.card[i].src = `image/card/card${i.toString().padStart(3, '0')}.png`
         }
 

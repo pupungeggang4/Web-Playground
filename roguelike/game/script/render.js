@@ -55,6 +55,11 @@ class Render {
         let player = game.field.player
         game.ctx.font = '24px neodgm'
         
+        game.ctx.fillStyle = 'white'
+        Render.fillRectUI(game.ctx, UI.battle.barExp)
+        Render.fillRectUI(game.ctx, UI.battle.barHP)
+        Render.fillRectUI(game.ctx, UI.battle.barEnergy)
+        
         game.ctx.fillStyle = 'blue'
         Render.fillRectUI(game.ctx, [UI.battle.barExp[0], UI.battle.barExp[1], UI.battle.barExp[2] * player.exp / player.expMax, UI.battle.barExp[3]])
         game.ctx.fillStyle = 'lime'
@@ -62,19 +67,19 @@ class Render {
         game.ctx.fillStyle = 'orange'
         Render.fillRectUI(game.ctx, [UI.battle.barEnergy[0], UI.battle.barEnergy[1], UI.battle.barEnergy[2] * player.energy / player.energyMax, UI.battle.barEnergy[3]])
 
+        Render.strokeRectUI(game.ctx, UI.battle.barExp)
+        Render.strokeRectUI(game.ctx, UI.battle.barHP)
+        Render.strokeRectUI(game.ctx, UI.battle.barEnergy)
+
         game.ctx.fillStyle = 'black'
         Render.drawImageUI(game.ctx, Img.exporb, UI.battle.iconExp)
         Render.fillTextUI(game.ctx, `Lv.${player.level} Exp:${player.exp}/${player.expMax}`, UI.battle.textExp)
-
-        Render.strokeRectUI(game.ctx, UI.battle.barExp)
         Render.drawImageUI(game.ctx, Img.coin, UI.battle.iconCoin)
         Render.fillTextUI(game.ctx, `${player.gold}`, UI.battle.textCoin)
         Render.drawImageUI(game.ctx, Img.life, UI.battle.iconHP)
         Render.fillTextUI(game.ctx, `${player.hp}/${player.hpMax}`, UI.battle.textHP)
-        Render.strokeRectUI(game.ctx, UI.battle.barHP)
         Render.drawImageUI(game.ctx, Img.energy, UI.battle.iconEnergy)
         Render.fillTextUI(game.ctx, `${player.energy}/${player.energyMax}`, UI.battle.textEnergy)
-        Render.strokeRectUI(game.ctx, UI.battle.barEnergy)
 
         Render.strokeRectUI(game.ctx, UI.battle.descriptionRect)
         

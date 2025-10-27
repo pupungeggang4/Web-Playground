@@ -21,9 +21,9 @@ class SceneReady {
         Render.strokeRectUI(game.ctx, UI.ready.descriptionBox)
         if (game.selectedCharacter != -1) {
             let ID = game.selectedCharacter + 1
-            for (let i = 0; i < dataCharacterD[ID].length; i++) {
+            for (let i = 0; i < Data.characterD[ID].length; i++) {
                 let pos = [UI.ready.descriptionText[0], UI.ready.descriptionText[1] + UI.ready.descriptionText[3] * i]
-                Render.fillTextUI(game.ctx, dataCharacterD[ID][i], pos)
+                Render.fillTextUI(game.ctx, Data.characterD[ID][i], pos)
             }
         }
 

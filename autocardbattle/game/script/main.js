@@ -9,7 +9,7 @@ function main() {
     game.run()
 }
 
-function errorHandle(err, url, line, col, obj) {
+function errorHandle(msg, url, line, col, obj) {
     if (obj != null) {
         cancelAnimationFrame(game.gameLoop)
     }

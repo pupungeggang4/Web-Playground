@@ -253,7 +253,7 @@ class BattlePlayer {
         let deckList = []
         let crystalDeckList = []
 
-        let data = JSON.parse(JSON.stringify(dataEnemy[ID]))
+        let data = JSON.parse(JSON.stringify(Data.enemy[ID]))
 
         for (let i = 0; i < data['deck'].length; i++) {
             let card = new Card()

@@ -18,9 +18,9 @@ class Card {
     }
 
     setData(ID) {
-        let data = JSON.parse(JSON.stringify(dataCard[ID]))
-        let dataP = JSON.parse(JSON.stringify(dataCardP[ID]))
-        let dataD = JSON.parse(JSON.stringify(dataCardD[ID]))
+        let data = JSON.parse(JSON.stringify(Data.card[ID]))
+        let dataP = JSON.parse(JSON.stringify(Data.cardP[ID]))
+        let dataD = JSON.parse(JSON.stringify(Data.cardD[ID]))
         this.ID = ID
         this.name = data['name']
         this.type = data['type']
