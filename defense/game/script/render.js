@@ -8,6 +8,25 @@ class Render {
         ctx.lineWidth = 2
     }
 
+    static renderMenu(game) {
+        let ctx = game.ctx
+
+        ctx.fillStyle = 'white'
+        Render.fillRectUI(ctx, UI.menu.rect)
+        Render.strokeRectUI(ctx, UI.menu.rect)
+        ctx.fillStyle = 'black'
+
+        Render.fillTextUI(ctx, game.locale.paused, UI.menu.textPaused)
+        Render.strokeRectUI(ctx, UI.menu.buttonResume)
+        Render.fillTextUI(ctx, game.locale.resume, UI.menu.textResume)
+        Render.strokeRectUI(ctx, UI.menu.buttonRestart)
+        Render.fillTextUI(ctx, game.locale.restart, UI.menu.textRestart)
+        Render.strokeRectUI(ctx, UI.menu.buttonLevelSelect)
+        Render.fillTextUI(ctx, game.locale.levelSelect, UI.menu.textLevelSelect)
+        Render.strokeRectUI(ctx, UI.menu.buttonExit)
+        Render.fillTextUI(ctx, game.locale.exit, UI.menu.textExit)
+    }
+
     static clearCanvas(canvas, ctx) {
         ctx.clearRect(0, 0, canvas.width, canvas.height)
     }

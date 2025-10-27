@@ -26,6 +26,23 @@ class UI {
     }
 
     static battle = {
+        buttonMenu: [1180, 20, 80, 80]
+    }
 
+    static menu = {
+        rect: [320, 160, 640, 400],
+        textPaused: [344, 184],
+        buttonResume: [320, 240, 640, 80],
+        textResume: [344, 264],
+        buttonRestart: [320, 320, 640, 80],
+        textRestart: [344, 344],
+        buttonLevelSelect: [320, 400, 640, 80],
+        textLevelSelect: [344, 424],
+        buttonExit: [320, 480, 640, 80],
+        textExit: [344, 504]
+    }
+
+    static collection = {
+        buttonBack: [1180, 20, 80, 80]
     }
 }

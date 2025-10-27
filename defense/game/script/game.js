@@ -33,6 +33,8 @@ class Game {
             SceneLevelSelect.loop(this)
         } else if (this.scene === 'battle') {
             SceneBattle.loop(this)
+        } else if (this.scene === 'collection') {
+            SceneCollection.loop(this)
         }
 
         this.gameLoop = requestAnimationFrame(() => this.loop())
@@ -52,6 +54,8 @@ class Game {
             SceneLevelSelect.mouseUp(this, pos, button)
         } else if (this.scene === 'battle') {
             SceneBattle.mouseUp(this, pos, button)
+        } else if (this.scene === 'collection') {
+            SceneCollection.mouseUp(this, pos, button)
         }
     }
 }
