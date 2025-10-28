@@ -7,7 +7,7 @@ class Vec2 {
 
 class Rect2 {
     constructor(x, y, w, h) {
-        this.pos = Vec2(x, y)
-        this.rect = Vec2(w, h)
+        this.pos = new Vec2(x, y)
+        this.rect = new Vec2(w, h)
     }
 }

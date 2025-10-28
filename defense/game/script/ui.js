@@ -27,6 +27,16 @@ class UI {
 
     static battle = {
         buttonMenu: [1180, 20, 80, 80],
+        textTime: [24, 24],
+        buttonUpgrade: [20, 620, 80, 80],
+        handStart: [120, 620],
+        handSize: [80, 80],
+        handInterval: [80, 80],
+        textLevel: [24, 584],
+        iconLife: [120, 580],
+        textLife: [164, 584],
+        iconEnergy: [200, 580],
+        textEnergy: [244, 584],
     }
 
     static window = {
@@ -34,6 +44,7 @@ class UI {
         textTitle: [184, 64],
         cardListStart: [200, 140], cardSize: [160, 160], cardInterval: [160, 160],
         deckListStart: [200, 480], deckTextStart: [264, 484], deckListSize: [80, 80], deckListInterval: [80, 80],
+        buttonUp: [1000, 140, 80, 80], buttonDown: [1000, 380, 80, 80],
         buttonOk: [920, 580, 160, 80],
         textOk: [944, 604],
     }
@@ -52,6 +63,6 @@ class UI {
     }
 
     static collection = {
-        buttonBack: [1180, 20, 80, 80]
+        buttonBack: [1180, 20, 80, 80],
     }
 }

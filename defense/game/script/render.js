@@ -30,8 +30,34 @@ class Render {
             Render.strokeRectUI(ctx, rect)
         }
 
+        Render.drawImageUI(ctx, Img.arrowUp, UI.window.buttonUp)
+        Render.strokeRectUI(ctx, UI.window.buttonUp)
+        Render.drawImageUI(ctx, Img.arrowDown, UI.window.buttonDown)
+        Render.strokeRectUI(ctx, UI.window.buttonDown)
+
         Render.strokeRectUI(ctx, UI.window.buttonOk)
         Render.fillTextUI(ctx, game.locale.ok, UI.window.textOk)
+    }
+
+    static renderBattleUI(game) {
+        let ctx = game.ctx
+        let level = game.battle.level
+        let player = game.battle.player
+        let min = Math.floor(level.time / 60)
+        let sec = Math.floor(level.time) % 60
+        Render.fillTextUI(ctx, `${min.toString().padStart(2, '0')}:${sec.toString().padStart(2, '0')}`, UI.battle.textTime)
+
+        Render.fillTextUI(ctx, `Lv.${player.level}`, UI.battle.textLevel)
+        Render.drawImageUI(ctx, Img.life, UI.battle.iconLife)
+        Render.fillTextUI(ctx, `${player.life}`, UI.battle.textLife)
+        Render.drawImageUI(ctx, Img.energy, UI.battle.iconEnergy)
+        Render.fillTextUI(ctx, `${player.energy}/${player.energyMax}`, UI.battle.textEnergy)
+
+        Render.strokeRectUI(ctx, UI.battle.buttonUpgrade)
+        for (let i = 0; i < 8; i++) {
+            let rect = [UI.battle.handStart[0] + UI.battle.handInterval[0] * i, UI.battle.handStart[1], UI.battle.handSize[0], UI.battle.handSize[1]]
+            Render.strokeRectUI(ctx, rect)
+        }
     }
 
     static renderMenu(game) {

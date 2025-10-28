@@ -8,6 +8,7 @@ class SceneCollection {
         Render.clearCanvas(game.canvas, game.ctx)
         Render.fillCanvas(game.canvas, game.ctx)
 
+        Render.drawImageUI(game.ctx, Img.arrowBack, UI.collection.buttonBack)
         Render.strokeRectUI(game.ctx, UI.collection.buttonBack)
     }
 

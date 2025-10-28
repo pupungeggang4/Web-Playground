@@ -8,6 +8,7 @@ class SceneLevelSelect {
         Render.clearCanvas(game.canvas, game.ctx)
         Render.fillCanvas(game.canvas, game.ctx)
 
+        Render.drawImageUI(game.ctx, Img.arrowBack, UI.levelSelect.buttonBack)
         Render.strokeRectUI(game.ctx, UI.levelSelect.buttonBack)
         Render.fillTextUI(game.ctx, `${game.locale.selectLevel} ${game.locale.level}:${game.pageLevel + 1}`, UI.levelSelect.textTitle)
 
