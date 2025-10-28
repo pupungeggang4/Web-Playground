@@ -7,6 +7,7 @@ class Game {
         this.locale = Locale.data[Locale.langList[this.lang]]
 
         this.pageLevel = 0
+        this.battle = new Battle()
 
         this.canvas = document.getElementById('screen')
         this.ctx = this.canvas.getContext('2d')

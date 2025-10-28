@@ -29,6 +29,10 @@ class UI {
         buttonMenu: [1180, 20, 80, 80]
     }
 
+    static window = {
+
+    }
+
     static menu = {
         rect: [320, 160, 640, 400],
         textPaused: [344, 184],

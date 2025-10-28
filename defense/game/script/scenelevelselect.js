@@ -41,6 +41,9 @@ class SceneLevelSelect {
                 if (Func.pointInsideRectUI(pos, rect)) {
                     game.scene = 'battle'
                     game.state = 'ready'
+                    game.battle = new Battle()
+                    let level = Data.levelList[game.pageLevel][i]
+                    game.battle.level.setData(level)
                 }
             }
         }
