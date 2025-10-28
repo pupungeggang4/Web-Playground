@@ -21,7 +21,7 @@
 - [ ] Background.
 - [ ] Image.
 
-### Adventrue Screen
+### Adventure Screen
 
 `Progress: [@@@@@@@@@@@@@@@@....] 80%`
 
@@ -77,10 +77,15 @@
 
 #### Card Logic
 
-`Progress: [@@..................] 10%`
+`Progress: [@@@@@@..............] 30%`
 
 - [x] Simple unit card.
-- [x] Simple spedd card.
+- [x] Simple spell card.
+- [ ] Played effect.
+- [x] Aura effect.
+- [x] Out effect.
+- [ ] Condition effect.
+- [ ] Gaining stat.
 
 ### Game Data
 
