@@ -41,6 +41,7 @@ class PlayerUnit extends Unit {
         this.ground = false
         this.velocity = new Vec2(0, 0)
         this.tempRect = new Rect2(0, 0, 80, 80)
+        this.stepping = null
 
         this.rect = new Rect2(0, 0, 80, 80)
         this.canvas = document.createElement('canvas')
@@ -55,6 +56,7 @@ class PlayerUnit extends Unit {
     }
 
     movePlayer(game) {
+        this.ground = false
         this.velocity.x = 0
         this.tempRect.pos.x = this.rect.pos.x
         this.tempRect.pos.y = this.rect.pos.y
@@ -70,6 +72,7 @@ class PlayerUnit extends Unit {
         if (this.ground === false) {
             this.velocity.y += this.gravity * game.delta / 1000
         }
+
         this.tempRect.pos.x += this.velocity.x * game.delta / 1000
         this.tempRect.pos.y += this.velocity.y * game.delta / 1000
 
@@ -82,7 +85,7 @@ class PlayerUnit extends Unit {
     support(game) {
         let mech = game.field.mech
         for (let i = 0; i < mech.length; i++) {
-            if (this.ground === false && this.velocity.y > 0) {
+            if (this.ground === false && this.velocity.y >= 0) {
                 let up = Physics.findUpOverlap(mech[i].rect, this.tempRect)
 
                 if (up > 0) {
