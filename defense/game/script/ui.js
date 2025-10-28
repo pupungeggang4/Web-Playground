@@ -26,11 +26,16 @@ class UI {
     }
 
     static battle = {
-        buttonMenu: [1180, 20, 80, 80]
+        buttonMenu: [1180, 20, 80, 80],
     }
 
     static window = {
-
+        rect: [160, 40, 960, 640],
+        textTitle: [184, 64],
+        cardListStart: [200, 140], cardSize: [160, 160], cardInterval: [160, 160],
+        deckListStart: [200, 480], deckTextStart: [264, 484], deckListSize: [80, 80], deckListInterval: [80, 80],
+        buttonOk: [920, 580, 160, 80],
+        textOk: [944, 604],
     }
 
     static menu = {

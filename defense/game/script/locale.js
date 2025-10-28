@@ -12,6 +12,8 @@ class Locale {
 
             selectLevel: 'Select Level',
             level: 'Level',
+            buildDeck: 'Build Deck',
+            ok: 'OK',
 
             paused: 'Paused',
             resume: 'Resume',
@@ -31,6 +33,8 @@ class Locale {
 
             selectLevel: '레벨 선택',
             level: '레벨',
+            buildDeck: '덱 완성하기',
+            ok: '확인',
 
             paused: '일시정지',
             resume: '계속하기',

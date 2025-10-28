@@ -10,6 +10,10 @@ class SceneBattle {
 
         Render.strokeRectUI(game.ctx, UI.battle.buttonMenu)
 
+        if (game.state === 'ready') {
+            Render.renderWindowReady(game)
+        }
+
         if (game.menu === true) {
             Render.renderMenu(game)
         }
@@ -20,6 +24,10 @@ class SceneBattle {
             if (game.menu === false) {
                 if (Func.pointInsideRectUI(pos, UI.battle.buttonMenu)) {
                     game.menu = true
+                }
+
+                if (game.state === 'ready') {
+                    SceneCollection.handleClickReady(game, pos, button)
                 }
             } else if (game.menu === true) {
                 if (Func.pointInsideRectUI(pos, UI.battle.buttonMenu) || Func.pointInsideRectUI(pos, UI.menu.buttonResume)) {
@@ -36,6 +44,12 @@ class SceneBattle {
                     game.state = ''
                 }
             }
+        }
+    }
+
+    static handleClickReady(game, pos, button) {
+        if (Func.pointInsideRectUI(pos, UI.window.buttonOk)) {
+            game.state = ''
         }
     }
 }

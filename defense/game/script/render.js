@@ -8,6 +8,32 @@ class Render {
         ctx.lineWidth = 2
     }
 
+    static renderWindowReady(game) {
+        let ctx = game.ctx
+
+        ctx.fillStyle = 'white'
+        Render.fillRectUI(ctx, UI.window.rect)
+        Render.strokeRectUI(ctx, UI.window.rect)
+        ctx.fillStyle = 'black'
+
+        Render.fillTextUI(ctx, game.locale.buildDeck, UI.window.textTitle)
+
+        for (let i = 0; i < 10; i++) {
+            let row = Math.floor(i / 5)
+            let col = i % 5
+            let rect = [UI.window.cardListStart[0] + UI.window.cardInterval[0] * col, UI.window.cardListStart[1] + UI.window.cardInterval[1] * row, UI.window.cardSize[0], UI.window.cardSize[1]]
+            Render.strokeRectUI(ctx, rect)
+        }
+
+        for (let i = 0; i < 11; i++) {
+            let rect = [UI.window.deckListStart[0] + UI.window.deckListInterval[0] * i, UI.window.deckListStart[1], UI.window.deckListSize[0], UI.window.deckListSize[1]]
+            Render.strokeRectUI(ctx, rect)
+        }
+
+        Render.strokeRectUI(ctx, UI.window.buttonOk)
+        Render.fillTextUI(ctx, game.locale.ok, UI.window.textOk)
+    }
+
     static renderMenu(game) {
         let ctx = game.ctx
 

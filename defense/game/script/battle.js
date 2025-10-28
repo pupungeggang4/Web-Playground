@@ -1,5 +1,6 @@
 class Battle {
     constructor() {
+        this.tempDeck = []
         this.level = new Level()
         this.player = new BattlePlayer()
         this.field = new Field()
