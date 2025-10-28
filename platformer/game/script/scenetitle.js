@@ -30,6 +30,7 @@ class SceneTitle {
             if (game.selectedTitle === 0) {
                 game.scene = 'field'
                 game.state = ''
+                game.field = new Field()
             } else if (game.selectedTitle === 1) {
                 if (game.lang === 'ko') {
                     game.lang = 'en'

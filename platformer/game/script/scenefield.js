@@ -18,6 +18,9 @@ class SceneField {
         Render.drawImageUI(game.ctx, Img.icon.coin, UI.field.iconCoin)
         Render.fillTextUI(game.ctx, game.player.coin, UI.field.textCoin)
 
+        //let player = game.field.player
+        //Render.fillTextUI(game.ctx, `${player.ground} ${player.rect.pos.y}`, [4, 64])
+
         if (game.menu === true) {
             Render.renderMenu(game.ctx, game)
         }
@@ -28,6 +31,10 @@ class SceneField {
             if (key === 'Escape' || key === 'q') {
                 game.menu = true
                 game.selectedMenu = 0
+            }
+
+            if (game.state === '') {
+                SceneField.handleKeyDownGame(game, key)
             }
         } else if (game.menu === true) {
             if (key === 'Escape' || key === 'q') {
@@ -53,5 +60,11 @@ class SceneField {
 
     static keyUp(game, key) {
 
+    }
+
+    static handleKeyDownGame(game, key) {
+        if (key === 'ArrowUp') {
+            game.field.player.jump(game)
+        }
     }
 }

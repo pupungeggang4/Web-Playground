@@ -14,9 +14,14 @@ class Wall extends Entity {
         Render.init(this.ctx)
     }
 
+    handleTick(game) {
+        //this.support(game)
+    }
+
     render(game) {
         let field = game.field
         Render.clearCanvas(this.canvas, this.ctx)
+        this.ctx.fillStyle = 'black'
         this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height)
         Render.renderCenterCam(game.ctx, this.canvas, this.rect, field.camera)
     }
@@ -32,9 +37,10 @@ class PlayerUnit extends Unit {
     constructor() {
         super()
         this.speed = 320.0
-        this.gravity = 800.0; this.terminalSpeed = 800.0;
+        this.gravity = 800.0; this.terminalSpeed = 800.0; this.jumpPower = -600.0;
+        this.ground = false
         this.velocity = new Vec2(0, 0)
-        this.tempPosition = new Vec2(0, 0)
+        this.tempRect = new Rect2(0, 0, 80, 80)
 
         this.rect = new Rect2(0, 0, 80, 80)
         this.canvas = document.createElement('canvas')
@@ -50,8 +56,8 @@ class PlayerUnit extends Unit {
 
     movePlayer(game) {
         this.velocity.x = 0
-        this.tempPosition.x = this.rect.pos.x
-        this.tempPosition.y = this.rect.pos.y
+        this.tempRect.pos.x = this.rect.pos.x
+        this.tempRect.pos.y = this.rect.pos.y
 
         if (game.keyPressed['left'] === true) {
             this.velocity.x -= 1
@@ -61,12 +67,39 @@ class PlayerUnit extends Unit {
         }
         this.velocity.x *= this.speed
 
-        this.velocity.y += this.gravity * game.delta / 1000
-        this.tempPosition.x += this.velocity.x * game.delta / 1000
-        this.tempPosition.y += this.velocity.y * game.delta / 1000
+        if (this.ground === false) {
+            this.velocity.y += this.gravity * game.delta / 1000
+        }
+        this.tempRect.pos.x += this.velocity.x * game.delta / 1000
+        this.tempRect.pos.y += this.velocity.y * game.delta / 1000
 
-        this.rect.pos.x = this.tempPosition.x
-        this.rect.pos.y = this.tempPosition.y
+        this.support(game)
+
+        this.rect.pos.x = this.tempRect.pos.x
+        this.rect.pos.y = this.tempRect.pos.y
+    }
+
+    support(game) {
+        let mech = game.field.mech
+        for (let i = 0; i < mech.length; i++) {
+            if (this.ground === false && this.velocity.y > 0) {
+                let up = Physics.findUpOverlap(mech[i].rect, this.tempRect)
+
+                if (up > 0) {
+                    this.tempRect.pos.y -= up
+                    this.velocity.y = 0
+                    this.ground = true
+                    break
+                }
+            }
+        }
+    }
+
+    jump(game) {
+        if (this.ground === true) {
+            this.velocity.y = this.jumpPower
+            this.ground = false
+        }
     }
 
     render(game) {
@@ -96,7 +129,7 @@ class Coin extends Entity {
         let player = game.field.player
         let field = game.field
         if (this.rect.overlap(player.rect)) {
-            field.entity.splice(field.entity.indexOf(this), 1)
+            field.unit.splice(field.unit.indexOf(this), 1)
             game.player.coin += 1
         }
     }

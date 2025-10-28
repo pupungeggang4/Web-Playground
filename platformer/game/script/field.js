@@ -2,9 +2,16 @@ class Field {
     constructor() {
         this.camera = new Rect2(0, 0, 1280, 720)
         this.player = new PlayerUnit()
-        this.entity = [new Coin(), new Coin()]
-        this.entity[0].rect.pos.y = 160
-        this.entity[1].rect.pos.y = 480
+        this.mech = [new Wall(), new Wall()]
+        this.unit = [new Coin(), new Coin()]
+        this.mech[0].rect = new Rect2(0, 160, 160, 40)
+        this.mech[0].canvas.width = 160
+        this.mech[0].canvas.height = 40
+        this.mech[1].rect = new Rect2(320, 160, 160, 40)
+        this.mech[1].canvas.width = 160
+        this.mech[1].canvas.height = 40
+        this.unit[0].rect.pos.x = 120
+        this.unit[1].rect.pos.x = 160
     }
 
     handleTick(game) {
@@ -12,16 +19,22 @@ class Field {
         this.camera.pos.x = this.player.rect.pos.x
         this.camera.pos.y = this.player.rect.pos.y
 
-        for (let i = 0; i < this.entity.length; i++) {
-            this.entity[i].handleTick(game)
+        for (let i = 0; i < this.mech.length; i++) {
+            this.mech[i].handleTick(game)
+        }
+        for (let i = 0; i < this.unit.length; i++) {
+            this.unit[i].handleTick(game)
         }
     }
 
     render(game) {
         this.player.render(game)
 
-        for (let i = 0; i < this.entity.length; i++) {
-            this.entity[i].render(game)
+        for (let i = 0; i < this.mech.length; i++) {
+            this.mech[i].render(game)
+        }
+        for (let i = 0; i < this.unit.length; i++) {
+            this.unit[i].render(game)
         }
     }
 }
