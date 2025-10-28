@@ -1,6 +1,8 @@
 class Img {
     static arrow = new Image()
     static arrowDown = new Image()
+    static arrowBack = new Image()
+    static buttonMenu = new Image()
     static player = new Image()
     static portal = new Image()
 
@@ -15,6 +17,8 @@ class Img {
     static imageLoad() {
         Img.arrow.src = 'image/arrow.png'
         Img.arrowDown.src = 'image/arrowdown.png'
+        Img.arrowBack.src = 'image/arrowback.png'
+        Img.buttonMenu.src = 'image/buttonmenu.png'
         Img.player.src = 'image/player.png'
         Img.portal.src = 'image/portal.png'
 

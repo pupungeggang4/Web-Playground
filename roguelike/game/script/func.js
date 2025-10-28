@@ -1,5 +1,5 @@
 class Func {
     static pointInsideRectUI(pos, rect) {
-        return pos[0] > rect[0] && pos[0] < rect[0] + rect[2] && pos[1] > rect[1] && pos[1] < rect[1] + rect[3]
+        return pos.x > rect[0] && pos.x < rect[0] + rect[2] && pos.y > rect[1] && pos.y < rect[1] + rect[3]
     }
 }

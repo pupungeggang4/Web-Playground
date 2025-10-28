@@ -11,8 +11,10 @@ class Locale {
             startAdventure: 'Start adventure?',
             yes: 'Yes',
             no: 'No',
+            ok: 'OK',
 
             paused: 'Paused',
+            surrender: 'Surrender',
             resume: 'Resume',
             exit: 'Exit to title',
 
@@ -30,8 +32,10 @@ class Locale {
             startAdventure: '모험을 시작할까요?',
             yes: '네',
             no: '아니요',
+            ok: '확인',
 
             paused: '일시정지',
+            surrender: '항복',
             resume: '계속하기',
             exit: '타이틀 화면으로 돌아가기',
 

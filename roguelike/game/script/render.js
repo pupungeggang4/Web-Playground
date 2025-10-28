@@ -16,7 +16,9 @@ class Render {
         ctx.fillStyle = 'black'
 
         Render.fillTextUI(ctx, game.locale.startAdventure, UI.windowAdventureConfirm.textTitle)
+        Render.strokeRectUI(ctx, UI.windowAdventureConfirm.buttonYes)
         Render.fillTextUI(ctx, game.locale.yes, UI.windowAdventureConfirm.textYes)
+        Render.strokeRectUI(ctx, UI.windowAdventureConfirm.buttonNo)
         Render.fillTextUI(ctx, game.locale.no, UI.windowAdventureConfirm.textNo)
         Render.drawImageUI(ctx, Img.arrow, UI.windowAdventureConfirm.arrow[game.selectedAdventureConfirm])
     }
@@ -37,6 +39,24 @@ class Render {
         Render.drawImageUI(ctx, Img.arrow, UI.menuVillage.arrow[game.selectedMenuVillage])
     }
 
+    static renderMenuBattle(game) {
+        let ctx = game.ctx
+        ctx.fillStyle = 'white'
+        Render.fillRectUI(ctx, UI.menuBattle.rect)
+        Render.strokeRectUI(ctx, UI.menuBattle.rect)
+        ctx.fillStyle = 'black'
+
+        Render.fillTextUI(ctx, game.locale.paused, UI.menuBattle.textPaused)
+        Render.strokeRectUI(ctx, UI.menuBattle.buttonResume)
+        Render.fillTextUI(ctx, game.locale.resume, UI.menuBattle.textResume)
+        Render.strokeRectUI(ctx, UI.menuBattle.buttonSurrender)
+        Render.fillTextUI(ctx, game.locale.surrender, UI.menuBattle.textSurrender)
+        Render.strokeRectUI(ctx, UI.menuBattle.buttonExit)
+        Render.fillTextUI(ctx, game.locale.exit, UI.menuBattle.textExit)
+
+        Render.drawImageUI(ctx, Img.arrow, UI.menuBattle.arrow[game.selectedMenuBattle])
+    }
+
     static renderAdventureStart(game) {
         let ctx = game.ctx
         ctx.fillStyle = 'white'
@@ -49,6 +69,9 @@ class Render {
             Render.strokeRectUI(ctx, UI.window.weapon[i])
         }
         Render.drawImageUI(ctx, Img.arrowDown, UI.window.arrowWeapon[game.selectedAdventureStart])
+
+        Render.strokeRectUI(ctx, UI.window.buttonOK)
+        Render.fillTextUI(ctx, game.locale.ok, UI.window.textOK)
     }
 
     static renderUIBattle(game) {

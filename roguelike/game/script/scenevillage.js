@@ -17,6 +17,9 @@ class SceneVillage {
 
         Render.fillTextUI(game.ctx, game.locale.control, UI.village.textControl)
 
+        Render.drawImageUI(game.ctx, Img.buttonMenu, UI.village.buttonMenu)
+        Render.strokeRectUI(game.ctx, UI.village.buttonMenu)
+
         if (game.state === 'adventure_confirm') {
             Render.renderAdventureConfirm(game)
         }
@@ -80,6 +83,37 @@ class SceneVillage {
                 game.selectedAdventureStart = 0
             } else if (game.selectedAdventureConfirm === 1) {
                 game.state = ''
+            }
+        }
+    }
+
+    static mouseUp(game, pos, button) {
+        if (button === 0) {
+            if (game.menu === false) {
+                if (Func.pointInsideRectUI(pos, UI.village.buttonMenu)) {
+                    game.menu = true
+                    game.selectedMenu = 0
+                }
+
+                if (game.state === '') {
+                    game.village.player.handleInteract(game)
+                } else if (game.state === 'adventure_confirm') {
+                    if (Func.pointInsideRectUI(pos, UI.windowAdventureConfirm.buttonYes)) {
+                        game.scene = 'battle'
+                        game.state = 'adventure_start'
+                        game.selectedAdventureStart = 0
+                    } else if (Func.pointInsideRectUI(pos, UI.windowAdventureConfirm.buttonNo)) {
+                        game.state = ''
+                    }
+                }
+            } else if (game.menu === true) {
+                if (Func.pointInsideRectUI(pos, UI.village.buttonMenu) || Func.pointInsideRectUI(pos, UI.menuVillage.buttonResume)) {
+                    game.menu = false
+                } else if (Func.pointInsideRectUI(pos, UI.menuVillage.buttonExit)) {
+                    game.menu = false
+                    game.scene = 'title'
+                    game.state = ''
+                }
             }
         }
     }

@@ -9,9 +9,13 @@ class SceneTitle {
         Render.fillCanvas(game.canvas, game.ctx)
 
         Render.fillTextUI(game.ctx, game.locale.gameName, UI.title.textTitle)
+        Render.strokeRectUI(game.ctx, UI.title.buttonStart)
         Render.fillTextUI(game.ctx, game.locale.startGame, UI.title.textStart)
+        Render.strokeRectUI(game.ctx, UI.title.buttonLang)
         Render.fillTextUI(game.ctx, game.locale.lang, UI.title.textLang)
+        Render.strokeRectUI(game.ctx, UI.title.buttonCollection)
         Render.fillTextUI(game.ctx, game.locale.collection, UI.title.textCollection)
+        Render.strokeRectUI(game.ctx, UI.title.buttonErase)
         Render.fillTextUI(game.ctx, game.locale.eraseData, UI.title.textErase)
         
         Render.drawImageUI(game.ctx, Img.arrow, UI.title.arrow[game.selectedTitle])
@@ -35,6 +39,22 @@ class SceneTitle {
                 game.scene = 'village'
                 game.state = ''
             } else if (game.selectedTitle === 1) {
+                if (game.lang === 'en') {
+                    game.lang = 'ko'
+                } else {
+                    game.lang = 'en'
+                }
+                game.locale = Locale.data[game.lang]
+            }
+        }
+    }
+
+    static mouseUp(game, pos, button) {
+        if (button === 0) {
+            if (Func.pointInsideRectUI(pos, UI.title.buttonStart)) {
+                game.scene = 'village'
+                game.state = ''
+            } else if (Func.pointInsideRectUI(pos, UI.title.buttonLang)) {
                 if (game.lang === 'en') {
                     game.lang = 'ko'
                 } else {

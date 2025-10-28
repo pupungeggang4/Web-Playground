@@ -21,6 +21,7 @@ class Game {
 
         this.canvas = document.getElementById('screen')
         this.ctx = this.canvas.getContext('2d')
+        this.canvas.addEventListener('mouseup', (event) => this.mouseUp(event), false)
         window.addEventListener('keydown', (event) => this.keyDown(event), false)
         window.addEventListener('keyup', (event) => this.keyUp(event), false)
 
@@ -97,6 +98,23 @@ class Game {
             SceneVillage.keyUp(this, key)
         } else if (this.scene === 'battle') {
             SceneBattle.keyUp(this, key)
+        }
+    }
+
+    mouseUp(event) {
+        let targetRect = this.canvas.getBoundingClientRect()
+        let pos = {
+            x: (event.clientX - targetRect.left) / targetRect.width * this.canvas.width,
+            y: (event.clientY - targetRect.top) / targetRect.height * this.canvas.height
+        }
+        let button = event.button
+
+        if (this.scene === 'title') {
+            SceneTitle.mouseUp(this, pos, button)
+        } else if (this.scene === 'village') {
+            SceneVillage.mouseUp(this, pos, button)
+        } else if (this.scene === 'battle') {
+            SceneBattle.mouseUp(this, pos, button)
         }
     }
 }
