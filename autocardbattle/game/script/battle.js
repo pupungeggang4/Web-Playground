@@ -12,6 +12,7 @@ class Battle {
     }
 
     handleTick(game) {
+        this.handleUnitAura()
         if (this.paused === false) {
             if (this.nextProceedTime < 0) {
                 this.nextProceedTime = 500
@@ -27,13 +28,13 @@ class Battle {
         this.turnWho = 0
         this.field = [null, null, null, null, null, null, null, null, null, null]
         this.player.startBattlePlayer(game.player)
-        this.enemy.startBattleEnemy(1101)
+        this.enemy.startBattleEnemy(2101)
 
         let unit = new Unit()
         unit.setUnitFromPlayer(game.player)
         this.field[0] = unit
         let unitEnemy = new Unit()
-        unitEnemy.setUnitFromEnemy(1101)
+        unitEnemy.setUnitFromEnemy(2101)
         this.field[5] = unitEnemy
         this.turnPhase = 'start'
     }
@@ -155,9 +156,16 @@ class Battle {
     }
 
     deathHandle() {
+        let tempActionPlayer = []
+        let tempActionEnemy = []
         for (let i = 1; i < 5; i++) {
             if (this.field[i] != null) {
                 if (this.field[i].hp <= 0) {
+                    for (let j = 0; j < this.field[i].effect.length; j++) {
+                        if (this.field[i].effect[j][0] === 'out') {
+                            tempActionPlayer.push(JSON.parse(JSON.stringify(this.field[i].effect[j])))
+                        }
+                    }
                     this.field[i] = null
                 }
             }
@@ -166,7 +174,110 @@ class Battle {
         for (let i = 6; i < 10; i++) {
             if (this.field[i] != null) {
                 if (this.field[i].hp <= 0) {
+                    for (let j = 0; j < this.field[i].effect.length; j++) {
+                        if (this.field[i].effect[j][0] === 'out') {
+                            tempActionEnemy.push(JSON.parse(JSON.stringify(this.field[i].effect[j])))
+                        }
+                    }
                     this.field[i] = null
+                }
+            }
+        }
+        for (let i = 0; i < tempActionPlayer.length; i++) {
+            for (let j = 1; j < tempActionPlayer[i].length; j++) {
+                this.addAction(tempActionPlayer[i][j], this.player, null)
+            }
+        }
+        for (let i = 0; i < tempActionEnemy.length; i++) {
+            for (let j = 1; j < tempActionEnemy[i].length; j++) {
+                this.addAction(tempActionEnemy[i][j], this.enemy, null)
+            }
+        }
+    }
+
+    addAction(action, player, card) {
+        let missed = false
+        if (action[0] === 'summon') {
+            for (let i = 0; i < player.myField.length; i++) {
+                let fieldIndex = player.myField[i]
+                if (this.field[fieldIndex] === null) {
+                    let unit = new Unit()
+                    unit.setUnitFromCard(card)
+                    this.actionQueue.push(['summon', unit, fieldIndex])
+                    break
+                }
+
+                if (i === player.myField.length - 1) {
+                    missed = true
+                    return missed
+                }
+            }
+        } else if (action[0] === 'summon_token') {
+            for (let i = 0; i < player.myField.length; i++) {
+                let fieldIndex = player.myField[i]
+                if (this.field[fieldIndex] === null) {
+                    let tmpCard = new Card()
+                    tmpCard.setData(action[1])
+                    let unit = new Unit()
+                    unit.setUnitFromCard(tmpCard)
+                    this.actionQueue.push(['summon', unit, fieldIndex])
+                    break
+                }
+            }
+        } else if (action[0] === 'dmghero') {
+            this.actionQueue.push(['dmg', action[1] + player.attack, player.yourHero])
+        } else if (action[0] === 'dmgrandom') {
+            this.actionQueue.push(['dmgrandom', action[1] + player.attack, player.yourCharacter])
+        } else if (action[0] === 'gainacceler') {
+            player.acceler += action[1]
+        } else if (action[0] === 'gainarmor') {
+            this.actionQueue.push(['gainarmor', action[1] + player.hardness, player.myHero])
+        }
+        return missed
+    }
+
+    handleUnitAura() {
+        let auraPlayer = []
+        let auraEnemy = []
+
+        for (let i = 0; i < 10; i++) {
+            if (this.field[i] != null) {
+                this.field[i].attack = this.field[i].attackBase
+            }
+        }
+        for (let i = 1; i < 5; i++) {
+            if (this.field[i] != null) {
+                let unit = this.field[i]
+                for (let j = 0; j < unit.effect.length; j++) {
+                    if (unit.effect[j][0] === 'attack_buff') {
+                        auraPlayer.push(JSON.parse(JSON.stringify(unit.effect[j])))
+                    }
+                }
+            }
+        }
+        for (let i = 6; i < 10; i++) {
+            if (this.field[i] != null) {
+                let unit = this.field[i]
+                for (let j = 0; j < unit.effect.length; j++) {
+                    if (unit.effect[j][0] === 'attack_buff') {
+                        auraEnemy.push(JSON.parse(JSON.stringify(unit.effect[j])))
+                    }
+                }
+            }
+        }
+        for (let i = 0; i < auraPlayer.length; i++) {
+            if (auraPlayer[i][0] === 'attack_buff')
+            for (let j = 1; j < 5; j++) {
+                if (this.field[j] != null) {
+                    this.field[j].attack += auraPlayer[i][1]
+                }
+            }
+        }
+        for (let i = 0; i < auraEnemy.length; i++) {
+            if (auraEnemy[i][0] === 'attack_buff')
+            for (let j = 1; j < 5; j++) {
+                if (this.field[j] != null) {
+                    this.field[j].attack += auraEnemy[i][1]
                 }
             }
         }
@@ -299,8 +410,11 @@ class BattlePlayer {
                 let missed = this.playThisCard(top, battle)
                 if (missed === false) {
                     let payList = this.makePayList(top)
+                    //console.log(payList)
                     for (let i = 0; i < payList.length; i++) {
-                        this.crystalDeck.push(this.crystalHand.splice(payList[i], 1)[0])
+                        if (payList[i] < this.crystalHand.length) {
+                            this.crystalDeck.push(this.crystalHand.splice(payList[i], 1)[0])
+                        }
                     }
                 }
                 this.deck.splice(0, 1)
@@ -368,6 +482,7 @@ class BattlePlayer {
                         if (crystal.length <= 0) {
                             return payList.sort().reverse()
                         }
+                        break
                     }
                 }
             }
@@ -381,6 +496,7 @@ class BattlePlayer {
                         if (crystal.length <= 0) {
                             return payList.sort().reverse()
                         }
+                        break
                     }
                 }
             }
@@ -403,30 +519,7 @@ class BattlePlayer {
         let played = JSON.parse(JSON.stringify(card.played))
         while (played.length > 0) {
             let front = played[0]
-            if (front[0] === 'summon') {
-                for (let i = 0; i < this.myField.length; i++) {
-                    let fieldIndex = this.myField[i]
-                    if (battle.field[fieldIndex] === null) {
-                        let unit = new Unit()
-                        unit.setUnitFromCard(card)
-                        battle.actionQueue.push(['summon', unit, fieldIndex])
-                        break
-                    }
-
-                    if (i === this.myField.length - 1) {
-                        missed = true
-                        return missed
-                    }
-                }
-            } else if (front[0] === 'dmghero') {
-                battle.actionQueue.push(['dmg', front[1] + this.attack, this.yourHero])
-            } else if (front[0] === 'dmgrandom') {
-                battle.actionQueue.push(['dmgrandom', front[1] + this.attack, this.yourCharacter])
-            } else if (front[0] === 'gainacceler') {
-                this.acceler += front[1]
-            } else if (front[0] === 'gainarmor') {
-                battle.actionQueue.push(['gainarmor', front[1] + this.hardness, this.myHero])
-            }
+            missed = battle.addAction(JSON.parse(JSON.stringify(front)), this, card)
             played.shift()
         }
         return missed
@@ -450,7 +543,13 @@ class BattlePlayer {
         for (let i = 0; i < num; i++) {
             if (this.crystalDeck.length > 0) {
                 this.crystalHand.push(this.crystalDeck.shift())
+            } else {
+                break
             }
+        }
+        if (this.myHero === 0) {
+            //console.log(this.crystalHand)
+            //console.log(this.crystalDeck)
         }
     }
 }

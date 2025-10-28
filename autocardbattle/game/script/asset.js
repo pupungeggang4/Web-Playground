@@ -22,8 +22,8 @@ class Img {
     }
 
     static hero = {
-        1001: new Image(),
-        1101: new Image()
+        2001: new Image(),
+        2101: new Image()
     }
 
     static selectFrame160 = new Image()
@@ -67,10 +67,10 @@ class Img {
         }
 
         for (let i in Data.card) {
-            Img.card[i].src = `image/card/card${i.toString().padStart(3, '0')}.png`
+            Img.card[i].src = `image/card/card${i.toString().padStart(4, '0')}.png`
         }
 
-        Img.hero[1001].src = 'image/hero/hero1001.png'
-        Img.hero[1101].src = 'image/hero/hero1101.png'
+        Img.hero[2001].src = 'image/hero/hero2001.png'
+        Img.hero[2101].src = 'image/hero/hero2101.png'
     }
 }

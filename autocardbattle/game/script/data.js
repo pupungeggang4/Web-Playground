@@ -3,10 +3,13 @@ class Data {
         801: {'ID': 801, 'name': 'Normal unit', 'type': 'unit', 'element': 8, 'crystal': [[8, 1]], 'crystallist': [8], 'stat': [1, 2], 'effect': []},
         802: {'ID': 802, 'name': 'Normal unit', 'type': 'unit', 'element': 8, 'crystal': [[8, 2]], 'crystallist': [8, 8], 'stat': [2, 3], 'effect': []},
         803: {'ID': 803, 'name': 'Normal unit', 'type': 'unit', 'element': 8, 'crystal': [[8, 3]], 'crystallist': [8, 8, 8], 'stat': [3, 4], 'effect': []},
-        101: {'ID': 101, 'name': 'attack', 'type': 'spell', 'element': 1, 'crystal': [[1, 1]], 'crystallist': [1], 'stat': [0, 0], 'effect': []},
+        101: {'ID': 101, 'name': 'Attack', 'type': 'spell', 'element': 1, 'crystal': [[1, 1]], 'crystallist': [1], 'stat': [0, 0], 'effect': []},
         102: {'ID': 102, 'name': 'Random Attack', 'type': 'spell', 'element': 1, 'crystal': [[1, 1], [8, 1]], 'crystallist': [8, 1], 'stat': [0, 0], 'effect': []},
         301: {'ID': 301, 'name': 'Fast Attack', 'type': 'spell', 'element': 3, 'crystal': [[3, 1], [8, 1]], 'crystallist': [8, 3], 'stat': [0, 0], 'effect': []},
         401: {'ID': 401, 'name': 'Guard', 'type': 'spell', 'element': 4, 'crystal': [[4, 1]], 'crystallist': [4], 'stat': [0, 0], 'effect': []},
+        501: {'ID': 501, 'name': 'AttackBuff', 'type': 'unit', 'element': 5, 'crystal': [[5, 1]], 'crystallist': [5], 'stat': [1, 1], 'effect': [['attack_buff', 1]]},
+        601: {'ID': 601, 'name': 'Dark', 'type': 'unit', 'element': 6, 'crystal': [[6, 1]], 'crystallist': [6], 'stat': [1, 1], 'effect': [['out', ['summon_token', 1601]]]},
+        1601: {'ID': 1601, 'name': 'Dark Token', 'type': 'token', 'element': 6, 'crystal': [], 'crystallist': [], 'stat': [1, 1], 'effect': []}
     }
 
     static cardP = {
@@ -16,7 +19,10 @@ class Data {
         101: [['dmghero', 3]],
         102: [['dmgrandom', 3]],
         301: [['dmgrandom', 2], ['gainacceler', 1]],
-        401: [['gainarmor', 4]]
+        401: [['gainarmor', 4]],
+        501: [['summon']],
+        601: [['summon']],
+        1601: [],
     }
 
     static cardD = {
@@ -26,7 +32,10 @@ class Data {
         101: ['Deal 3 damage to', 'enemy hero.'],
         102: ['Deal 3 damage to', 'random character.'],
         301: ['Deal 2 damage to', 'random character', 'Gain 1 acceler.'],
-        401: ['Gain 4 armor.']
+        401: ['Gain 4 armor.'],
+        501: ['Your units get +1', 'attack.'],
+        601: ['When out: Summon a', '1/1 token.'],
+        1601: [],
     }
 
     static crystal = {
@@ -62,8 +71,8 @@ class Data {
         2: {'deck': [801, 801, 801, 801, 802, 802, 802, 802, 803, 803, 803, 803], 'crystal': [2, 2, 2, 2, 8, 8, 8, 8]},
         3: {'deck': [301, 301, 301, 301, 301, 301, 301, 301, 301, 301, 301, 301], 'crystal': [3, 3, 3, 3, 8, 8, 8, 8]},
         4: {'deck': [401, 401, 401, 401, 401, 401, 401, 401, 803, 803, 803, 803], 'crystal': [4, 4, 4, 4, 8, 8, 8, 8]},
-        5: {'deck': [801, 801, 801, 801, 802, 802, 802, 802, 803, 803, 803, 803], 'crystal': [5, 5, 5, 5, 8, 8, 8, 8]},
-        6: {'deck': [801, 801, 801, 801, 802, 802, 802, 802, 803, 803, 803, 803], 'crystal': [6, 6, 6, 6, 8, 8, 8, 8]},
+        5: {'deck': [801, 801, 801, 801, 501, 501, 501, 501, 803, 803, 803, 803], 'crystal': [5, 5, 5, 5, 8, 8, 8, 8]},
+        6: {'deck': [601, 601, 601, 601, 601, 601, 601, 601, 601, 601, 601, 601], 'crystal': [6, 6, 6, 6, 8, 8, 8, 8]},
         7: {'deck': [801, 801, 801, 801, 802, 802, 802, 802, 803, 803, 803, 803], 'crystal': [7, 7, 7, 7, 8, 8, 8, 8]}
     }
 
@@ -78,6 +87,6 @@ class Data {
     }
 
     static enemy = {
-        1101: {'deck': [801, 801, 801, 801, 801, 801, 801, 801], 'crystal': [8, 8, 8, 8, 8, 8, 8, 8], 'hp': 15}
+        2101: {'deck': [801, 801, 801, 801, 801, 801, 801, 801], 'crystal': [8, 8, 8, 8, 8, 8, 8, 8], 'hp': 15}
     }
 }
