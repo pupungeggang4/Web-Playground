@@ -2,14 +2,11 @@ class Field {
     constructor() {
         this.camera = new Rect2(0, 0, 1280, 720)
         this.player = new PlayerUnit()
-        this.mech = [new Wall(), new Wall()]
+        this.mech = [new Wall(), new Wall(), new Belt()]
         this.unit = [new Coin(), new Coin()]
         this.mech[0].rect = new Rect2(0, 160, 160, 40)
-        this.mech[0].canvas.width = 160
-        this.mech[0].canvas.height = 40
         this.mech[1].rect = new Rect2(320, 160, 160, 40)
-        this.mech[1].canvas.width = 160
-        this.mech[1].canvas.height = 40
+        this.mech[2].rect = new Rect2(-320, 160, 160, 40)
         this.unit[0].rect.pos.x = 120
         this.unit[1].rect.pos.x = 160
     }

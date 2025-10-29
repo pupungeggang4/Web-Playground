@@ -6,7 +6,7 @@ class Entity {
 class Wall extends Entity {
     constructor() {
         super()
-        this.rect = new Rect2(0, 0, 80, 80)
+        this.rect = new Rect2(0, 0, 160, 40)
         this.canvas = document.createElement('canvas')
         this.canvas.width = this.rect.size.x
         this.canvas.height = this.rect.size.y
@@ -18,10 +18,54 @@ class Wall extends Entity {
         //this.support(game)
     }
 
+    support(game, entity) {
+        if (entity.ground === false && entity.velocity.y >= 0) {
+            let up = Physics.findUpOverlap(this.rect, entity.tempRect)
+
+            if (up > 0) {
+                entity.tempRect.pos.y -= up
+                entity.velocity.y = 0
+                entity.ground = true
+            }
+        }
+    }
+
     render(game) {
         let field = game.field
         Render.clearCanvas(this.canvas, this.ctx)
         this.ctx.fillStyle = 'black'
+        this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height)
+        Render.renderCenterCam(game.ctx, this.canvas, this.rect, field.camera)
+    }
+}
+
+class Belt extends Wall {
+    constructor() {
+        super()
+        this.scroll = 120.0
+    }
+
+    handelTick(game) {
+
+    }
+
+    support(game, entity) {
+        if (entity.ground === false && entity.velocity.y >= 0) {
+            let up = Physics.findUpOverlap(this.rect, entity.tempRect)
+
+            if (up > 0) {
+                entity.tempRect.pos.y -= up
+                entity.velocity.y = 0
+                entity.ground = true
+                entity.tempRect.pos.x += this.scroll * game.delta / 1000
+            }
+        }
+    }
+
+    render(game) {
+        let field = game.field
+        Render.clearCanvas(this.canvas, this.ctx)
+        this.ctx.fillStyle = 'orange'
         this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height)
         Render.renderCenterCam(game.ctx, this.canvas, this.rect, field.camera)
     }
@@ -41,7 +85,6 @@ class PlayerUnit extends Unit {
         this.ground = false
         this.velocity = new Vec2(0, 0)
         this.tempRect = new Rect2(0, 0, 80, 80)
-        this.stepping = null
 
         this.rect = new Rect2(0, 0, 80, 80)
         this.canvas = document.createElement('canvas')
@@ -69,33 +112,21 @@ class PlayerUnit extends Unit {
         }
         this.velocity.x *= this.speed
 
-        if (this.ground === false) {
-            this.velocity.y += this.gravity * game.delta / 1000
-        }
+        this.velocity.y += this.gravity * game.delta / 1000
 
         this.tempRect.pos.x += this.velocity.x * game.delta / 1000
         this.tempRect.pos.y += this.velocity.y * game.delta / 1000
 
-        this.support(game)
+        for (let i = 0; i < game.field.mech.length; i++) {
+            game.field.mech[i].support(game, this)
+        }
 
         this.rect.pos.x = this.tempRect.pos.x
         this.rect.pos.y = this.tempRect.pos.y
     }
 
     support(game) {
-        let mech = game.field.mech
-        for (let i = 0; i < mech.length; i++) {
-            if (this.ground === false && this.velocity.y >= 0) {
-                let up = Physics.findUpOverlap(mech[i].rect, this.tempRect)
 
-                if (up > 0) {
-                    this.tempRect.pos.y -= up
-                    this.velocity.y = 0
-                    this.ground = true
-                    break
-                }
-            }
-        }
     }
 
     jump(game) {
