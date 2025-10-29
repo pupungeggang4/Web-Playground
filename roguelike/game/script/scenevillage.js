@@ -47,11 +47,11 @@ class SceneVillage {
                 game.menu = false
             }
 
-            if (key === 'ArrowUp') {
+            if (key === 'w') {
                 game.selectedMenuVillage = (game.selectedMenuVillage + 1) % 2
             }
 
-            if (key === 'ArrowDown') {
+            if (key === 's') {
                 game.selectedMenuVillage = (game.selectedMenuVillage + 1) % 2
             }
 
@@ -72,9 +72,9 @@ class SceneVillage {
     }
 
     static handleAdventureConfirm(game, key) {
-        if (key === 'ArrowLeft') {
+        if (key === 'a') {
             game.selectedAdventureConfirm = (game.selectedAdventureConfirm + 1) % 2
-        } else if (key === 'ArrowRight') {
+        } else if (key === 'd') {
             game.selectedAdventureConfirm = (game.selectedAdventureConfirm + 1) % 2
         } else if (key === 'Enter') {
             if (game.selectedAdventureConfirm === 0) {

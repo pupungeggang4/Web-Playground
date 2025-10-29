@@ -42,9 +42,9 @@ class SceneBattle {
             if (key === 'q' || key === 'Escape') {
                 game.menu = false
             }
-            if (key === 'ArrowUp') {
+            if (key === 'w') {
                 game.selectedMenuBattle = (game.selectedMenuBattle + 2) % 3
-            } else if (key === 'ArrowDown') {
+            } else if (key === 's') {
                 game.selectedMenuBattle = (game.selectedMenuBattle + 1) % 3
             } else if (key === 'Enter') {
                 if (game.selectedMenuBattle === 0) {
@@ -67,9 +67,9 @@ class SceneBattle {
     }
 
     static handleKeyAdventureStart(game, key) {
-        if (key === 'ArrowLeft') {
+        if (key === 'a') {
             game.selectedAdventureStart = (game.selectedAdventureStart + 2) % 3
-        } else if (key === 'ArrowRight') {
+        } else if (key === 'd') {
             game.selectedAdventureStart = (game.selectedAdventureStart + 1) % 3
         }
 

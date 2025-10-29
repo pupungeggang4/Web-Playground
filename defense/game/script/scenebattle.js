@@ -15,6 +15,7 @@ class SceneBattle {
 
         Render.drawImageUI(game.ctx, Img.buttonMenu, UI.battle.buttonMenu)
         Render.strokeRectUI(game.ctx, UI.battle.buttonMenu)
+        game.battle.render(game)
         Render.renderBattleUI(game)
 
         if (game.state === 'ready') {
@@ -58,6 +59,7 @@ class SceneBattle {
 
     static handleClickReady(game, pos, button) {
         if (Func.pointInsideRectUI(pos, UI.window.buttonOk)) {
+            game.battle.startBattle(game)
             game.state = ''
         }
     }

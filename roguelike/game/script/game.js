@@ -54,16 +54,16 @@ class Game {
     keyDown(event) {
         let key = event.key
 
-        if (key === 'ArrowLeft') {
+        if (key === 'a') {
             this.keyPressed['left'] = true
         }
-        if (key === 'ArrowRight') {
+        if (key === 'd') {
             this.keyPressed['right'] = true
         }
-        if (key === 'ArrowUp') {
+        if (key === 'w') {
             this.keyPressed['up'] = true
         }
-        if (key === 'ArrowDown') {
+        if (key === 's') {
             this.keyPressed['down'] = true
         }
 
@@ -79,16 +79,16 @@ class Game {
     keyUp(event) {
         let key = event.key
 
-        if (key === 'ArrowLeft') {
+        if (key === 'a') {
             this.keyPressed['left'] = false
         }
-        if (key === 'ArrowRight') {
+        if (key === 'd') {
             this.keyPressed['right'] = false
         }
-        if (key === 'ArrowUp') {
+        if (key === 'w') {
             this.keyPressed['up'] = false
         }
-        if (key === 'ArrowDown') {
+        if (key === 's') {
             this.keyPressed['down'] = false
         }
 

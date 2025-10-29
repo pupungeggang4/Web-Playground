@@ -26,11 +26,11 @@ class SceneTitle {
     }
 
     static keyDown(game, key) {
-        if (key === 'ArrowUp') {
+        if (key === 'w') {
             game.selectedTitle = (game.selectedTitle + 3) % 4
         }
 
-        if (key === 'ArrowDown') {
+        if (key === 's') {
             game.selectedTitle = (game.selectedTitle + 1) % 4
         }
 

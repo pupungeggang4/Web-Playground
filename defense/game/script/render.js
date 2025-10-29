@@ -51,9 +51,10 @@ class Render {
         Render.drawImageUI(ctx, Img.life, UI.battle.iconLife)
         Render.fillTextUI(ctx, `${player.life}`, UI.battle.textLife)
         Render.drawImageUI(ctx, Img.energy, UI.battle.iconEnergy)
-        Render.fillTextUI(ctx, `${player.energy}/${player.energyMax}`, UI.battle.textEnergy)
+        Render.fillTextUI(ctx, `${player.energy.toFixed(1)}/${player.energyMax}`, UI.battle.textEnergy)
 
         Render.strokeRectUI(ctx, UI.battle.buttonUpgrade)
+
         for (let i = 0; i < 8; i++) {
             let rect = [UI.battle.handStart[0] + UI.battle.handInterval[0] * i, UI.battle.handStart[1], UI.battle.handSize[0], UI.battle.handSize[1]]
             Render.strokeRectUI(ctx, rect)
@@ -103,5 +104,9 @@ class Render {
 
     static drawImageUI(ctx, image, pos) {
         ctx.drawImage(image, pos[0], pos[1])
+    }
+
+    static drawCenterCam(ctx, image, rect, cam) {
+        ctx.drawImage(image, rect.pos.x - rect.size.x / 2 - cam.pos.x + cam.size.x / 2, rect.pos.y - rect.size.y / 2 - cam.pos.y + cam.size.y / 2)
     }
 }
