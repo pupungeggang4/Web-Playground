@@ -12,7 +12,6 @@ class Battle {
     }
 
     handleTick(game) {
-        this.handleUnitAura()
         if (this.paused === false) {
             if (this.nextProceedTime < 0) {
                 this.nextProceedTime = 500
@@ -106,9 +105,16 @@ class Battle {
         let top = this.actionQueue[0]
         if (top[0] === 'summon') {
             this.field[top[2]] = top[1]
+        } else if (top[0] === 'summontoken') {
+            for (let i = 0; i < top[2].length; i++) {
+                if (this.field[top[2][i]] === null) {
+                    this.field[top[2][i]] = top[1]
+                    break
+                }
+            }
         } else if (top[0] === 'dmg') {
             if (this.field[top[2]] != null) {
-                this.field[top[2]].hp -= top[1]
+                this.field[top[2]].takeDamage(top[1])
             }
         } else if (top[0] === 'dmgrandom') {
             let dmgList = []
@@ -121,6 +127,12 @@ class Battle {
 
             if (this.field[dmgList[index]] != null) {
                 this.field[dmgList[index]].hp -= top[1]
+            }
+        } else if (top[0] === 'dmgall') {
+            for (let i = 0; i < top[2].length; i++) {
+                if (this.field[top[2][i]] != null) {
+                    this.field[top[2][i]].takeDamage(top[1])
+                }
             }
         } else if (top[0] === 'attackrandom') {
             let attackList = []
@@ -145,6 +157,7 @@ class Battle {
             }
         }
         this.actionQueue.shift()
+        this.handleUnitAura()
     }
 
     battleUnit(i1, i2) {
@@ -212,7 +225,7 @@ class Battle {
                     return missed
                 }
             }
-        } else if (action[0] === 'summon_token') {
+        } else if (action[0] === 'summontoken') {
             for (let i = 0; i < player.myField.length; i++) {
                 let fieldIndex = player.myField[i]
                 if (this.field[fieldIndex] === null) {
@@ -220,7 +233,7 @@ class Battle {
                     tmpCard.setData(action[1])
                     let unit = new Unit()
                     unit.setUnitFromCard(tmpCard)
-                    this.actionQueue.push(['summon', unit, fieldIndex])
+                    this.actionQueue.push(['summontoken', unit, player.myField])
                     break
                 }
             }
@@ -230,6 +243,8 @@ class Battle {
             this.actionQueue.push(['dmgrandom', action[1] + player.attack, player.yourCharacter])
         } else if (action[0] === 'gainacceler') {
             player.acceler += action[1]
+        } else if (action[0] === 'dmgall') {
+            this.actionQueue.push(['dmgall', action[1] + player.attack, player.yourCharacter])
         } else if (action[0] === 'gainarmor') {
             this.actionQueue.push(['gainarmor', action[1] + player.hardness, player.myHero])
         }
