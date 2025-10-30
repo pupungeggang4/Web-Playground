@@ -49,6 +49,13 @@ class UI {
         textOk: [944, 604],
     }
 
+    static windowSmall = {
+        rect: [320, 240, 640, 240],
+        textTitle: [344, 264],
+        buttonOK: [780, 380, 160, 80],
+        textOK: [804, 404],
+    }
+
     static menu = {
         rect: [320, 160, 640, 400],
         textPaused: [344, 184],

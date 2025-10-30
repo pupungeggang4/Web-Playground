@@ -42,6 +42,9 @@ class EndPoint {
             if (field.unit[i].rect.pos.x < -400) {
                 field.unit.splice(i, 1)
                 player.life -= 1
+                if (player.life <= 0) {
+                    game.state = 'game_over'
+                }
             }
         }
     }
@@ -64,13 +67,15 @@ class Unit {
         this.attackSpeed = 1.0
         this.attackCool = 1.0
         this.effect = []
-        this.speed = 200.0
+        this.speed = 320.0
 
         this.rect = new Rect2(0, 0, 40, 40)
         this.canvas = document.createElement('canvas')
         this.canvas.width = this.rect.size.x
         this.canvas.height = this.rect.size.y
         this.ctx = this.canvas.getContext('2d')
+        this.frame = 4; this.frameCurrent = 0; this.frameInterval = 0.2; this.frameTime = 0;
+        this.frameCoord = [[0, 0], [40, 0], [80, 0], [120, 0]]
     }
 
     setData(ID) {
@@ -82,10 +87,12 @@ class Unit {
     }
 
     render(game) {
+        this.frameTime += game.delta / 1000
+        this.frameCurrent = Math.floor(this.frameTime / this.frameInterval) % this.frame
+
         let field = game.battle.field
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height)
-        this.ctx.fillStyle = 'black'
-        this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height)
+        this.ctx.drawImage(Img.unit, this.frameCoord[this.frameCurrent][0], this.frameCoord[this.frameCurrent][1], this.canvas.width, this.canvas.height, 0, 0, this.canvas.width, this.canvas.height)
         Render.drawCenterCam(game.ctx, this.canvas, this.rect, field.camera)
     }
 }

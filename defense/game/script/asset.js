@@ -7,6 +7,7 @@ class Img {
     static life = new Image()
     static energy = new Image()
     static portal = new Image()
+    static unit = new Image()
 
     static load() {
         Img.arrowDown.src = 'image/arrowdown.png'
@@ -17,5 +18,6 @@ class Img {
         Img.life.src = 'image/life.png'
         Img.energy.src = 'image/energy.png'
         Img.portal.src = 'image/portal.png'
+        Img.unit.src = 'image/sprite/spriteunit.png'
     }
 }

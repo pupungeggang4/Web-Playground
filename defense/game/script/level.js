@@ -7,6 +7,7 @@ class Level {
         this.unitSummonCool = 0
         this.unitSummonCoolMax = 0.2
         this.unitQueue = []
+        this.spawnIndex = 0
     }
 
     setData(ID) {
@@ -31,11 +32,14 @@ class Level {
 
         if (this.unitSummonCool <= 0) {
             if (this.unitQueue.length > 0) {
-                let index = Math.floor(Math.random() * field.portal.length)
                 let unit = new Unit()
                 unit.setData(this.unitQueue[0])
-                field.portal[index].spawnUnit(game, unit)
+                field.portal[this.spawnIndex].spawnUnit(game, unit)
                 this.unitQueue.shift()
+                this.spawnIndex = (this.spawnIndex + 1) % field.portal.length
+                if (this.unitQueue.length <= 0) {
+                    this.spawnIndex = Math.floor(Math.random() * field.portal.length)
+                }
                 this.unitSummonCool = this.unitSummonCoolMax
             }
         } else {

@@ -61,6 +61,19 @@ class Render {
         }
     }
 
+    static renderWindowGameOver(game) {
+        let ctx = game.ctx
+        
+        ctx.fillStyle = 'white'
+        Render.fillRectUI(ctx, UI.windowSmall.rect)
+        Render.strokeRectUI(ctx, UI.windowSmall.rect)
+        ctx.fillStyle = 'black'
+
+        Render.fillTextUI(ctx, game.locale.gameOver, UI.windowSmall.textTitle)
+        Render.strokeRectUI(ctx, UI.windowSmall.buttonOK)
+        Render.fillTextUI(ctx, game.locale.ok, UI.windowSmall.textOK)
+    }
+
     static renderMenu(game) {
         let ctx = game.ctx
 

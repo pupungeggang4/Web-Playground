@@ -21,6 +21,9 @@ class SceneBattle {
         if (game.state === 'ready') {
             Render.renderWindowReady(game)
         }
+        if (game.state === 'game_over') {
+            Render.renderWindowGameOver(game)
+        }
 
         if (game.menu === true) {
             Render.renderMenu(game)
@@ -36,6 +39,11 @@ class SceneBattle {
 
                 if (game.state === 'ready') {
                     SceneBattle.handleClickReady(game, pos, button)
+                } else if (game.state === 'game_over') {
+                    if (Func.pointInsideRectUI(pos, UI.windowSmall.buttonOK)) {
+                        game.scene = 'title'
+                        game.state = ''
+                    }
                 }
             } else if (game.menu === true) {
                 if (Func.pointInsideRectUI(pos, UI.battle.buttonMenu) || Func.pointInsideRectUI(pos, UI.menu.buttonResume)) {
