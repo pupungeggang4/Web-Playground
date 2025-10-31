@@ -25,6 +25,10 @@ class SceneBattle {
             Render.renderWindowGameOver(game)
         }
 
+        if (game.state === 'level_clear') {
+            Render.renderWindowLevelClear(game)   
+        }
+
         if (game.menu === true) {
             Render.renderMenu(game)
         }
@@ -37,11 +41,18 @@ class SceneBattle {
                     game.menu = true
                 }
 
-                if (game.state === 'ready') {
+                if (game.state === '') {
+                    SceneBattle.handleClickBattle(game, pos, button)
+                } else if (game.state === 'ready') {
                     SceneBattle.handleClickReady(game, pos, button)
                 } else if (game.state === 'game_over') {
                     if (Func.pointInsideRectUI(pos, UI.windowSmall.buttonOK)) {
                         game.scene = 'title'
+                        game.state = ''
+                    }
+                } else if (game.state === 'level_clear') {
+                    if (Func.pointInsideRectUI(pos, UI.windowSmall.buttonOK)) {
+                        game.scene = 'level_select'
                         game.state = ''
                     }
                 }
@@ -69,6 +80,16 @@ class SceneBattle {
         if (Func.pointInsideRectUI(pos, UI.window.buttonOk)) {
             game.battle.startBattle(game)
             game.state = ''
+        }
+    }
+
+    static handleClickBattle(game, pos, button) {
+        let field = game.battle.field
+        let fieldPos = new Vec2(pos.x - field.camera.size.x / 2, pos.y - field.camera.size.y / 2)
+        if (fieldPos.insideRect(field.rect)) {
+            let row = Math.floor((fieldPos.y + field.rect.size.y / 2) / 80)
+            let col = Math.floor((fieldPos.x + field.rect.size.x / 2) / 80)
+            console.log(row, col)
         }
     }
 }

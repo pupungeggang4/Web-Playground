@@ -12,6 +12,9 @@ class Battle {
     }
 
     handleTick(game) {
+        if (this.level.wave.length <= 0 && this.field.unit.length <= 0) {
+            game.state = 'level_clear'
+        }
         this.level.handleTick(game)
         this.player.handleTick(game)
         this.field.handleTick(game)
@@ -27,7 +30,12 @@ class Field {
         this.camera = new Rect2(0, 0, 1280, 720)
         this.unit = []
         this.proj = []
-        this.tower = []
+        this.field = [
+            ['block', null, null, null, null, null, null, null, null, null, 'Block'],
+            ['block', null, null, null, null, null, null, null, null, null, 'Block'],
+            ['block', null, null, null, null, null, null, null, null, null, 'Block'],
+            ['block', null, null, null, null, null, null, null, null, null, 'Block']
+        ]
         this.portal = []
         this.endPoint = []
 
@@ -53,7 +61,12 @@ class Field {
     startBattle(game) {
         this.unit = []
         this.proj = []
-        this.tower = []
+        this.field = [
+            ['block', null, null, null, null, null, null, null, null, null, 'Block'],
+            ['block', null, null, null, null, null, null, null, null, null, 'Block'],
+            ['block', null, null, null, null, null, null, null, null, null, 'Block'],
+            ['block', null, null, null, null, null, null, null, null, null, 'Block']
+        ]
     }
 
     handleTick(game) {

@@ -57,17 +57,37 @@ class EndPoint {
     }
 }
 
+class Tower {
+    constructor() {
+        this.ID = 0
+        this.hp = 30
+        this.hpMax = 30
+        this.attack = 0; this.attackType = 1; this.attackSpeed = 1.0; this.attackCool = 1.0; this.attackRange = []
+        this.effect = []
+        this.speed = 16.0
+    }
+
+    setData(ID) {
+        this.ID = ID
+    }
+
+    handleTick(game) {
+
+    }
+
+    render(game) {
+        
+    }
+}
+
 class Unit {
     constructor() {
         this.ID = 0
         this.hp = 30
         this.hpMax = 30
-        this.attack = 0
-        this.attackType = 1
-        this.attackSpeed = 1.0
-        this.attackCool = 1.0
+        this.attack = 0; this.attackType = 1; this.attackSpeed = 1.0; this.attackCool = 1.0; this.attackRange = []
         this.effect = []
-        this.speed = 320.0
+        this.speed = 16.0
 
         this.rect = new Rect2(0, 0, 40, 40)
         this.canvas = document.createElement('canvas')

@@ -5,7 +5,7 @@ class Level {
         this.effect = []
         this.time = 0
         this.unitSummonCool = 0
-        this.unitSummonCoolMax = 0.2
+        this.unitSummonCoolMax = 0.1
         this.unitQueue = []
         this.spawnIndex = 0
     }

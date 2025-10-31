@@ -15,6 +15,7 @@ class Locale {
             buildDeck: 'Build Deck',
             ok: 'OK',
             gameOver: 'Game Over',
+            levelClear: 'Level Cleared',
 
             paused: 'Paused',
             resume: 'Resume',
@@ -37,6 +38,7 @@ class Locale {
             buildDeck: '덱 완성하기',
             ok: '확인',
             gameOver: '게임 오버',
+            levelClear: '레벨 클리어',
 
             paused: '일시정지',
             resume: '계속하기',
