@@ -7,6 +7,14 @@ class Vec2 {
     insideRect(rect) {
         return this.x > rect.pos.x - rect.size.x / 2 && this.x < rect.pos.x + rect.size.x / 2 && this.y > rect.pos.y - rect.size.y / 2 && this.y < rect.pos.y + rect.size.y / 2
     }
+
+    length() {
+        return Math.sqrt(this.x ** 2 + this.y ** 2)
+    }
+
+    static sub(v1, v2) {
+        return new Vec2(v1.x - v2.x, v1.y - v2.y)
+    }
 }
 
 class Rect2 {

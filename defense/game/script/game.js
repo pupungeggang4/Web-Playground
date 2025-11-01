@@ -4,6 +4,7 @@ class Game {
         this.scene = 'title'
         this.state = ''
         this.tutorialPhase = 'welcome'
+        this.tutorialWait = 0
         this.menu = false
         this.lang = 0
         this.locale = Locale.data[Locale.langList[this.lang]]

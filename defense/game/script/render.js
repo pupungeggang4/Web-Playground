@@ -59,6 +59,38 @@ class Render {
             let rect = [UI.battle.handStart[0] + UI.battle.handInterval[0] * i, UI.battle.handStart[1], UI.battle.handSize[0], UI.battle.handSize[1]]
             Render.strokeRectUI(ctx, rect)
         }
+        Render.strokeRectUI(ctx, UI.battle.buttonBounce)
+    }
+
+    static renderTutorial(game) {
+        let ctx = game.ctx
+        if (game.tutorialPhase === 'welcome') {
+            Render.fillTextUI(ctx, game.locale.tutorialText.welcome, UI.battle.textTutorial)
+        } else if (game.tutorialPhase === 'explain') {
+            Render.fillTextUI(ctx, game.locale.tutorialText.explain, UI.battle.textTutorial)
+        } else if (game.tutorialPhase === 'play_card' || game.tutorialPhase === 'play_select') {
+            Render.fillTextUI(ctx, game.locale.tutorialText.playCard, UI.battle.textTutorial)
+            if (game.tutorialPhase === 'play_select') {
+                Render.drawImageUI(ctx, Img.selectFrame80, UI.tutorialArea[0])
+            }
+        } else if (game.tutorialPhase === 'energy_gen') {
+            Render.fillTextUI(ctx, game.locale.tutorialText.energyGen, UI.battle.textTutorial)
+        } else if (game.tutorialPhase === 'upgrade') {
+            Render.fillTextUI(ctx, game.locale.tutorialText.upgrade, UI.battle.textTutorial)
+        } else if (game.tutorialPhase === 'upgraded') {
+            Render.fillTextUI(ctx, game.locale.tutorialText.upgraded, UI.battle.textTutorial)
+        } else if (game.tutorialPhase === 'enemy') {
+            Render.fillTextUI(ctx, game.locale.tutorialText.enemy, UI.battle.textTutorial)
+        } else if (game.tutorialPhase === 'bounce' || game.tutorialPhase === 'bounce_select') {
+            Render.fillTextUI(ctx, game.locale.tutorialText.bounce, UI.battle.textTutorial)
+            if (game.tutorialPhase === 'bounce_select') {
+                Render.drawImageUI(ctx, Img.selectFrame80, UI.tutorialArea[2])
+            }
+        } else if (game.tutorialPhase === 'draw') {
+            Render.fillTextUI(ctx, game.locale.tutorialText.draw, UI.battle.textTutorial)
+        } else if (game.tutorialPhase === 'free') {
+            Render.fillTextUI(ctx, game.locale.tutorialText.free, UI.battle.textTutorial)
+        }
     }
 
     static renderWindowGameOver(game) {

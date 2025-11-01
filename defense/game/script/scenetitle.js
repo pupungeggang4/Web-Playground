@@ -33,11 +33,14 @@ class SceneTitle {
             if (Func.pointInsideRectUI(pos, UI.title.buttonAdventure)) {
                 game.scene = 'adventure'
                 game.state = 'adventure_start'
+                game.menu = false
             }
             if (Func.pointInsideRectUI(pos, UI.title.buttonTutorial)) {
                 game.scene = 'tutorial'
                 game.state = 'break'
+                game.menu = false
                 game.tutorialPhase = 'welcome'
+                game.battle.startBattle(game)
             }
             if (Func.pointInsideRectUI(pos, UI.title.buttonCollection)) {
 

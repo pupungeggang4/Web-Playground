@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Adventure</title>
+        <style>
+            @font-face {
+                font-family: 'neodgm';
+                src: url('font/neodgm.ttf');
+            }
+
+            body {
+                touch-action: none;
+                overscroll-behavior: none;
+            }
+
+            #screen {
+                border: 2px solid black;
+                position: absolute;
+                left: 0;
+                right: 0;
+                top: 0;
+                bottom: 0;
+                margin: auto;
+                max-width: 96%;
+                max-height: 96%;
+            }
+        </style>
+    </head>
+    <body>
+        <canvas id='screen' width='1280' height='720'></canvas>
+        <script src='script/asset.js'></script>
+        <script src='script/ui.js'></script>
+        <script src='script/data.js'></script>
+        <script src='script/locale.js'></script>
+
+        <script src='script/shape.js'></script>
+        <script src='script/battle.js'></script>
+        <script src='script/battleplayer.js'></script>
+        <script src='script/unit.js'></script>
+        <script src='script/projectile.js'></script>
+        <script src='script/drop.js'></script>
+
+        <script src='script/func.js'></script>
+        <script src='script/render.js'></script>
+        <script src='script/game.js'></script>
+
+        <script src='script/scenetitle.js'></script>
+        <script src='script/scenecharacter.js'></script>
+        <script src='script/scenebattle.js'></script>
+
+        <script src='script/main.js'></script>
+    </body>
+</html>

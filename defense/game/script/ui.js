@@ -32,12 +32,18 @@ class UI {
         handStart: [120, 620],
         handSize: [80, 80],
         handInterval: [80, 80],
+        buttonBounce: [780, 620, 80, 80],
+
         textLevel: [24, 584],
         iconLife: [120, 580],
         textLife: [164, 584],
         iconEnergy: [200, 580],
         textEnergy: [244, 584],
+
+        textTutorial: [24, 124]
     }
+
+    static tutorialArea = [[120, 620, 80, 80], [280, 200, 80, 80], [780, 620, 80, 80]]
 
     static window = {
         rect: [160, 40, 960, 640],

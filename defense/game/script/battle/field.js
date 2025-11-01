@@ -3,7 +3,7 @@ class Field {
         this.camera = new Rect2(0, 0, 1280, 720)
         this.unit = []
         this.proj = []
-        this.field = [
+        this.layout = [
             ['block', null, null, null, null, null, null, null, null, null, 'Block'],
             ['block', null, null, null, null, null, null, null, null, null, 'Block'],
             ['block', null, null, null, null, null, null, null, null, null, 'Block'],
@@ -34,16 +34,28 @@ class Field {
     startBattle(game) {
         this.unit = []
         this.proj = []
-        this.field = [
-            ['block', null, null, null, null, null, null, null, null, null, 'Block'],
-            ['block', null, null, null, null, null, null, null, null, null, 'Block'],
-            ['block', null, null, null, null, null, null, null, null, null, 'Block'],
-            ['block', null, null, null, null, null, null, null, null, null, 'Block']
+        this.layout = [
+            ['block', null, null, null, null, null, null, null, null, null, 'block'],
+            ['block', null, null, null, null, null, null, null, null, null, 'block'],
+            ['block', null, null, null, null, null, null, null, null, null, 'block'],
+            ['block', null, null, null, null, null, null, null, null, null, 'block']
         ]
     }
 
     handleTick(game) {
-        for (let i = 0; i < this.unit.length; i++) {
+        for (let i = 0; i < 4; i++) {
+            for (let j = 0; j < 11; j++) {
+                if (this.layout[i][j] != null && this.layout[i][j] != 'block') {
+                    this.layout[i][j].handleTick(game)
+                }
+            }
+        }
+
+        for (let i = this.proj.length - 1; i >= 0; i--) {
+            this.proj[i].handleTick(game)
+        }
+
+        for (let i = this.unit.length - 1; i >= 0; i--) {
             this.unit[i].handleTick(game)
         }
 
@@ -59,6 +71,9 @@ class Field {
             for (let j = 0; j < 11; j++) {
                 let rect = [j * 80, i * 80, 80, 80]
                 Render.strokeRectUI(this.ctx, rect)
+                if (this.layout[i][j] != null && this.layout[i][j] != 'block') {
+                    this.layout[i][j].render(game)
+                }
             }
         }
 
@@ -68,12 +83,16 @@ class Field {
             this.portal[i].render(game)
         }
 
+       for (let i = 0; i <this.proj.length; i++) {
+            this.proj[i].render(game)
+        }
+
         for (let i = 0; i < this.endPoint.length; i++) {
             this.endPoint[i].render(game)
         }
 
         for (let i = 0; i < this.unit.length; i++) {
             this.unit[i].render(game)
-        }
+        } 
     }
 }

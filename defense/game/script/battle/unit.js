@@ -60,11 +60,16 @@ class EndPoint {
 class Tower {
     constructor() {
         this.ID = 0
-        this.hp = 30
-        this.hpMax = 30
-        this.attack = 0; this.attackType = 1; this.attackSpeed = 1.0; this.attackCool = 1.0; this.attackRange = []
+        this.hp = 50
+        this.hpMax = 50
+        this.attack = 5; this.attackType = 1; this.attackSpeed = 1.0; this.attackCool = 1.0; this.attackRange = []
         this.effect = []
-        this.speed = 16.0
+
+        this.rect = new Rect2(-320, -120, 80, 80)
+        this.canvas = document.createElement('canvas')
+        this.canvas.width = this.rect.size.x
+        this.canvas.height = this.rect.size.y
+        this.ctx = this.canvas.getContext('2d')
     }
 
     setData(ID) {
@@ -72,11 +77,24 @@ class Tower {
     }
 
     handleTick(game) {
-
+        let field = game.battle.field
+        if (this.attackCool <= 0) {
+            let proj = new Projectile()
+            proj.velocity = new Vec2(1.0, 0.0)
+            proj.rect.pos = new Vec2(this.rect.pos.x, this.rect.pos.y)
+            field.proj.push(proj)
+            this.attackCool = 1 / this.attackSpeed
+        } else {
+            this.attackCool -= game.delta / 1000
+        }
     }
 
     render(game) {
-        
+        let field = game.battle.field
+        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height)
+        this.ctx.fillStyle = 'blue'
+        this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height)
+        Render.drawCenterCam(game.ctx, this.canvas, this.rect, field.camera)
     }
 }
 
@@ -85,9 +103,9 @@ class Unit {
         this.ID = 0
         this.hp = 30
         this.hpMax = 30
-        this.attack = 0; this.attackType = 1; this.attackSpeed = 1.0; this.attackCool = 1.0; this.attackRange = []
+        this.attack = 3; this.attackType = 1; this.attackSpeed = 1.0; this.attackCool = 1.0; this.attackRange = []
         this.effect = []
-        this.speed = 16.0
+        this.speed = 64.0
 
         this.rect = new Rect2(0, 0, 40, 40)
         this.canvas = document.createElement('canvas')
@@ -103,7 +121,11 @@ class Unit {
     }
 
     handleTick(game) {
+        let field = game.battle.field
         this.rect.pos.x -= this.speed * game.delta / 1000
+        if (this.hp <= 0) {
+            field.unit.splice(field.unit.indexOf(this), 1)
+        }
     }
 
     render(game) {

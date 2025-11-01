@@ -8,6 +8,7 @@ class Img {
     static energy = new Image()
     static portal = new Image()
     static unit = new Image()
+    static selectFrame80 = new Image()
 
     static load() {
         Img.arrowDown.src = 'image/arrowdown.png'
@@ -19,5 +20,7 @@ class Img {
         Img.energy.src = 'image/energy.png'
         Img.portal.src = 'image/portal.png'
         Img.unit.src = 'image/sprite/spriteunit.png'
+
+        Img.selectFrame80.src = 'image/selectframe80.png'
     }
 }

@@ -12,7 +12,7 @@ class Battle {
     }
 
     handleTick(game) {
-        if (this.level.wave.length <= 0 && this.field.unit.length <= 0) {
+        if (this.level.wave.length <= 0 && this.level.unitQueue.length <= 0 && this.field.unit.length <= 0 && game.state === '') {
             game.state = 'level_clear'
         }
         this.level.handleTick(game)

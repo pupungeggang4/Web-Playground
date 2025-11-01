@@ -21,6 +21,7 @@ class SceneBattle {
         if (game.state === 'ready') {
             Render.renderWindowReady(game)
         }
+
         if (game.state === 'game_over') {
             Render.renderWindowGameOver(game)
         }
