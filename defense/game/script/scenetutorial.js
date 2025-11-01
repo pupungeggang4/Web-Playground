@@ -43,22 +43,36 @@ class SceneTutorial {
         if (game.state === 'level_clear') {
             Render.renderWindowLevelClear(game)   
         }
+
+        if (game.menu === true) {
+            Render.renderMenuSmall(game)
+        }
     }
 
     static mouseUp(game, pos, button) {
         if (game.menu === false) {
-            if (game.state === '') {
-                SceneTutorial.handleTutorialClick(game, pos, button)
-            } else if (game.state === 'break') {
-                SceneTutorial.handleTutorialClickBreak(game, pos, button)
-            } else if (game.state === 'level_clear') {
-                if (Func.pointInsideRectUI(pos, UI.windowSmall.buttonOK)) {
-                    game.scene = 'title'
-                    game.state = ''
+            if (Func.pointInsideRectUI(pos, UI.battle.buttonMenu)) {
+                game.menu = true
+            } else {
+                if (game.state === '') {
+                    SceneTutorial.handleTutorialClick(game, pos, button)
+                } else if (game.state === 'break') {
+                    SceneTutorial.handleTutorialClickBreak(game, pos, button)
+                } else if (game.state === 'level_clear') {
+                    if (Func.pointInsideRectUI(pos, UI.windowSmall.buttonOK)) {
+                        game.scene = 'title'
+                        game.state = ''
+                    }
                 }
             }
         } else if (game.menu === true) {
-
+            if (Func.pointInsideRectUI(pos, UI.battle.buttonMenu) || Func.pointInsideRectUI(pos, UI.menuSmall.buttonResume)) {
+                game.menu = false
+            } else if (Func.pointInsideRectUI(pos, UI.menuSmall.buttonExit)) {
+                game.menu = false
+                game.scene = 'title'
+                game.state = ''
+            }
         }
     }
 

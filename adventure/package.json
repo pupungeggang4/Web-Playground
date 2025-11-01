@@ -1,0 +1,12 @@
+{
+  "name": "adventure",
+  "version": "1.0.0",
+  "description": "Adventure game",
+  "license": "ISC",
+  "author": "pupungeggang4",
+  "type": "commonjs",
+  "main": "game/main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}
