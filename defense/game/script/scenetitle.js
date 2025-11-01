@@ -31,10 +31,13 @@ class SceneTitle {
                 game.pageLevel = 0
             }
             if (Func.pointInsideRectUI(pos, UI.title.buttonAdventure)) {
-
+                game.scene = 'adventure'
+                game.state = 'adventure_start'
             }
             if (Func.pointInsideRectUI(pos, UI.title.buttonTutorial)) {
-
+                game.scene = 'tutorial'
+                game.state = 'break'
+                game.tutorialPhase = 'welcome'
             }
             if (Func.pointInsideRectUI(pos, UI.title.buttonCollection)) {
 

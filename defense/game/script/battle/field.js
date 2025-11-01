@@ -1,30 +1,3 @@
-class Battle {
-    constructor() {
-        this.tempDeck = []
-        this.level = new Level()
-        this.player = new BattlePlayer()
-        this.field = new Field()
-    }
-
-    startBattle(game) {
-        this.field.startBattle(game)
-        this.player.startBattle(game)
-    }
-
-    handleTick(game) {
-        if (this.level.wave.length <= 0 && this.field.unit.length <= 0) {
-            game.state = 'level_clear'
-        }
-        this.level.handleTick(game)
-        this.player.handleTick(game)
-        this.field.handleTick(game)
-    }
-
-    render(game) {
-        this.field.render(game)
-    }
-}
-
 class Field {
     constructor() {
         this.camera = new Rect2(0, 0, 1280, 720)
@@ -102,42 +75,5 @@ class Field {
         for (let i = 0; i < this.unit.length; i++) {
             this.unit[i].render(game)
         }
-    }
-}
-
-class BattlePlayer {
-    constructor() {
-        this.level = 0
-        this.energy = 0
-        this.energyMax = 6
-        this.energyGen = 0
-        this.life = 0
-        this.lifeMax = 20
-        this.hand = []
-        this.deck = []
-    }
-
-    startBattle(game) {
-        this.level = 1
-        this.energy = 3
-        this.energyMax = 6
-        this.energyGen = 1
-        this.life = 20
-        this.lifeMax = 20
-
-        this.deck = game.battle.tempDeck
-        this.hand = []
-    }
-
-    handleTick(game) {
-        this.energy += this.energyGen * game.delta / 1000
-        
-        if (this.energy >= this.energyMax) {
-            this.energy = this.energyMax
-        }
-    }
-
-    render(game) {
-
     }
 }

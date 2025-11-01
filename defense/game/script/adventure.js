@@ -1,0 +1,7 @@
+class Adventure {
+
+}
+
+class AdventurePlayer {
+    
+}

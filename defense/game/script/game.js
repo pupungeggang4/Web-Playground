@@ -3,6 +3,7 @@ class Game {
         Img.load()
         this.scene = 'title'
         this.state = ''
+        this.tutorialPhase = 'welcome'
         this.menu = false
         this.lang = 0
         this.locale = Locale.data[Locale.langList[this.lang]]
@@ -35,6 +36,10 @@ class Game {
             SceneLevelSelect.loop(this)
         } else if (this.scene === 'battle') {
             SceneBattle.loop(this)
+        } else if (this.scene === 'tutorial') {
+            SceneTutorial.loop(this)
+        } else if (this.scene === 'adventure') {
+            SceneAdventure.loop(this)
         } else if (this.scene === 'collection') {
             SceneCollection.loop(this)
         }
@@ -56,6 +61,10 @@ class Game {
             SceneLevelSelect.mouseUp(this, pos, button)
         } else if (this.scene === 'battle') {
             SceneBattle.mouseUp(this, pos, button)
+        } else if (this.scene === 'adventure') {
+            SceneAdventure.mouseUp(this, pos, button)
+        } else if (this.scene === 'tutorial') {
+            SceneTutorial.mouseUp(this, pos, button)
         } else if (this.scene === 'collection') {
             SceneCollection.mouseUp(this, pos, button)
         }
