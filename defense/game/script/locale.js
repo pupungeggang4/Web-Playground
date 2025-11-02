@@ -32,7 +32,7 @@ class Locale {
                 upgraded: 'Now the energy limit and energy generation increased.',
                 enemy: 'Now, your unit can defeat the enemy',
                 bounce: 'You can put your unit into deck when the health is low.',
-                draw: 'You can draw cards eveny period.',
+                draw: 'You can draw cards every period.',
                 free: 'Now defeat enemies!'
             },
         },

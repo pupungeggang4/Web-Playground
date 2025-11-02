@@ -1,13 +1,15 @@
 class Field {
     constructor() {
         this.camera = new Rect2(0, 0, 1280, 720)
-        this.unit = []
+
+        this.unitPlayer = []
+        this.unitEnemy = []
         this.proj = []
         this.layout = [
-            ['block', null, null, null, null, null, null, null, null, null, 'Block'],
-            ['block', null, null, null, null, null, null, null, null, null, 'Block'],
-            ['block', null, null, null, null, null, null, null, null, null, 'Block'],
-            ['block', null, null, null, null, null, null, null, null, null, 'Block']
+            ['block', null, null, null, null, null, null, null, null, null, 'block'],
+            ['block', null, null, null, null, null, null, null, null, null, 'block'],
+            ['block', null, null, null, null, null, null, null, null, null, 'block'],
+            ['block', null, null, null, null, null, null, null, null, null, 'block']
         ]
         this.portal = []
         this.endPoint = []
@@ -32,7 +34,8 @@ class Field {
     }
 
     startBattle(game) {
-        this.unit = []
+        this.unitPlayer = []
+        this.unitEnemy = []
         this.proj = []
         this.layout = [
             ['block', null, null, null, null, null, null, null, null, null, 'block'],
@@ -42,21 +45,34 @@ class Field {
         ]
     }
 
-    handleTick(game) {
-        for (let i = 0; i < 4; i++) {
-            for (let j = 0; j < 11; j++) {
-                if (this.layout[i][j] != null && this.layout[i][j] != 'block') {
-                    this.layout[i][j].handleTick(game)
-                }
-            }
-        }
+    addTower(game, i, j, tower) {
+        let field = game.battle.field
+        tower.rect.pos = new Vec2(-400 + 80 * j, -120 + 80 * i)
+        this.layout[i][j] = tower
+        field.unitPlayer.push(tower)
+    }
 
+    putTowerToDeck(game, i, j) {
+        let player = game.battle.player
+        if (this.layout[i][j] instanceof Tower) {
+            let card = this.layout[i][j].toCard()
+            this.unitPlayer.splice(this.unitPlayer.indexOf(this.layout[i][j]), 1)
+            this.layout[i][j] = null
+            player.deckUsed.push(card)
+        }
+    }
+
+    handleTick(game) {
         for (let i = this.proj.length - 1; i >= 0; i--) {
             this.proj[i].handleTick(game)
         }
 
-        for (let i = this.unit.length - 1; i >= 0; i--) {
-            this.unit[i].handleTick(game)
+        for (let i = this.unitPlayer.length - 1; i >= 0; i--) {
+            this.unitPlayer[i].handleTick(game)
+        }
+
+        for (let i = this.unitEnemy.length - 1; i >= 0; i--) {
+            this.unitEnemy[i].handleTick(game)
         }
 
         for (let i = 0; i < this.endPoint.length; i++) {
@@ -71,9 +87,6 @@ class Field {
             for (let j = 0; j < 11; j++) {
                 let rect = [j * 80, i * 80, 80, 80]
                 Render.strokeRectUI(this.ctx, rect)
-                if (this.layout[i][j] != null && this.layout[i][j] != 'block') {
-                    this.layout[i][j].render(game)
-                }
             }
         }
 
@@ -83,16 +96,20 @@ class Field {
             this.portal[i].render(game)
         }
 
-       for (let i = 0; i <this.proj.length; i++) {
-            this.proj[i].render(game)
-        }
-
         for (let i = 0; i < this.endPoint.length; i++) {
             this.endPoint[i].render(game)
         }
 
-        for (let i = 0; i < this.unit.length; i++) {
-            this.unit[i].render(game)
-        } 
+        for (let i = 0; i < this.unitPlayer.length; i++) {
+            this.unitPlayer[i].render(game)
+        }
+
+        for (let i = 0; i < this.unitEnemy.length; i++) {
+            this.unitEnemy[i].render(game)
+        }
+        
+        for (let i = 0; i <this.proj.length; i++) {
+            this.proj[i].render(game)
+        }
     }
 }

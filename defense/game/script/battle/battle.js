@@ -4,15 +4,20 @@ class Battle {
         this.level = new Level()
         this.player = new BattlePlayer()
         this.field = new Field()
+
+        this.stateClick = ''
+        this.selectedHandIndex = -1
     }
 
     startBattle(game) {
         this.field.startBattle(game)
         this.player.startBattle(game)
+        this.stateClick = ''
+        this.selectedHandIndex = -1
     }
 
     handleTick(game) {
-        if (this.level.wave.length <= 0 && this.level.unitQueue.length <= 0 && this.field.unit.length <= 0 && game.state === '') {
+        if (this.level.wave.length <= 0 && this.level.unitQueue.length <= 0 && this.field.unitEnemy.length <= 0 && game.state === '') {
             game.state = 'level_clear'
         }
         this.level.handleTick(game)

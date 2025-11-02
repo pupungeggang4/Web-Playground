@@ -29,6 +29,8 @@ class UI {
         buttonMenu: [1180, 20, 80, 80],
         textTime: [24, 24],
         buttonUpgrade: [20, 620, 80, 80],
+        buttonUpgradeRect: [20, 620, 40, 40],
+        textUpgrade: [24, 624],
         handStart: [120, 620],
         handSize: [80, 80],
         handInterval: [80, 80],

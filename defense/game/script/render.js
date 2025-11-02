@@ -53,12 +53,29 @@ class Render {
         Render.drawImageUI(ctx, Img.energy, UI.battle.iconEnergy)
         Render.fillTextUI(ctx, `${player.energy.toFixed(1)}/${player.energyMax}`, UI.battle.textEnergy)
 
+        Render.drawImageUI(ctx, Img.buttonUpgrade, UI.battle.buttonUpgrade)
+        ctx.fillStyle = 'white'
+        Render.fillRectUI(ctx, UI.battle.buttonUpgradeRect)
+        ctx.fillStyle = 'black'
+        Render.fillTextUI(ctx, player.upgradeEnergy, UI.battle.textUpgrade)
         Render.strokeRectUI(ctx, UI.battle.buttonUpgrade)
 
         for (let i = 0; i < 8; i++) {
             let rect = [UI.battle.handStart[0] + UI.battle.handInterval[0] * i, UI.battle.handStart[1], UI.battle.handSize[0], UI.battle.handSize[1]]
+            if (i < player.hand.length) {
+                Render.drawImageUI(ctx, Img.tower, rect)
+            }
             Render.strokeRectUI(ctx, rect)
         }
+        if (game.battle.selectedHandIndex != -1) {
+            let rect = [UI.battle.handStart[0] + UI.battle.handInterval[0] * game.battle.selectedHandIndex, UI.battle.handStart[1], UI.battle.handSize[0], UI.battle.handSize[1]]
+            Render.drawImageUI(ctx, Img.selectFrame80, rect)
+        }
+        if (game.battle.stateClick === 'bounce') {
+            Render.drawImageUI(ctx, Img.selectFrame80, UI.battle.buttonBounce)
+        }
+
+        Render.drawImageUI(ctx, Img.buttonBounce, UI.battle.buttonBounce)
         Render.strokeRectUI(ctx, UI.battle.buttonBounce)
     }
 
@@ -181,5 +198,16 @@ class Render {
 
     static drawCenterCam(ctx, image, rect, cam) {
         ctx.drawImage(image, rect.pos.x - rect.size.x / 2 - cam.pos.x + cam.size.x / 2, rect.pos.y - rect.size.y / 2 - cam.pos.y + cam.size.y / 2)
+    }
+
+    static drawCenterCamPart(ctx, image, coord, rect, cam) {
+        ctx.drawImage(image, coord[0], coord[1], rect.size.x, rect.size.y,
+            rect.pos.x - rect.size.x / 2 - cam.pos.x + cam.size.x / 2, rect.pos.y - rect.size.y / 2 - cam.pos.y + cam.size.y / 2,
+            rect.size.x, rect.size.y
+        )
+    }
+
+    static findScreenCoord(rect, cam) {
+        return [rect.pos.x - rect.size.x / 2 - cam.pos.x + cam.size.x / 2, rect.pos.y - rect.size.y / 2 - cam.pos.y + cam.size.y / 2]
     }
 }

@@ -1,6 +1,6 @@
 class Data {
     static card = {
-        1: {'ID': 1, 'name': 'Card1', 'element': 'normal', 'type': 'unit', 'stat': [5, 1, 30], 'effect': []},
+        1: {'ID': 1, 'name': 'Card1', 'element': 'normal', 'type': 'unit', 'energy': 2, 'stat': [5, 1, 30], 'effect': []},
     }
     static unit = {
         1: {'ID': 1, 'attack_type': 1, 'range': [0, 9999], 'stat': [5, 1, 30]},

@@ -20,7 +20,7 @@ class SceneTutorial {
                     game.tutorialWait -= game.delta / 1000
                 }
             } else if (game.tutorialPhase === 'enemy') {
-                if (game.battle.field.unit.length <= 0) {
+                if (game.battle.field.unitEnemy.length <= 0) {
                     game.tutorialPhase = 'bounce'
                     game.state = 'break'
                 }
@@ -77,7 +77,39 @@ class SceneTutorial {
     }
 
     static handleTutorialClick(game, pos, button) {
+        let battle = game.battle
+        if (battle.stateClick === '') {
+            for (let i = 0; i < 8; i++) {
+                let rect = [UI.battle.handStart[0] + UI.battle.handInterval[0] * i, UI.battle.handStart[1], UI.battle.handSize[0], UI.battle.handSize[1]]
+                if (Func.pointInsideRectUI(pos, rect)) {
+                    battle.stateClick = 'card'
+                    battle.selectedHandIndex = i
+                }
+            }
 
+            if (Func.pointInsideRectUI(pos, UI.battle.buttonBounce)) {
+                battle.stateClick = 'bounce'
+            }
+        } else if (battle.stateClick === 'card') {
+            let field = game.battle.field
+            let fieldPos = new Vec2(pos.x - field.camera.size.x / 2, pos.y - field.camera.size.y / 2)
+            if (fieldPos.insideRect(field.rect)) {
+                let row = Math.floor((fieldPos.y + field.rect.size.y / 2) / 80)
+                let col = Math.floor((fieldPos.x + field.rect.size.x / 2) / 80)
+                game.battle.player.playCard(game, row, col, battle.selectedHandIndex)
+            }
+            battle.stateClick = ''
+            battle.selectedHandIndex = -1
+        } else if (battle.stateClick === 'bounce') {
+            let field = game.battle.field
+            let fieldPos = new Vec2(pos.x - field.camera.size.x / 2, pos.y - field.camera.size.y / 2)
+            if (fieldPos.insideRect(field.rect)) {
+                let row = Math.floor((fieldPos.y + field.rect.size.y / 2) / 80)
+                let col = Math.floor((fieldPos.x + field.rect.size.x / 2) / 80)
+                game.battle.field.putTowerToDeck(game, row, col)
+            }
+            battle.stateClick = ''
+        }
     }
 
     static handleTutorialClickBreak(game, pos, button) {
@@ -85,33 +117,43 @@ class SceneTutorial {
             game.tutorialPhase = 'explain'
         } else if (game.tutorialPhase === 'explain') {
             game.tutorialPhase = 'play_card'
+            game.battle.player.hand = [new Card()]
+            game.battle.player.hand[0].setData(1)
+            game.battle.player.deck = []
+            for (let i = 0; i < 6; i++) {
+                let card = new Card()
+                card.setData(1)
+                game.battle.player.deck.push(card)
+            }
         } else if (game.tutorialPhase === 'play_card') {
             if (Func.pointInsideRectUI(pos, UI.tutorialArea[0])) {
                 game.tutorialPhase = 'play_select'
+                
             }
         } else if (game.tutorialPhase === 'play_select') {
             if (Func.pointInsideRectUI(pos, UI.tutorialArea[1])) {
-                game.battle.player.energy -= 2
-                game.battle.field.layout[0][1] = new Tower()
+                game.battle.player.playCard(game, 0, 1, 0)
                 game.tutorialPhase = 'energy_gen'
                 game.state = 'tutorial'
                 game.tutorialWait = 4
+                game.battle.player.drawCool = 1000
             }
         } else if (game.tutorialPhase === 'upgrade') {
-            game.battle.player.energy -= 3
-            game.battle.player.energyGen += 0.2
-            game.battle.player.energyMax += 2
-            game.battle.player.level += 1
-            game.tutorialPhase = 'upgraded'
-            game.state = 'tutorial'
-            game.tutorialWait = 2
+            if (Func.pointInsideRectUI(pos, UI.battle.buttonUpgrade)) {
+                game.battle.player.upgrade(game)
+                game.tutorialPhase = 'upgraded'
+                game.state = 'tutorial'
+                game.tutorialWait = 2
+            }
         } else if (game.tutorialPhase === 'bounce') {
             if (Func.pointInsideRectUI(pos, UI.tutorialArea[2])) {
                 game.tutorialPhase = 'bounce_select'
             }
         } else if (game.tutorialPhase === 'bounce_select') {
-            game.battle.field.layout[0][1] = null
+            game.battle.field.putTowerToDeck(game, 0, 1)
             game.tutorialPhase = 'draw'
+            game.battle.player.hand.push(game.battle.player.deck.shift())
+            game.battle.player.drawCool = 4
         } else if (game.tutorialPhase === 'draw') {
             game.tutorialPhase = 'free'
             game.state = ''
