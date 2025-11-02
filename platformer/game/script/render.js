@@ -52,4 +52,10 @@ class Render {
     static renderCenterCam(ctx, img, rect, cam) {
         ctx.drawImage(img, rect.pos.x - rect.size.x / 2 - cam.pos.x + cam.size.x / 2, rect.pos.y - rect.size.y / 2 - cam.pos.y + cam.size.y / 2) 
     }
+    
+    static renderCenterCamPart(ctx, img, coord, rect, cam) {
+        ctx.drawImage(img, coord[0], coord[1], rect.size.x, rect.size.y,
+        rect.pos.x - rect.size.x / 2 - cam.pos.x + cam.size.x / 2, rect.pos.y - rect.size.y / 2 - cam.pos.y + cam.size.y / 2,
+        rect.size.x, rect.size.y)
+    }
 }
