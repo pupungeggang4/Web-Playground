@@ -38,6 +38,7 @@ class SceneTitle {
             if (game.selectedTitle === 0) {
                 game.scene = 'village'
                 game.state = ''
+                game.village = new Village()
             } else if (game.selectedTitle === 1) {
                 if (game.lang === 'en') {
                     game.lang = 'ko'
@@ -54,6 +55,7 @@ class SceneTitle {
             if (Func.pointInsideRectUI(pos, UI.title.buttonStart)) {
                 game.scene = 'village'
                 game.state = ''
+                game.village = new Village()
             } else if (Func.pointInsideRectUI(pos, UI.title.buttonLang)) {
                 if (game.lang === 'en') {
                     game.lang = 'ko'

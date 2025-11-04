@@ -104,6 +104,11 @@ class Render {
         Render.drawImageUI(game.ctx, Img.energy, UI.battle.iconEnergy)
         Render.fillTextUI(game.ctx, `${player.energy}/${player.energyMax}`, UI.battle.textEnergy)
 
+        Render.drawImageUI(game.ctx, Img.dash, UI.battle.iconDash)
+        Render.drawImageUI(game.ctx, Img.attack, UI.battle.iconAttack)
+        game.ctx.fillStyle = 'gray'
+        game.ctx.fillRect(UI.battle.iconDash[0], UI.battle.iconDash[1], UI.battle.iconDash[2] * player.dashCoolLeft / player.dashCool, UI.battle.iconDash[3])
+        game.ctx.fillStyle = 'black'
         Render.strokeRectUI(game.ctx, UI.battle.descriptionRect)
         
         for (let i = 0; i < 5; i++) {
@@ -142,5 +147,9 @@ class Render {
 
     static drawCenterCam(ctx, image, rect, cam) {
         ctx.drawImage(image, rect.pos.x - rect.size.x / 2 - cam.pos.x + cam.size.x / 2, rect.pos.y - rect.size.y / 2 - cam.pos.y + cam.size.y / 2)
+    }
+
+    static drawCenterCamPart(ctx, image, coord, rect, cam) {
+        ctx.drawImage(image, coord[0], coord[1], rect.size.x, rect.size.y, rect.pos.x - rect.size.x / 2 - cam.pos.x + cam.size.x / 2, rect.pos.y - rect.size.y / 2 - cam.pos.y + cam.size.y / 2, rect.size.x, rect.size.y)
     }
 }

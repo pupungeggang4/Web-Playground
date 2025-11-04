@@ -26,10 +26,7 @@ class VillagePlayer {
         this.speed = 320.0
         this.velocity = new Vec2(0, 0)
         this.rect = new Rect2(0, 0, 80, 80)
-        this.canvas = document.createElement('canvas')
-        this.canvas.width = 80
-        this.canvas.height = 80
-        this.ctx = this.canvas.getContext('2d')
+        this.canvas = Img.player
     }
 
     handleTick(game) {
@@ -75,8 +72,6 @@ class VillagePlayer {
     render(game) {
         let ctx = game.ctx
         let village = game.village
-        Render.clearCanvas(this.canvas, this.ctx)
-        Render.drawImageUI(this.ctx, Img.player, [0, 0])
         Render.drawCenterCam(ctx, this.canvas, this.rect, village.camera)
     }
 }
@@ -84,17 +79,12 @@ class VillagePlayer {
 class VillagePortal {
     constructor() {
         this.rect = new Rect2(0, 0, 80, 80)
-        this.canvas = document.createElement('canvas')
-        this.canvas.width = 80
-        this.canvas.height = 80
-        this.ctx = this.canvas.getContext('2d')
+        this.canvas = Img.portal
     }
 
     render(game) {
         let ctx = game.ctx
         let village = game.village
-        Render.clearCanvas(this.canvas, this.ctx)
-        Render.drawImageUI(this.ctx, Img.portal, [0, 0])
         Render.drawCenterCam(ctx, this.canvas, this.rect, village.camera)
     }
 }

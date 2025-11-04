@@ -37,6 +37,8 @@ class SceneBattle {
 
             if (game.state === 'adventure_start') {
                 SceneBattle.handleKeyAdventureStart(game, key)
+            } else if (game.state === '') {
+                SceneBattle.handleKeyBattle(game, key)
             }
         } else if (game.menu === true) {
             if (key === 'q' || key === 'Escape') {
@@ -79,6 +81,12 @@ class SceneBattle {
         }
     }
 
+    static handleKeyBattle(game, key) {
+        if (key === ' ') {
+            game.field.player.dash(game)
+        }
+    }
+
     static mouseUp(game, pos, button) {
         if (button === 0) {
             if (game.menu === false) {
@@ -87,7 +95,7 @@ class SceneBattle {
                     game.selectedMenuBattle = 0
                 }
                 if (game.state === '') {
-
+                    SceneBattle.handleMouseBattle(game, pos)
                 } else if (game.state === 'adventure_start') {
                     SceneBattle.handleMouseAdventureStart(game, pos)
                 }
@@ -117,6 +125,14 @@ class SceneBattle {
         if (Func.pointInsideRectUI(pos, UI.window.buttonOK)) {
             game.state = ''
             game.field.player.startBattle(game)
+        }
+    }
+
+    static handleMouseBattle(game, pos) {
+        let camera = game.field.camera
+        if (!(Func.pointInsideRectUI(pos, UI.battle.buttonMenu))) {
+            let clickedPos = new Vec2(pos.x + camera.pos.x - camera.size.x / 2, pos.y + camera.pos.y - camera.size.y / 2)
+            game.field.player.shoot(game, clickedPos)
         }
     }
 }

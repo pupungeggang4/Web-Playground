@@ -102,6 +102,7 @@ class SceneVillage {
                         game.scene = 'battle'
                         game.state = 'adventure_start'
                         game.selectedAdventureStart = 0
+                        game.field = new Field()
                     } else if (Func.pointInsideRectUI(pos, UI.windowAdventureConfirm.buttonNo)) {
                         game.state = ''
                     }

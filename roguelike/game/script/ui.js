@@ -33,9 +33,12 @@ class UI {
         barEnergy: [80, 164, 140, 32],
 
         descriptionRect: [200, 620, 320, 80],
-        cardStart: [20, 220],
+        cardStart: [20, 440],
         cardSize: [160, 160],
-        cardInterval: [0, 80],
+        cardInterval: [0, -40],
+
+        iconDash: [20, 620, 80, 80],
+        iconAttack: [100, 620, 80, 80],
     }
 
     static windowAdventureConfirm = {

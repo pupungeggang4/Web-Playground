@@ -4,9 +4,22 @@ class Vec2 {
         this.y = y
     }
 
+    size() {
+        return Math.sqrt(this.x ** 2 + this.y ** 2)
+    }
+
+    normalized() {
+        let size = this.size()
+        return new Vec2(this.x / size, this.y / size)
+    }
+
     mul(n) {
         this.x *= n
         this.y *= n
+    }
+
+    static sub(v1, v2) {
+        return new Vec2(v1.x - v2.x, v1.y - v2.y)
     }
 
     static distance(v1, v2) {
