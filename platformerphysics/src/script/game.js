@@ -15,6 +15,8 @@ class Game {
         this.frameCurrent = 0
         this.framePrevious = 0
         this.delta = 0
+
+        this.field = new Field()
     }
 
     run() {
@@ -46,7 +48,7 @@ class Game {
         if (key === 'ArrowDown') {
             this.keyPressed['down'] = true
         }
-        if (scene === 'main') {
+        if (this.scene === 'main') {
             SceneMain.keyDown(this, key)
         }
     }
@@ -65,7 +67,7 @@ class Game {
         if (key === 'ArrowDown') {
             this.keyPressed['down'] = false
         }
-        if (scene === 'main') {
+        if (this.scene === 'main') {
             SceneMain.keyUp(this, key)
         }
     }
