@@ -6,7 +6,7 @@ class Field {
     }
 
     handleTick(game) {
-
+        this.player.handleTick(game)
     }
 
     render(game) {
