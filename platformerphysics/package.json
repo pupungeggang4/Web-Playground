@@ -1,0 +1,12 @@
+{
+  "name": "platformerphysics",
+  "version": "1.0.0",
+  "description": "Physics Implementation Platformer",
+  "license": "ISC",
+  "author": "pupungeggang4",
+  "type": "commonjs",
+  "main": "src/main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}

@@ -87,11 +87,7 @@ class PlayerUnit extends Unit {
         this.tempRect = new Rect2(0, 0, 80, 80)
 
         this.rect = new Rect2(0, 0, 80, 80)
-        this.canvas = document.createElement('canvas')
-        this.canvas.width = 80
-        this.canvas.height = 80
-        this.ctx = this.canvas.getContext('2d')
-        Render.init(this.ctx)
+        this.canvas = Img.player
     }
 
     handleTick(game) {
@@ -138,8 +134,6 @@ class PlayerUnit extends Unit {
 
     render(game) {
         let field = game.field
-        Render.clearCanvas(this.canvas, this.ctx)
-        this.ctx.drawImage(Img.player, 0, 0)
         Render.renderCenterCam(game.ctx, this.canvas, this.rect, field.camera)
     }
 }
