@@ -1,7 +1,7 @@
 class Field {
     constructor() {
         this.camera = new Rect2(0, 0, 1280, 720)
-        this.player = new PlayerUnit()
+        this.player = new FieldPlayer()
         this.entityList = [new Platform()]
     }
 
