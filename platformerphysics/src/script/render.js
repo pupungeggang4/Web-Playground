@@ -19,6 +19,17 @@ class Render {
         ctx.drawImage(image, coord[0], coord[1], rect.size.x, rect.size.y, rect.pos.x - rect.size.x / 2 - cam.pos.x + cam.size.x / 2, rect.pos.y - rect.size.y / 2 - cam.pos.y + cam.size.y / 2, rect.size.x, rect.size.y)
     }
 
+    static drawCenterCamRepeat(ctx, image, step, rect, cam) {
+        let start = [rect.pos.x - rect.size.x / 2 - cam.pos.x + cam.size.x / 2, rect.pos.y - rect.size.y / 2 - cam.pos.y + cam.size.y / 2, rect.size.x, rect.size.y]
+        let numX = Math.floor(rect.size.x / step.x)
+        let numY = Math.floor(rect.size.y / step.y)
+        for (let i = 0; i < numY; i++) {
+            for (let j = 0; j < numX; j++) {
+                ctx.drawImage(image, start[0] + j * step.x, start[1] + i * step.y)
+            }
+        }
+    }
+
     static strokeRectCenterCam(ctx, rect, cam, color = 'black') {
         ctx.strokeStyle = color
         ctx.strokeRect(rect.pos.x - rect.size.x / 2 - cam.pos.x + cam.size.x / 2, rect.pos.y - rect.size.y / 2 - cam.pos.y + cam.size.y / 2, rect.size.x, rect.size.y)

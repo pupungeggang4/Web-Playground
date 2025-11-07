@@ -1,5 +1,6 @@
 class Game {
     constructor() {
+        Img.loadImage()
         this.scene = 'main'
         this.field = []
         this.canvas = document.getElementById('screen')
@@ -17,6 +18,8 @@ class Game {
         this.delta = 0
 
         this.field = new Field()
+        Level.loadLevel(this, Data.level[1])
+        this.pattern = this.ctx.createPattern(Img.texture.stone, 'repeat')
     }
 
     run() {
@@ -32,6 +35,8 @@ class Game {
         if (this.scene === 'main') {
             SceneMain.loop(this)
         }
+
+        this.gameLoop = requestAnimationFrame(() => this.loop())
     }
 
     keyDown(event) {
