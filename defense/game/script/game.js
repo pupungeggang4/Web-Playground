@@ -1,7 +1,7 @@
 class Game {
     constructor() {
         Img.load()
-        this.scene = 'title'
+        this.scene = new SceneTitle()
         this.state = ''
         this.tutorialPhase = 'welcome'
         this.tutorialWait = 0
@@ -31,19 +31,7 @@ class Game {
         this.delta = this.frameCurrent - this.framePrevious
         this.framePrevious = performance.now()
 
-        if (this.scene === 'title') {
-            SceneTitle.loop(this)
-        } else if (this.scene === 'level_select') {
-            SceneLevelSelect.loop(this)
-        } else if (this.scene === 'battle') {
-            SceneBattle.loop(this)
-        } else if (this.scene === 'tutorial') {
-            SceneTutorial.loop(this)
-        } else if (this.scene === 'adventure') {
-            SceneAdventure.loop(this)
-        } else if (this.scene === 'collection') {
-            SceneCollection.loop(this)
-        }
+        this.scene.loop(this)
 
         this.gameLoop = requestAnimationFrame(() => this.loop())
     }
@@ -56,18 +44,6 @@ class Game {
         }
         let button = event.button
 
-        if (this.scene === 'title') {
-            SceneTitle.mouseUp(this, pos, button)
-        } else if (this.scene === 'level_select') {
-            SceneLevelSelect.mouseUp(this, pos, button)
-        } else if (this.scene === 'battle') {
-            SceneBattle.mouseUp(this, pos, button)
-        } else if (this.scene === 'adventure') {
-            SceneAdventure.mouseUp(this, pos, button)
-        } else if (this.scene === 'tutorial') {
-            SceneTutorial.mouseUp(this, pos, button)
-        } else if (this.scene === 'collection') {
-            SceneCollection.mouseUp(this, pos, button)
-        }
+        this.scene.mouseUp(this, pos, button)
     }
 }

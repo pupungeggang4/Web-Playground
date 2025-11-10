@@ -9,6 +9,7 @@ class Tower {
         this.side = 0
 
         this.rect = new Rect2(-320, -120, 80, 80)
+        this.layoutPos = [-1, -1]
     }
 
     setData(ID) {
@@ -26,11 +27,20 @@ class Tower {
         } else {
             this.attackCool -= game.delta / 1000
         }
+
+        if (this.hp <= 0) {
+            field.layout[this.layoutPos[0]][this.layoutPos[1]] = null
+            field.unitPlayer.splice(field.unitPlayer.indexOf(this))
+        }
     }
 
     render(game) {
         let field = game.battle.field
         Render.drawCenterCam(game.ctx, Img.tower, this.rect, field.camera)
+        game.ctx.fillStyle = 'green'
+        let rPos = Render.findScreenCoord(this.rect, field.camera)
+        game.ctx.fillRect(rPos[0], rPos[1], this.hp / this.hpMax * this.rect.size.x, 10)
+        game.ctx.fillStyle = 'black'
     }
 
     toCard() {

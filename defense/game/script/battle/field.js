@@ -48,6 +48,7 @@ class Field {
     addTower(game, i, j, tower) {
         let field = game.battle.field
         tower.rect.pos = new Vec2(-400 + 80 * j, -120 + 80 * i)
+        tower.layoutPos = [i, j]
         this.layout[i][j] = tower
         field.unitPlayer.push(tower)
     }

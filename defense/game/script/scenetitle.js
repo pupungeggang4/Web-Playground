@@ -1,9 +1,13 @@
 class SceneTitle {
-    static loop(game) {
-        SceneTitle.render(game)
+    constructor() {
+
     }
 
-    static render(game) {
+    loop(game) {
+        this.render(game)
+    }
+
+    render(game) {
         Render.init(game.ctx)
         Render.clearCanvas(game.canvas, game.ctx)
         Render.fillCanvas(game.canvas, game.ctx)
@@ -23,20 +27,20 @@ class SceneTitle {
         Render.strokeRectUI(game.ctx, UI.title.buttonErase)
     }
 
-    static mouseUp(game, pos, button) {
+    mouseUp(game, pos, button) {
         if (button === 0) {
             if (Func.pointInsideRectUI(pos, UI.title.buttonStart)) {
-                game.scene = 'level_select'
+                game.scene = new SceneLevelSelect()
                 game.state = ''
                 game.pageLevel = 0
             }
             if (Func.pointInsideRectUI(pos, UI.title.buttonAdventure)) {
-                game.scene = 'adventure'
+                game.scene = new SceneAdventure()
                 game.state = 'adventure_start'
                 game.menu = false
             }
             if (Func.pointInsideRectUI(pos, UI.title.buttonTutorial)) {
-                game.scene = 'tutorial'
+                game.scene = new SceneTutorial()
                 game.state = 'break'
                 game.menu = false
                 game.tutorialPhase = 'welcome'

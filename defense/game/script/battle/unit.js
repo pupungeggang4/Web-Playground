@@ -4,6 +4,7 @@ class Unit {
         this.hp = 30
         this.hpMax = 30
         this.attack = 3; this.attackType = 1; this.attackSpeed = 1.0; this.attackCool = 1.0; this.attackRange = []
+        this.state = 'move'; this.attackTarget = null;
         this.effect = []
         this.speed = 64.0
 
@@ -22,7 +23,29 @@ class Unit {
 
     handleTick(game) {
         let field = game.battle.field
-        //this.rect.pos.x -= this.speed * game.delta / 1000
+        if (this.attackType === 1) {
+            this.state = 'move'
+            for (let i = 0; i < field.unitPlayer.length; i++) {
+                let unit = field.unitPlayer[i]
+                if (Rect2.simpleCollide(this.rect, unit.rect)) {
+                    this.attackTarget = unit
+                    this.state = 'attack'
+                    break
+                }
+            }
+        }
+        if (this.state === 'move') {
+            this.rect.pos.x -= this.speed * game.delta / 1000
+        } else if (this.state === 'attack') {
+            if (this.attackCool <= 0) {
+                if (this.attackTarget != null) {
+                    this.attackTarget.hp -= this.attack
+                }
+                this.attackCool = 1.0 / this.attackSpeed
+            } else {
+                this.attackCool -= game.delta / 1000
+            }
+        }
         if (this.hp <= 0) {
             field.unitEnemy.splice(field.unitEnemy.indexOf(this), 1)
         }

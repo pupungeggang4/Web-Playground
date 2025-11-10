@@ -1,7 +1,7 @@
 class Game {
     constructor() {
         Img.loadImage()
-        this.scene = 'main'
+        this.scene = new SceneMain()
         this.field = []
         this.canvas = document.getElementById('screen')
         this.ctx = this.canvas.getContext('2d')
@@ -32,9 +32,7 @@ class Game {
         this.delta = this.frameCurrent - this.framePrevious
         this.framePrevious = performance.now()
 
-        if (this.scene === 'main') {
-            SceneMain.loop(this)
-        }
+        this.scene.loop(this)
 
         this.gameLoop = requestAnimationFrame(() => this.loop())
     }
@@ -53,9 +51,7 @@ class Game {
         if (key === 'ArrowDown') {
             this.keyPressed['down'] = true
         }
-        if (this.scene === 'main') {
-            SceneMain.keyDown(this, key)
-        }
+        this.scene.keyDown(this)
     }
 
     keyUp(event) {
@@ -72,8 +68,6 @@ class Game {
         if (key === 'ArrowDown') {
             this.keyPressed['down'] = false
         }
-        if (this.scene === 'main') {
-            SceneMain.keyUp(this, key)
-        }
+        this.scene.keyDown(this)
     }
 }

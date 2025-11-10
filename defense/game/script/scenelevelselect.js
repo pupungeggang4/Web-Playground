@@ -1,9 +1,13 @@
 class SceneLevelSelect {
-    static loop(game) {
-        SceneLevelSelect.render(game)
+    constructor() {
+
     }
 
-    static render(game) {
+    loop(game) {
+        this.render(game)
+    }
+
+    render(game) {
         Render.init(game)
         Render.clearCanvas(game.canvas, game.ctx)
         Render.fillCanvas(game.canvas, game.ctx)
@@ -23,10 +27,10 @@ class SceneLevelSelect {
         }
     }
 
-    static mouseUp(game, pos, button) {
+    mouseUp(game, pos, button) {
         if (button === 0) {
             if (Func.pointInsideRectUI(pos, UI.levelSelect.buttonBack)) {
-                game.scene = 'title'
+                game.scene = new SceneTitle()
                 game.state = ''
             }
             if (Func.pointInsideRectUI(pos, UI.levelSelect.buttonPrev)) {
@@ -40,7 +44,7 @@ class SceneLevelSelect {
                 let col = i - row * 5
                 let rect = [UI.levelSelect.buttonLevelStart[0] + UI.levelSelect.buttonLevelInterval[0] * col, UI.levelSelect.buttonLevelStart[1] + UI.levelSelect.buttonLevelInterval[1] * row, UI.levelSelect.buttonLevelSize[0], UI.levelSelect.buttonLevelSize[1]]
                 if (Func.pointInsideRectUI(pos, rect)) {
-                    game.scene = 'battle'
+                    game.scene = new SceneBattle()
                     game.state = 'ready'
                     game.battle = new Battle()
                     let level = Data.levelList[game.pageLevel][i]

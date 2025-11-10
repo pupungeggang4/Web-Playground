@@ -1,18 +1,18 @@
 class SceneMain {
-    static loop(game) {
-        SceneMain.render(game)
+    loop(game) {
+        this.render(game)
     }
 
-    static render(game) {
+    render(game) {
         Render.init(game.ctx)
         game.field.render(game)
     }
 
-    static keyDown(game, key) {
+    keyDown(game, key) {
 
     }
 
-    static keyUp(game, key) {
+    keyUp(game, key) {
 
     }
 }

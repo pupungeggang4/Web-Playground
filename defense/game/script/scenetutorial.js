@@ -1,5 +1,9 @@
 class SceneTutorial {
-    static loop(game) {
+    constructor() {
+
+    }
+
+    loop(game) {
         if (game.menu === false) {
             if (game.state === 'tutorial' || game.state === '') {
                 game.battle.handleTick(game)
@@ -26,10 +30,10 @@ class SceneTutorial {
                 }
             }
         }
-        SceneTutorial.render(game)
+        this.render(game)
     }
 
-    static render(game) {
+    render(game) {
         Render.init(game.ctx)
         Render.clearCanvas(game.canvas, game.ctx)
         Render.fillCanvas(game.canvas, game.ctx)
@@ -49,18 +53,18 @@ class SceneTutorial {
         }
     }
 
-    static mouseUp(game, pos, button) {
+    mouseUp(game, pos, button) {
         if (game.menu === false) {
             if (Func.pointInsideRectUI(pos, UI.battle.buttonMenu)) {
                 game.menu = true
             } else {
                 if (game.state === '') {
-                    SceneTutorial.handleTutorialClick(game, pos, button)
+                    this.handleTutorialClick(game, pos, button)
                 } else if (game.state === 'break') {
-                    SceneTutorial.handleTutorialClickBreak(game, pos, button)
+                    this.handleTutorialClickBreak(game, pos, button)
                 } else if (game.state === 'level_clear') {
                     if (Func.pointInsideRectUI(pos, UI.windowSmall.buttonOK)) {
-                        game.scene = 'title'
+                        game.scene = new SceneTitle()
                         game.state = ''
                     }
                 }
@@ -70,13 +74,13 @@ class SceneTutorial {
                 game.menu = false
             } else if (Func.pointInsideRectUI(pos, UI.menuSmall.buttonExit)) {
                 game.menu = false
-                game.scene = 'title'
+                game.scene = new SceneTitle()
                 game.state = ''
             }
         }
     }
 
-    static handleTutorialClick(game, pos, button) {
+    handleTutorialClick(game, pos, button) {
         let battle = game.battle
         if (battle.stateClick === '') {
             for (let i = 0; i < 8; i++) {
@@ -112,7 +116,7 @@ class SceneTutorial {
         }
     }
 
-    static handleTutorialClickBreak(game, pos, button) {
+    handleTutorialClickBreak(game, pos, button) {
         if (game.tutorialPhase === 'welcome') {
             game.tutorialPhase = 'explain'
         } else if (game.tutorialPhase === 'explain') {

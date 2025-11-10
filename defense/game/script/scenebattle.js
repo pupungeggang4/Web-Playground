@@ -1,14 +1,18 @@
 class SceneBattle {
-    static loop(game) {
+    constructor() {
+
+    }
+
+    loop(game) {
         if (game.menu === false) {
             if (game.state === '') {
                 game.battle.handleTick(game)
             }
         }
-        SceneBattle.render(game)
+        this.render(game)
     }
 
-    static render(game) {
+    render(game) {
         Render.init(game.ctx)
         Render.clearCanvas(game.canvas, game.ctx)
         Render.fillCanvas(game.canvas, game.ctx)
@@ -35,7 +39,7 @@ class SceneBattle {
         }
     }
 
-    static mouseUp(game, pos, button) {
+    mouseUp(game, pos, button) {
         if (button === 0) {
             if (game.menu === false) {
                 if (Func.pointInsideRectUI(pos, UI.battle.buttonMenu)) {
@@ -43,17 +47,17 @@ class SceneBattle {
                 }
 
                 if (game.state === '') {
-                    SceneBattle.handleClickBattle(game, pos, button)
+                    this.handleClickBattle(game, pos, button)
                 } else if (game.state === 'ready') {
-                    SceneBattle.handleClickReady(game, pos, button)
+                    this.handleClickReady(game, pos, button)
                 } else if (game.state === 'game_over') {
                     if (Func.pointInsideRectUI(pos, UI.windowSmall.buttonOK)) {
-                        game.scene = 'title'
+                        game.scene = new SceneTitle()
                         game.state = ''
                     }
                 } else if (game.state === 'level_clear') {
                     if (Func.pointInsideRectUI(pos, UI.windowSmall.buttonOK)) {
-                        game.scene = 'level_select'
+                        game.scene = new SceneLevelSelect()
                         game.state = ''
                     }
                 }
@@ -66,25 +70,25 @@ class SceneBattle {
                     game.state = 'ready'
                 } else if (Func.pointInsideRectUI(pos, UI.menu.buttonLevelSelect)) {
                     game.menu = false
-                    game.scene = 'level_select'
+                    game.scene = new SceneLevelSelect()
                     game.state = ''
                 } else if (Func.pointInsideRectUI(pos, UI.menu.buttonExit)) {
                     game.menu = false
-                    game.scene = 'title'
+                    game.scene = new SceneTitle()
                     game.state = ''
                 }
             }
         }
     }
 
-    static handleClickReady(game, pos, button) {
+    handleClickReady(game, pos, button) {
         if (Func.pointInsideRectUI(pos, UI.window.buttonOk)) {
             game.battle.startBattle(game)
             game.state = ''
         }
     }
 
-    static handleClickBattle(game, pos, button) {
+    handleClickBattle(game, pos, button) {
         let field = game.battle.field
         let fieldPos = new Vec2(pos.x - field.camera.size.x / 2, pos.y - field.camera.size.y / 2)
         if (fieldPos.insideRect(field.rect)) {
