@@ -1,9 +1,9 @@
 class SceneTitle {
-    static loop(game) {
-        SceneTitle.render(game)
+    loop(game) {
+        this.render(game)
     }
 
-    static render(game) {
+    render(game) {
         Render.init(game.ctx)
         Render.clearCanvas(game.canvas, game.ctx)
         Render.fillCanvas(game.canvas, game.ctx)
@@ -17,7 +17,7 @@ class SceneTitle {
         Render.drawImageUI(game.ctx, Img.arrow, UI.title.arrow[game.selectedTitle])
     }
 
-    static keyDown(game, key) {
+    keyDown(game, key) {
         if (key === 'ArrowUp') {
             game.selectedTitle = (game.selectedTitle + 2) % 3
         }
@@ -28,7 +28,7 @@ class SceneTitle {
 
         if (key === 'Enter') {
             if (game.selectedTitle === 0) {
-                game.scene = 'field'
+                game.scene = new SceneField()
                 game.state = ''
                 game.field = new Field()
             } else if (game.selectedTitle === 1) {
@@ -43,7 +43,7 @@ class SceneTitle {
         }
     }
 
-    static keyUp(game, key) {
+    keyUp(game, key) {
 
     }
 }

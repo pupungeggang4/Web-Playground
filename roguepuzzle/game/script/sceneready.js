@@ -1,9 +1,9 @@
 class SceneReady {
     static loop(game) {
-        SceneReady.render(game)
+        this.render(game)
     }
 
-    static render(game) {
+    render(game) {
         Render.init(game.ctx)
         Render.clearCanvas(game.canvas, game.ctx)
         Render.fillCanvas(game.canvas, game.ctx)
@@ -19,7 +19,7 @@ class SceneReady {
         Render.fillTextUI(game.ctx, Locale.data[game.lang].startAdventure, UI.ready.textStart)
     }
 
-    static mouseUp(game, pos, button) {
+    mouseUp(game, pos, button) {
         if (button === 0) {
             for (let i = 0; i < UI.ready.character.length; i++) {
                 if (Func.pointInsideRectUI(pos, UI.ready.character[i])) {

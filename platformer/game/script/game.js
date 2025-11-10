@@ -5,7 +5,7 @@ class Game {
         this.field = new Field()
         this.player = new Player()
 
-        this.scene = 'title'
+        this.scene = new SceneTitle()
         this.state = ''
         this.menu = false
         this.lang = 'en'
@@ -42,11 +42,7 @@ class Game {
         this.delta = this.frameCurrent - this.framePrevious
         this.framePrevious = performance.now()
 
-        if (this.scene === 'title') {
-            SceneTitle.loop(this)
-        } else if (this.scene === 'field') {
-            SceneField.loop(this)
-        }
+        this.scene.loop(this)
 
         this.gameLoop = requestAnimationFrame(() => this.loop())
     }
@@ -64,11 +60,7 @@ class Game {
             }
         }
 
-        if (this.scene === 'title') {
-            SceneTitle.keyDown(game, key)
-        } else if (this.scene === 'field') {
-            SceneField.keyDown(game, key)
-        }
+        this.scene.keyDown(this, key)
     }
 
     keyUp(event) {
@@ -80,10 +72,6 @@ class Game {
             }
         }
 
-        if (this.scene === 'title') {
-            SceneTitle.keyUp(game, key)
-        } else if (this.scene === 'field') {
-            SceneField.keyUp(game, key)
-        }
+        this.scene.keyUp(this, key)
     }
 }

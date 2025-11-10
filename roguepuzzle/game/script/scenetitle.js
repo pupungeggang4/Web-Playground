@@ -1,9 +1,9 @@
 class SceneTitle {
-    static loop(game) {
-        SceneTitle.render(game)
+    loop(game) {
+        this.render(game)
     }
 
-    static render(game) {
+    render(game) {
         Render.init(game.ctx)
         Render.clearCanvas(game.canvas, game.ctx)
         Render.fillCanvas(game.canvas, game.ctx)
@@ -17,7 +17,7 @@ class SceneTitle {
         Render.fillTextUI(game.ctx, Locale.data[game.lang].language, UI.title.textLang)
     }
 
-    static mouseUp(game, pos, button) {
+    mouseUp(game, pos, button) {
         if (button === 0) {
             if (Func.pointInsideRectUI(pos, UI.title.buttonStart)) {
                 game.scene = 'ready'

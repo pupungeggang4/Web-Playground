@@ -7,7 +7,7 @@ class Game {
 
         this.keyPressed = {'left': false, 'right': false, 'up': false, 'down': false}
 
-        this.scene = 'title'
+        this.scene = new SceneTitle()
         this.state = ''
         this.menu = false
         this.lang = 'en'
@@ -40,13 +40,7 @@ class Game {
         this.delta = this.frameCurrent - this.framePrevious
         this.framePrevious = performance.now()
 
-        if (this.scene === 'title') {
-            SceneTitle.loop(this)
-        } else if (this.scene === 'village') {
-            SceneVillage.loop(this)
-        } else if (this.scene === 'battle') {
-            SceneBattle.loop(this)
-        }
+        this.scene.loop(this)
 
         this.gameLoop = requestAnimationFrame(() => this.loop())
     }
@@ -67,13 +61,7 @@ class Game {
             this.keyPressed['down'] = true
         }
 
-        if (this.scene === 'title') {
-            SceneTitle.keyDown(this, key)
-        } else if (this.scene === 'village') {
-            SceneVillage.keyDown(this, key)
-        } else if (this.scene === 'battle') {
-            SceneBattle.keyDown(this, key)
-        }
+        this.scene.keyDown(this, key)
     }
 
     keyUp(event) {
@@ -92,13 +80,7 @@ class Game {
             this.keyPressed['down'] = false
         }
 
-        if (this.scene === 'title') {
-            SceneTitle.keyUp(this, key)
-        } else if (this.scene === 'village') {
-            SceneVillage.keyUp(this, key)
-        } else if (this.scene === 'battle') {
-            SceneBattle.keyUp(this, key)
-        }
+        this.scene.keyUp(this, key)
     }
 
     mouseUp(event) {
@@ -109,12 +91,6 @@ class Game {
         }
         let button = event.button
 
-        if (this.scene === 'title') {
-            SceneTitle.mouseUp(this, pos, button)
-        } else if (this.scene === 'village') {
-            SceneVillage.mouseUp(this, pos, button)
-        } else if (this.scene === 'battle') {
-            SceneBattle.mouseUp(this, pos, button)
-        }
+        this.scene.mouseUp(this, pos, button)
     }
 }

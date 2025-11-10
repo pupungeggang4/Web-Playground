@@ -1,9 +1,9 @@
 class SceneTitle {
-    static loop(game) {
-        SceneTitle.render(game)
+    loop(game) {
+        this.render(game)
     }
 
-    static render(game) {
+    render(game) {
         Render.init(game.ctx)
         Render.clearCanvas(game.canvas, game.ctx)
         Render.fillCanvas(game.canvas, game.ctx)
@@ -21,11 +21,11 @@ class SceneTitle {
         Render.drawImageUI(game.ctx, Img.arrow, UI.title.arrow[game.selectedTitle])
     }
 
-    static keyUp(game, key) {
+    keyUp(game, key) {
 
     }
 
-    static keyDown(game, key) {
+    keyDown(game, key) {
         if (key === 'w') {
             game.selectedTitle = (game.selectedTitle + 3) % 4
         }
@@ -36,7 +36,7 @@ class SceneTitle {
 
         if (key === 'Enter') {
             if (game.selectedTitle === 0) {
-                game.scene = 'village'
+                game.scene = new SceneVillage()
                 game.state = ''
                 game.village = new Village()
             } else if (game.selectedTitle === 1) {
@@ -50,10 +50,10 @@ class SceneTitle {
         }
     }
 
-    static mouseUp(game, pos, button) {
+    mouseUp(game, pos, button) {
         if (button === 0) {
             if (Func.pointInsideRectUI(pos, UI.title.buttonStart)) {
-                game.scene = 'village'
+                game.scene = new SceneVillage()
                 game.state = ''
                 game.village = new Village()
             } else if (Func.pointInsideRectUI(pos, UI.title.buttonLang)) {

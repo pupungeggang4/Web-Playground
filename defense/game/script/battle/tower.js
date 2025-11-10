@@ -30,7 +30,7 @@ class Tower {
 
         if (this.hp <= 0) {
             field.layout[this.layoutPos[0]][this.layoutPos[1]] = null
-            field.unitPlayer.splice(field.unitPlayer.indexOf(this))
+            field.unitPlayer.splice(field.unitPlayer.indexOf(this), 1)
         }
     }
 

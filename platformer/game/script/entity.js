@@ -12,6 +12,10 @@ class Wall extends Entity {
         this.canvas.height = this.rect.size.y
         this.ctx = this.canvas.getContext('2d')
         Render.init(this.ctx)
+
+        this.rigid = true
+        this.rigidTop = true
+        this.fall = false
     }
 
     handleTick(game) {
@@ -19,15 +23,6 @@ class Wall extends Entity {
     }
 
     support(game, entity) {
-        if (entity.ground === false && entity.velocity.y >= 0) {
-            let up = Physics.findUpOverlap(this.rect, entity.tempRect)
-
-            if (up > 0) {
-                entity.tempRect.pos.y -= up
-                entity.velocity.y = 0
-                entity.ground = true
-            }
-        }
     }
 
     render(game) {
@@ -50,16 +45,7 @@ class Belt extends Wall {
     }
 
     support(game, entity) {
-        if (entity.ground === false && entity.velocity.y >= 0) {
-            let up = Physics.findUpOverlap(this.rect, entity.tempRect)
-
-            if (up > 0) {
-                entity.tempRect.pos.y -= up
-                entity.velocity.y = 0
-                entity.ground = true
-                entity.tempRect.pos.x += this.scroll * game.delta / 1000
-            }
-        }
+        entity.rect.pos.x += this.scroll * game.delta / 1000
     }
 
     render(game) {
@@ -81,7 +67,7 @@ class PlayerUnit extends Unit {
     constructor() {
         super()
         this.speed = 320.0
-        this.gravity = 800.0; this.terminalSpeed = 800.0; this.jumpPower = -600.0;
+        this.gravity = 1200.0; this.terminalSpeed = 800.0; this.jumpPower = -600.0;
         this.ground = false
         this.velocity = new Vec2(0, 0)
         this.tempRect = new Rect2(0, 0, 80, 80)
@@ -96,10 +82,8 @@ class PlayerUnit extends Unit {
 
     movePlayer(game) {
         this.ground = false
-        this.velocity.x = 0
-        this.tempRect.pos.x = this.rect.pos.x
-        this.tempRect.pos.y = this.rect.pos.y
 
+        this.velocity.x = 0
         if (game.keyPressed['left'] === true) {
             this.velocity.x -= 1
         }
@@ -107,22 +91,29 @@ class PlayerUnit extends Unit {
             this.velocity.x += 1
         }
         this.velocity.x *= this.speed
+        this.rect.pos.x += this.velocity.x * game.delta / 1000
 
-        this.velocity.y += this.gravity * game.delta / 1000
-
-        this.tempRect.pos.x += this.velocity.x * game.delta / 1000
-        this.tempRect.pos.y += this.velocity.y * game.delta / 1000
-
-        for (let i = 0; i < game.field.mech.length; i++) {
-            game.field.mech[i].support(game, this)
+        if (this.velocity.y < this.terminalSpeed) {
+            this.velocity.y += this.gravity * game.delta / 1000
         }
 
-        this.rect.pos.x = this.tempRect.pos.x
-        this.rect.pos.y = this.tempRect.pos.y
+        this.rect.pos.y += this.velocity.y * game.delta / 1000
+        this.support(game)
     }
 
     support(game) {
-
+        let entityList = game.field.entityList
+        for (let i = 0; i < entityList.length; i++) {
+            let entity = entityList[i]
+            let f = Physics.findUpOverlap(entity.rect, this.rect)
+            if (f > 0) {
+                this.ground = true
+                this.velocity.y = 0
+                this.rect.pos.y -= f
+                entity.support(game, this)
+                break
+            }
+        }
     }
 
     jump(game) {
@@ -153,7 +144,7 @@ class Coin extends Entity {
         let player = game.field.player
         let field = game.field
         if (this.rect.overlap(player.rect)) {
-            field.unit.splice(field.unit.indexOf(this), 1)
+            field.entityList.splice(field.entityList.indexOf(this), 1)
             game.player.coin += 1
         }
     }

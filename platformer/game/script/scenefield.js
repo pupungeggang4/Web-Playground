@@ -1,14 +1,14 @@
 class SceneField {
-    static loop(game) {
+    loop(game) {
         if (game.menu === false) {
             if (game.state === '') {
                 game.field.handleTick(game)
             }
         }
-        SceneField.render(game)
+        this.render(game)
     }
 
-    static render(game) {
+    render(game) {
         Render.init(game.ctx)
         Render.clearCanvas(game.canvas, game.ctx)
         Render.fillCanvas(game.canvas, game.ctx)
@@ -26,7 +26,7 @@ class SceneField {
         }
     }
 
-    static keyDown(game, key) {
+    keyDown(game, key) {
         if (game.menu === false) {
             if (key === 'Escape' || key === 'q') {
                 game.menu = true
@@ -34,7 +34,7 @@ class SceneField {
             }
 
             if (game.state === '') {
-                SceneField.handleKeyDownGame(game, key)
+                this.handleKeyDownGame(game, key)
             }
         } else if (game.menu === true) {
             if (key === 'Escape' || key === 'q') {
@@ -51,18 +51,18 @@ class SceneField {
                     game.menu = false
                 } else if (game.selectedMenu === 1) {
                     game.menu = false
-                    game.scene = 'title'
+                    game.scene = new SceneTitle()
                     game.state = ''
                 }
             }
         }
     }
 
-    static keyUp(game, key) {
+    keyUp(game, key) {
 
     }
 
-    static handleKeyDownGame(game, key) {
+    handleKeyDownGame(game, key) {
         if (key === 'ArrowUp') {
             game.field.player.jump(game)
         }
