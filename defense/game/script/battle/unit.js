@@ -25,6 +25,7 @@ class Unit {
         let field = game.battle.field
         if (this.attackType === 1) {
             this.state = 'move'
+            this.attackTarget = null
             for (let i = 0; i < field.unitPlayer.length; i++) {
                 let unit = field.unitPlayer[i]
                 if (Rect2.simpleCollide(this.rect, unit.rect)) {
