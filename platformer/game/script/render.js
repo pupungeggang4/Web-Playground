@@ -70,4 +70,8 @@ class Render {
             }
         }
     }
+
+    static renderPart(ctx, img, coord, step, pos) {
+        ctx.drawImage(img, coord[0], coord[1], step.x, step.y, pos[0], pos[1], step.x, step.y)
+    }
 }

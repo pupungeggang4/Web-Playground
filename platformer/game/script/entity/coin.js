@@ -6,7 +6,7 @@ class Coin extends Entity {
         this.canvas = Img.sprite.coin
         this.frameTime = 0
         this.frames = 4
-        this.frameInterval = 200
+        this.frameInterval = 0.2
         this.frameCurrent = 0
         this.frameCoord = [[0, 0], [40, 0], [80, 0], [120, 0]]
 
@@ -26,7 +26,7 @@ class Coin extends Entity {
 
     render(game) {
         let field = game.field
-        this.frameTime += game.delta
+        this.frameTime += game.delta / 1000
         this.frameCurrent = Math.floor(this.frameTime / this.frameInterval) % this.frames
         Render.renderCenterCamPart(game.ctx, this.canvas, this.frameCoord[this.frameCurrent], this.rect, field.camera)
     }

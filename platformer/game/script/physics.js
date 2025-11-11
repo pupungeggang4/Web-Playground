@@ -16,4 +16,20 @@ class Physics {
         }
         return 0
     }
+
+    static findLeftOverlap(base, target) {
+        if (Math.abs(base.pos.y - target.pos.y) < (base.size.y / 2 + target.size.y / 2)) {
+            if (target.pos.x < base.pos.x) {
+                return target.size.x / 2 + base.size.x / 2 - (base.pos.x - target.pos.x)
+            }
+        }
+    }
+
+    static findRightOverlap(base, target) {
+        if (Math.abs(base.pos.y - target.pos.y) < (base.size.y / 2 + target.size.y / 2)) {
+            if (target.pos.x > base.pos.x) {
+                return target.size.x / 2 + base.size.x / 2 + (base.pos.x - target.pos.x)
+            }
+        }
+    }
 }

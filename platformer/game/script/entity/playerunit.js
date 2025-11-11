@@ -31,6 +31,7 @@ class PlayerUnit extends Unit {
         }
         this.velocity.x *= this.speed
         this.rect.pos.x += this.velocity.x * game.delta / 1000
+        this.handleCollideX(game)
 
         if (this.velocity.y < this.terminalSpeed) {
             this.velocity.y += this.gravity * game.delta / 1000
