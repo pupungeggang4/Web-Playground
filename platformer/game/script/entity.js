@@ -105,13 +105,15 @@ class PlayerUnit extends Unit {
         let entityList = game.field.entityList
         for (let i = 0; i < entityList.length; i++) {
             let entity = entityList[i]
-            let f = Physics.findUpOverlap(entity.rect, this.rect)
-            if (f > 0) {
-                this.ground = true
-                this.velocity.y = 0
-                this.rect.pos.y -= f
-                entity.support(game, this)
-                break
+            if (entity.rigid === true) {
+                let f = Physics.findUpOverlap(entity.rect, this.rect)
+                if (f > 0) {
+                    this.ground = true
+                    this.velocity.y = 0
+                    this.rect.pos.y -= f
+                    entity.support(game, this)
+                    break
+                }
             }
         }
     }
@@ -138,6 +140,9 @@ class Coin extends Entity {
         this.frameInterval = 200
         this.frameCurrent = 0
         this.frameCoord = [[0, 0], [40, 0], [80, 0], [120, 0]]
+
+        this.rigid = false
+        this.fall = false
     }
 
     handleTick(game) {
