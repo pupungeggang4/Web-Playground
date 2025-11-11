@@ -172,6 +172,10 @@ class Unit {
         this.frameTime += game.delta / 1000
         this.frameCurrent = Math.floor(this.frameTime / this.frameInterval) % this.frames
         Render.drawCenterCamPart(game.ctx, this.canvas, this.frameCoord[this.frameCurrent], this.rect, game.field.camera)
+        let tl = Render.findTopLeft(this.rect, game.field.camera)
+        game.ctx.fillStyle = 'green'
+        game.ctx.fillRect(tl[0], tl[1], this.hp / this.hpMax * 80, 10)
+        game.ctx.fillStyle = 'black'
     }
 }
 
@@ -189,12 +193,14 @@ class FieldPlayer extends Unit {
         this.energy = 0
         this.energyMax = 0
         this.exp = 0; this.expMax = 0; this.level = 0; this.gold = 0
-        this.attackSpeed = 1.0;
+        this.attack = 10; this.attackSpeed = 1.0; this.attackCoolLeft = 1.0;
         this.dashCool = 1.5; this.dashCoolLeft = 1.5; this.dashTime = 0.2; this.dashTimeLeft = 0.2;
+        this.weapon = new Weapon()
     }
 
     handleTick(game) {
         this.move(game)
+        this.handleAttackCool(game)
     }
 
     dash(game) {
@@ -204,15 +210,27 @@ class FieldPlayer extends Unit {
         }
     }
 
+    handleAttackCool(game) {
+        if (this.attackCoolLeft <= 0) {
+
+        } else {
+            this.attackCoolLeft -= game.delta / 1000
+        }
+    }
+
     shoot(game, pos) {
         let field = game.field
-        if (Vec2.distance(this.rect.pos, pos) >= 10) {
-            let diffN = Vec2.sub(pos, this.rect.pos).normalized()
-            let proj = new Projectile()
-            proj.rect.pos.x = this.rect.pos.x
-            proj.rect.pos.y = this.rect.pos.y
-            proj.direction = diffN
-            field.proj.push(proj)
+        if (this.attackCoolLeft <= 0) {
+            if (Vec2.distance(this.rect.pos, pos) >= 10) {
+                let diffN = Vec2.sub(pos, this.rect.pos).normalized()
+                let proj = new Projectile()
+                proj.rect.pos.x = this.rect.pos.x
+                proj.rect.pos.y = this.rect.pos.y
+                proj.direction = diffN
+                proj.damage = this.attack * this.weapon.attackMul
+                this.attackCoolLeft = 1 / (this.attackSpeed * this.weapon.attackSpeed)
+                field.proj.push(proj)
+            }
         }
     }
 
