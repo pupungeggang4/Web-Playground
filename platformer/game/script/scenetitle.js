@@ -1,4 +1,8 @@
 class SceneTitle {
+    constructor(game) {
+        
+    }
+
     loop(game) {
         this.render(game)
     }
@@ -28,7 +32,7 @@ class SceneTitle {
 
         if (key === 'Enter') {
             if (game.selectedTitle === 0) {
-                game.scene = new SceneField()
+                game.scene = new SceneField(game)
                 game.state = ''
                 game.field = new Field()
             } else if (game.selectedTitle === 1) {

@@ -13,8 +13,8 @@ class Wall extends Entity {
         this.ctx = this.canvas.getContext('2d')
         Render.init(this.ctx)
 
-        this.rigid = true
-        this.rigidTop = true
+        this.solid = true
+        this.floor = true
         this.fall = false
     }
 
@@ -60,6 +60,58 @@ class Belt extends Wall {
 class Unit extends Entity {
     constructor() {
         super()
+        this.rect = new Rect2(0, 0, 80, 80)
+    }
+
+    handleCollideX(game) {
+        let field = game.field
+        for (let i = 0; i < field.entityList.length; i++) {
+            let entity = field.entityList[i]
+            if (this != entity && entity.solid === true) {
+                let left = Physics.checkCollisionLeft(entity.rect, this.rect)
+                if (left > 0) {
+                    this.rect.pos.x -= left
+                    break
+                }
+                let right = Physics.checkCollisionRight(entity.rect, this.rect)
+                if (right > 0) {
+                    this.rect.pos.x += right
+                    break
+                }
+            }
+        }
+    }
+
+    handleFall(game) {
+        let field = game.field
+        for (let i = 0; i < field.entityList.length; i++) {
+            let entity = field.entityList[i]
+            if (this != entity && (entity.solid === true || entity.floor === true)) {
+                let up = Physics.checkCollisionUp(entity.rect, this.rect)
+                if (up > 0) {
+                    this.rect.pos.y -= up
+                    this.velocity.y = 0
+                    this.ground = true
+                    entity.support(game, this)
+                    break
+                }
+            }
+        }
+    }
+
+    handleCollideUp(game) {
+        let field = game.field
+        for (let i = 0; i < field.entityList.length; i++) {
+            let entity = field.entityList[i]
+            if (this != entity && entity.solid === true) {
+                let down = Physics.checkCollisionDown(entity.rect, this.rect)
+                if (down > 0) {
+                    this.rect.pos.y += down
+                    this.velocity.y = 0
+                    break
+                }
+            }
+        }
     }
 }
 
@@ -74,6 +126,10 @@ class PlayerUnit extends Unit {
 
         this.rect = new Rect2(0, 0, 80, 80)
         this.canvas = Img.player
+
+        this.solid = false
+        this.floor = false
+        this.fall = false
     }
 
     handleTick(game) {
@@ -92,32 +148,18 @@ class PlayerUnit extends Unit {
         }
         this.velocity.x *= this.speed
         this.rect.pos.x += this.velocity.x * game.delta / 1000
+        this.handleCollideX(game)
 
         if (this.velocity.y < this.terminalSpeed) {
             this.velocity.y += this.gravity * game.delta / 1000
         }
-
         this.rect.pos.y += this.velocity.y * game.delta / 1000
-        this.support(game)
-    }
-
-    support(game) {
-        let entityList = game.field.entityList
-        for (let i = 0; i < entityList.length; i++) {
-            let entity = entityList[i]
-            let f = Physics.findUpOverlap(entity.rect, this.rect)
-            if (f > 0) {
-                this.ground = true
-                this.velocity.y = 0
-                this.rect.pos.y -= f
-                entity.support(game, this)
-                break
-            }
-        }
+        this.handleFall(game)
+        this.handleCollideUp(game)
     }
 
     jump(game) {
-        if (this.ground === true) {
+        if (true) {
             this.velocity.y = this.jumpPower
             this.ground = false
         }
@@ -138,6 +180,10 @@ class Coin extends Entity {
         this.frameInterval = 200
         this.frameCurrent = 0
         this.frameCoord = [[0, 0], [40, 0], [80, 0], [120, 0]]
+
+        this.solid = false
+        this.floor = false
+        this.fall = false
     }
 
     handleTick(game) {

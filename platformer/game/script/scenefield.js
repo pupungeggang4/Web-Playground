@@ -1,4 +1,8 @@
 class SceneField {
+    constructor(game) {
+        this.windowMenu = new WindowMenu(game)
+    }
+
     loop(game) {
         if (game.menu === false) {
             if (game.state === '') {
@@ -18,11 +22,8 @@ class SceneField {
         Render.drawImageUI(game.ctx, Img.icon.coin, UI.field.iconCoin)
         Render.fillTextUI(game.ctx, game.player.coin, UI.field.textCoin)
 
-        //let player = game.field.player
-        //Render.fillTextUI(game.ctx, `${player.ground} ${player.rect.pos.y}`, [4, 64])
-
         if (game.menu === true) {
-            Render.renderMenu(game.ctx, game)
+            this.windowMenu.render(game)
         }
     }
 
@@ -31,6 +32,7 @@ class SceneField {
             if (key === 'Escape' || key === 'q') {
                 game.menu = true
                 game.selectedMenu = 0
+                this.windowMenu.renderStatic()
             }
 
             if (game.state === '') {
@@ -51,7 +53,7 @@ class SceneField {
                     game.menu = false
                 } else if (game.selectedMenu === 1) {
                     game.menu = false
-                    game.scene = new SceneTitle()
+                    game.scene = new SceneTitle(game)
                     game.state = ''
                 }
             }

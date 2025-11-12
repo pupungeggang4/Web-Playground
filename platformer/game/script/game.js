@@ -2,25 +2,6 @@ class Game {
     constructor() {
         Img.loadImage()
 
-        this.field = new Field()
-        this.player = new Player()
-
-        this.scene = new SceneTitle()
-        this.state = ''
-        this.menu = false
-        this.lang = 'en'
-        this.locale = Locale.data[this.lang]
-
-        this.selectedTitle = 0
-        this.selectedMenu = 0
-
-        this.keyMapping = {
-            'left': 'ArrowLeft', 'right': 'ArrowRight', 'up': 'ArrowUp', 'down': 'ArrowDown'
-        }
-        this.keyPressed = {
-            'left': false, 'right': false, 'up': false, 'down': false
-        }
-
         this.canvas = document.getElementById('screen')
         this.ctx = this.canvas.getContext('2d')
         this.canvas.addEventListener('mouseup', (event) => this.mouseUp(event), false)
@@ -30,9 +11,26 @@ class Game {
         this.frameCurrent = 0
         this.framePrevious = 0
         this.delta = 0
+
+        this.state = ''
+        this.menu = false
+        this.lang = 'en'
+        this.locale = Locale.data[this.lang]
+        this.selectedTitle = 0
+        this.selectedMenu = 0
+        this.keyMapping = {
+            'left': 'ArrowLeft', 'right': 'ArrowRight', 'up': 'ArrowUp', 'down': 'ArrowDown'
+        }
+        this.keyPressed = {
+            'left': false, 'right': false, 'up': false, 'down': false
+        }
+
+        this.field = new Field()
+        this.player = new Player()
     }
 
     run() {
+        this.scene = new SceneTitle(this)
         this.framePrevious = performance.now()
         this.gameLoop = requestAnimationFrame(() => this.loop())
     }
