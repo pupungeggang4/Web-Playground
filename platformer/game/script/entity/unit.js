@@ -12,7 +12,7 @@ class Unit extends Entity {
         for (let i = 0; i < entityList.length; i++) {
             let entity = entityList[i]
             if ((entity.rigid === true || entity.floor === true) && entity != this) {
-                let f = Physics.findUpOverlap(entity.rect, this.rect)
+                let f = Physics.checkCollisionUp(entity.rect, this.rect)
                 if (f > 0) {
                     this.ground = true
                     this.velocity.y = 0
@@ -29,7 +29,7 @@ class Unit extends Entity {
         for (let i = 0; i < entityList.length; i++) {
             let entity = entityList[i]
             if ((entity.rigid === true || entity.floor === true) && entity != this) {
-                let f = Physics.findDownOverlap(entity.rect, this.rect)
+                let f = Physics.checkCollisionDown(entity.rect, this.rect)
                 if (f > 0) {
                     this.velocity.y = 0
                     this.rect.pos.y += f
@@ -44,12 +44,12 @@ class Unit extends Entity {
         for (let i = 0; i < entityList.length; i++) {
             let entity = entityList[i]
             if ((entity.rigid === true || entity.floor === true) && entity != this) {
-                let left = Physics.findLeftOverlap(entity.rect, this.rect)
+                let left = Physics.checkCollisionLeft(entity.rect, this.rect)
                 if (left > 0) {
                     this.rect.pos.x -= left
                     break
                 }
-                let right = Physics.findRightOverlap(entity.rect, this.rect)
+                let right = Physics.checkCollisionRight(entity.rect, this.rect)
                 if (right > 0) {
                     this.rect.pos.x += right
                     break
