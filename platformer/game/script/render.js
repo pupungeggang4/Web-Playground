@@ -43,4 +43,20 @@ class Render {
         rect.pos.x - rect.size.x / 2 - cam.pos.x + cam.size.x / 2, rect.pos.y - rect.size.y / 2 - cam.pos.y + cam.size.y / 2,
         rect.size.x, rect.size.y)
     }
+
+    static renderTextureCenterCam(ctx, img, step, rect, cam) {
+        let nx = rect.size.x / step.x
+        let ny = rect.size.y / step.y
+        let start = [rect.pos.x - rect.size.x / 2 - cam.pos.x + cam.size.x / 2, rect.pos.y - rect.size.y / 2 - cam.pos.y + cam.size.y / 2]
+
+        for (let i = 0; i < ny; i++) {
+            for (let j = 0; j < nx; j++) {
+                ctx.drawImage(img, start[0] + step.x * j, start[1] + step.y * i)
+            }
+        }
+    }
+
+    static renderPart(ctx, img, coord, step, pos) {
+        ctx.drawImage(img, coord[0], coord[1], step.x, step.y, pos[0], pos[1], step.x, step.y)
+    }
 }

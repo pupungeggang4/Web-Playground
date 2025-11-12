@@ -7,7 +7,12 @@ class Img {
     }
 
     static sprite = {
-        coin: new Image()
+        coin: new Image(),
+        belt: new Image()
+    }
+
+    static texture = {
+        stone: new Image()
     }
 
     static loadImage() {
@@ -15,5 +20,7 @@ class Img {
         Img.player.src = 'image/player.png'
         Img.icon.coin.src = 'image/iconcoin.png'
         Img.sprite.coin.src = 'image/sprite/spritecoin.png'
+        Img.sprite.belt.src = 'image/sprite/spritebelt.png'
+        Img.texture.stone.src = 'image/texture/texturestone.png'
     }
 }

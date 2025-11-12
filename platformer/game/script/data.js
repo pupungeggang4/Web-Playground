@@ -1,5 +1,0 @@
-class Data {
-    static world = {
-
-    }
-}
