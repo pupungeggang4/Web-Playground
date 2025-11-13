@@ -1,6 +1,6 @@
 class SceneTutorial {
-    constructor() {
-
+    constructor(game) {
+        
     }
 
     loop(game) {
@@ -64,7 +64,7 @@ class SceneTutorial {
                     this.handleTutorialClickBreak(game, pos, button)
                 } else if (game.state === 'level_clear') {
                     if (Func.pointInsideRectUI(pos, UI.windowSmall.buttonOK)) {
-                        game.scene = new SceneTitle()
+                        game.changeScene('title')
                         game.state = ''
                     }
                 }
@@ -74,7 +74,7 @@ class SceneTutorial {
                 game.menu = false
             } else if (Func.pointInsideRectUI(pos, UI.menuSmall.buttonExit)) {
                 game.menu = false
-                game.scene = new SceneTitle()
+                game.changeScene('title')
                 game.state = ''
             }
         }

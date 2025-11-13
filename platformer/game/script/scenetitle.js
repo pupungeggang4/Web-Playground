@@ -32,7 +32,7 @@ class SceneTitle {
 
         if (key === 'Enter') {
             if (game.selectedTitle === 0) {
-                game.scene = new SceneField(game)
+                game.changeScene('field')
                 game.state = ''
                 game.field = new Field()
                 game.field.player = new PlayerUnit()

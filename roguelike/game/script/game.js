@@ -7,7 +7,6 @@ class Game {
 
         this.keyPressed = {'left': false, 'right': false, 'up': false, 'down': false}
 
-        this.scene = new SceneTitle()
         this.state = ''
         this.menu = false
         this.lang = 'en'
@@ -31,6 +30,7 @@ class Game {
     }
 
     run() {
+        this.scene = new SceneTitle(this)
         this.framePrevious = performance.now()
         this.gameLoop = requestAnimationFrame(() => this.loop())
     }
@@ -43,6 +43,16 @@ class Game {
         this.scene.loop(this)
 
         this.gameLoop = requestAnimationFrame(() => this.loop())
+    }
+
+    changeScene(scene) {
+        if (scene === 'title') {
+            this.scene = new SceneTitle(this)
+        } else if (scene === 'village') {
+            this.scene = new SceneVillage(this)
+        } else if (scene === 'battle') {
+            this.scene = new SceneBattle(this)
+        }
     }
 
     keyDown(event) {

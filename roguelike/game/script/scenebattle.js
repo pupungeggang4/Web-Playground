@@ -1,4 +1,8 @@
 class SceneBattle {
+    constructor(game) {
+        
+    }
+
     loop(game) {
         if (game.menu === false) {
             if (game.state === '') {
@@ -53,11 +57,11 @@ class SceneBattle {
                     game.menu = false
                 } else if (game.selectedMenuBattle === 1) {
                     game.menu = false
-                    game.scene = new SceneVillage()
+                    game.changeScene('village')
                     game.state = ''
                 } else if (game.selectedMenuBattle === 2) {
                     game.menu = false
-                    game.scene = new SceneTitle()
+                    game.changeScene('title')
                     game.state = ''
                 }
             }
@@ -104,11 +108,11 @@ class SceneBattle {
                     game.menu = false
                 } else if (Func.pointInsideRectUI(pos, UI.menuBattle.buttonSurrender)) {
                     game.menu = false
-                    game.scene = new SceneVillage()
+                    game.changeScene('village')
                     game.state = ''
                 } else if (Func.pointInsideRectUI(pos, UI.menuBattle.buttonExit)) {
                     game.menu = false
-                    game.scene = new SceneTitle()
+                    game.changeScene('title')
                     game.state = ''
                 }
             }

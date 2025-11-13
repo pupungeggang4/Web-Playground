@@ -1,4 +1,8 @@
 class SceneVillage {
+    constructor(game) {
+        
+    }
+    
     loop(game) {
         if (game.menu === false) {
             if (game.state === '') {
@@ -60,7 +64,7 @@ class SceneVillage {
                     game.menu = false
                 } else if (game.selectedMenuVillage === 1) {
                     game.menu = false
-                    game.scene = new SceneTitle()
+                    game.changeScene('title')
                     game.state = ''
                 }
             }
@@ -78,7 +82,7 @@ class SceneVillage {
             game.selectedAdventureConfirm = (game.selectedAdventureConfirm + 1) % 2
         } else if (key === 'Enter') {
             if (game.selectedAdventureConfirm === 0) {
-                game.scene = new SceneBattle()
+                game.changeScene('battle')
                 game.state = 'adventure_start'
                 game.selectedAdventureStart = 0
                 game.field = new Field()
@@ -100,7 +104,7 @@ class SceneVillage {
                     game.village.player.handleInteract(game)
                 } else if (game.state === 'adventure_confirm') {
                     if (Func.pointInsideRectUI(pos, UI.windowAdventureConfirm.buttonYes)) {
-                        game.scene = new SceneBattle()
+                        game.changeScene('battle')
                         game.state = 'adventure_start'
                         game.selectedAdventureStart = 0
                         game.field = new Field()
@@ -113,7 +117,7 @@ class SceneVillage {
                     game.menu = false
                 } else if (Func.pointInsideRectUI(pos, UI.menuVillage.buttonExit)) {
                     game.menu = false
-                    game.scene = new SceneTitle()
+                    game.changeScene('title')
                     game.state = ''
                 }
             }

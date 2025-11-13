@@ -1,5 +1,5 @@
 class SceneAdventure {
-    constructor() {
+    constructor(game) {
         
     }
 

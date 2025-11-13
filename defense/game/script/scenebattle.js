@@ -1,6 +1,6 @@
 class SceneBattle {
-    constructor() {
-
+    constructor(game) {
+        
     }
 
     loop(game) {
@@ -52,12 +52,12 @@ class SceneBattle {
                     this.handleClickReady(game, pos, button)
                 } else if (game.state === 'game_over') {
                     if (Func.pointInsideRectUI(pos, UI.windowSmall.buttonOK)) {
-                        game.scene = new SceneTitle()
+                        game.changeScene('title')
                         game.state = ''
                     }
                 } else if (game.state === 'level_clear') {
                     if (Func.pointInsideRectUI(pos, UI.windowSmall.buttonOK)) {
-                        game.scene = new SceneLevelSelect()
+                        game.changeScene('level_select')
                         game.state = ''
                     }
                 }
@@ -70,11 +70,11 @@ class SceneBattle {
                     game.state = 'ready'
                 } else if (Func.pointInsideRectUI(pos, UI.menu.buttonLevelSelect)) {
                     game.menu = false
-                    game.scene = new SceneLevelSelect()
+                    game.changeScene('level_select')
                     game.state = ''
                 } else if (Func.pointInsideRectUI(pos, UI.menu.buttonExit)) {
                     game.menu = false
-                    game.scene = new SceneTitle()
+                    game.changeScene('title')
                     game.state = ''
                 }
             }

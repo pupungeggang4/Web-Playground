@@ -1,4 +1,8 @@
 class SceneTitle {
+    constructor(game) {
+        
+    }
+    
     loop(game) {
         this.render(game)
     }
@@ -36,7 +40,7 @@ class SceneTitle {
 
         if (key === 'Enter') {
             if (game.selectedTitle === 0) {
-                game.scene = new SceneVillage()
+                game.changeScene('village')
                 game.state = ''
                 game.village = new Village()
             } else if (game.selectedTitle === 1) {
@@ -53,7 +57,7 @@ class SceneTitle {
     mouseUp(game, pos, button) {
         if (button === 0) {
             if (Func.pointInsideRectUI(pos, UI.title.buttonStart)) {
-                game.scene = new SceneVillage()
+                game.changeScene('village')
                 game.state = ''
                 game.village = new Village()
             } else if (Func.pointInsideRectUI(pos, UI.title.buttonLang)) {

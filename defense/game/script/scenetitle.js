@@ -1,6 +1,6 @@
 class SceneTitle {
-    constructor() {
-
+    constructor(game) {
+        
     }
 
     loop(game) {
@@ -30,17 +30,17 @@ class SceneTitle {
     mouseUp(game, pos, button) {
         if (button === 0) {
             if (Func.pointInsideRectUI(pos, UI.title.buttonStart)) {
-                game.scene = new SceneLevelSelect()
+                game.changeScene('level_start')
                 game.state = ''
                 game.pageLevel = 0
             }
             if (Func.pointInsideRectUI(pos, UI.title.buttonAdventure)) {
-                game.scene = new SceneAdventure()
+                game.changeScene('adventure')
                 game.state = 'adventure_start'
                 game.menu = false
             }
             if (Func.pointInsideRectUI(pos, UI.title.buttonTutorial)) {
-                game.scene = new SceneTutorial()
+                game.changeScene('tutorial')
                 game.state = 'break'
                 game.menu = false
                 game.tutorialPhase = 'welcome'

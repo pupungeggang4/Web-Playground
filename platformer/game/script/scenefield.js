@@ -53,7 +53,7 @@ class SceneField {
                     game.menu = false
                 } else if (game.selectedMenu === 1) {
                     game.menu = false
-                    game.scene = new SceneTitle(game)
+                    game.changeScene('title')
                     game.state = ''
                 }
             }

@@ -1,6 +1,6 @@
 class SceneCollection {
-    constructor() {
-
+    constructor(game) {
+        
     }
 
     loop(game) {
@@ -19,7 +19,7 @@ class SceneCollection {
     mouseUp(game, pos, button) {
         if (button === 0) {
             if (Func.pointInsideRectUI(pos, UI.collection.buttonBack)) {
-                game.scene = new SceneTitle()
+                game.changeScene('title')
                 game.state = ''
             }
         }

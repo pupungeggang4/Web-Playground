@@ -46,6 +46,14 @@ class Game {
         this.gameLoop = requestAnimationFrame(() => this.loop())
     }
 
+    changeScene(scene) {
+        if (scene === 'title') {
+            this.scene = new SceneTitle(this)
+        } else if (scene === 'field') {
+            this.scene = new SceneField(this)
+        }
+    }
+
     mouseUp(event) {
         
     }
