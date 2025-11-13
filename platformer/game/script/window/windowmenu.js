@@ -1,15 +1,4 @@
 class WindowMenu {
-    static UI = {
-        rect: [320, 240, 640, 240],
-        textPaused: [340, 260],
-        buttonResume: [320, 320, 640, 80],
-        textResume: [340, 340],
-        buttonResume: [320, 400, 640, 80],
-        textExit: [340, 420],
-        buttonExit: [320, 480, 640, 80],
-        arrow: [[240, 320], [240, 400], [240, 480]]
-    }
-
     constructor() {
         this.canvasStatic = document.createElement('canvas')
         this.canvasStatic.width = 1280

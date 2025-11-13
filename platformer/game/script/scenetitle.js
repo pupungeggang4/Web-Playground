@@ -35,7 +35,9 @@ class SceneTitle {
                 game.scene = new SceneField(game)
                 game.state = ''
                 game.field = new Field()
-                LevelLoader.loadLevel(game, level1)
+                game.field.player = new PlayerUnit()
+                game.player = new Player()
+                LevelLoader.loadLevel(game, Data.level["level1"])
             } else if (game.selectedTitle === 1) {
                 if (game.lang === 'ko') {
                     game.lang = 'en'

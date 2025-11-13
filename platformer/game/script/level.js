@@ -4,6 +4,8 @@ class LevelLoader {
         let field = game.field
         field.player.rect.pos = new Vec2(l['start_pos'][0], l['start_pos'][1])
         field.entityList = []
+        field.portalList = []
+
         for (let i = 0; i < l['entity'].length; i++) {
             let entity = l['entity'][i]
 
@@ -28,6 +30,14 @@ class LevelLoader {
                 belt.scroll = entity[1][4]
                 field.entityList.push(belt)
             }
+        }
+
+        for (let i = 0; i < l['portal'].length; i++) {
+            let portal = new Portal()
+            portal.destination = l['portal'][i][0]
+            portal.rect = new Rect2(l['portal'][i][1][0], l['portal'][i][1][1], l['portal'][i][1][2], l['portal'][i][1][3])
+            portal.warpPos = new Vec2(l['portal'][i][2][0], l['portal'][i][2][1])
+            field.portalList.push(portal)
         }
     }
 }

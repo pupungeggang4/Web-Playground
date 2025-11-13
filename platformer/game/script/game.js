@@ -1,6 +1,7 @@
 class Game {
     constructor() {
         Img.loadImage()
+        Data.loadData()
 
         this.canvas = document.getElementById('screen')
         this.ctx = this.canvas.getContext('2d')

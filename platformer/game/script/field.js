@@ -3,6 +3,7 @@ class Field {
         this.camera = new Rect2(0, 0, 1280, 720)
         this.player = new PlayerUnit()
         this.entityList = []
+        this.portalList = []
     }
 
     handleTick(game) {
@@ -16,10 +17,14 @@ class Field {
     }
 
     render(game) {
-        this.player.render(game)
-
         for (let i = 0; i < this.entityList.length; i++) {
             this.entityList[i].render(game)
         }
+
+        for (let i = 0; i < this.portalList.length; i++) {
+            this.portalList[i].render(game)
+        }
+
+        this.player.render(game)
     }
 }

@@ -68,5 +68,8 @@ class SceneField {
         if (key === 'ArrowUp') {
             game.field.player.jump(game)
         }
+        if (key === 'f') {
+            game.field.player.interactPortal(game)
+        }
     }
 }

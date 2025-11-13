@@ -49,6 +49,18 @@ class PlayerUnit extends Unit {
         }
     }
 
+    interactPortal(game) {
+        let field = game.field
+        for (let i = 0; i < field.portalList.length; i++) {
+            let portal = field.portalList[i]
+            if (Rect2.simpleCollisionCheck(this.rect, portal.rect)) {
+                LevelLoader.loadLevel(game, Data.level[portal.destination])
+                this.rect.pos = new Vec2(portal.warpPos.x, portal.warpPos.y)
+                break
+            }
+        }
+    }
+
     render(game) {
         let field = game.field
         Render.renderCenterCam(game.ctx, this.canvas, this.rect, field.camera)

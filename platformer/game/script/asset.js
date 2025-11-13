@@ -1,6 +1,7 @@
 class Img {
     static arrow = new Image()
     static player = new Image()
+    static portal = new Image()
 
     static icon = {
         coin: new Image()
@@ -18,6 +19,7 @@ class Img {
     static loadImage() {
         Img.arrow.src = 'image/arrow.png'
         Img.player.src = 'image/player.png'
+        Img.portal.src = 'image/portal.png'
         Img.icon.coin.src = 'image/iconcoin.png'
         Img.sprite.coin.src = 'image/sprite/spritecoin.png'
         Img.sprite.belt.src = 'image/sprite/spritebelt.png'
