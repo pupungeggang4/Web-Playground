@@ -1,0 +1,5 @@
+class FileHandler {
+    static download() {
+
+    }
+}
